@@ -1651,7 +1651,235 @@
         }
 
         async function exportPDF() {
-            toast('Função PDF em desenvolvimento');
+            try {
+                const { jsPDF } = window.jspdf;
+                if (!jsPDF) {
+                    toast('❌ Biblioteca PDF não carregada');
+                    return;
+                }
+                
+                const doc = new jsPDF();
+                
+                // Buscar dados do orçamento
+                const o = await supabaseClient
+                    .from('orcamentos')
+                    .select('*')
+                    .eq('id', currentOrcId)
+                    .single();
+                    
+                if (!o.data) {
+                    toast('❌ Orçamento não encontrado');
+                    return;
+                }
+                
+                // Buscar cliente
+                const cli = await supabaseClient
+                    .from('clientes')
+                    .select('*')
+                    .eq('id', o.data.cliente_id)
+                    .single();
+                
+                // Buscar perfil
+                const { data: { user } } = await supabaseClient.auth.getUser();
+                const perfil = await supabaseClient
+                    .from('perfil')
+                    .select('*')
+                    .eq('user_id', user.id)
+                    .single();
+                
+                const p = perfil.data || {};
+                
+                // ===== CABEÇALHO AZUL =====
+                doc.setFillColor(26, 59, 90); // Azul #1a3b5a
+                doc.rect(0, 0, 210, 40, 'F');
+                
+                // Logo PS (texto)
+                doc.setTextColor(255, 255, 255);
+                doc.setFontSize(28);
+                doc.setFont('helvetica', 'bold');
+                doc.text('PS', 20, 20);
+                
+                doc.setFontSize(10);
+                doc.text('PRO', 35, 20);
+                
+                // Informações da empresa
+                doc.setFontSize(11);
+                doc.setFont('helvetica', 'bold');
+                doc.text(p.nome || 'Minha Empresa', 60, 16);
+                
+                doc.setFontSize(9);
+                doc.setFont('helvetica', 'normal');
+                if (p.tel) doc.text(p.tel, 60, 23);
+                if (p.email) doc.text(p.email, 60, 29);
+                if (p.endereco) doc.text(p.endereco.substring(0, 50), 60, 35);
+                
+                // ===== TÍTULO ORÇAMENTO =====
+                doc.setTextColor(26, 59, 90);
+                doc.setFontSize(16);
+                doc.setFont('helvetica', 'bold');
+                doc.text('ORÇAMENTO', 20, 55);
+                
+                // Informações do orçamento
+                doc.setFontSize(9);
+                doc.setFont('helvetica', 'normal');
+                doc.setTextColor(100, 100, 100);
+                doc.text(`Nº: ${String(o.data.id).padStart(4, '0')}`, 160, 50);
+                doc.text(`Data: ${new Date(o.data.created_at).toLocaleDateString('pt-BR')}`, 160, 56);
+                doc.text(`Validade: ${o.data.val} dias`, 160, 62);
+                
+                // ===== DADOS DO CLIENTE =====
+                doc.setFillColor(245, 247, 250);
+                doc.roundedRect(20, 68, 170, 28, 2, 2, 'F');
+                
+                doc.setTextColor(26, 59, 90);
+                doc.setFontSize(10);
+                doc.setFont('helvetica', 'bold');
+                doc.text('CLIENTE', 25, 77);
+                
+                doc.setFont('helvetica', 'normal');
+                doc.setTextColor(60, 60, 60);
+                doc.text(cli?.data?.nome || 'N/A', 25, 84);
+                
+                let infoCliente = '';
+                if (cli?.data?.tel) infoCliente += `Tel: ${cli.data.tel}`;
+                if (cli?.data?.endereco) {
+                    if (infoCliente) infoCliente += ' | ';
+                    infoCliente += `End: ${cli.data.endereco.substring(0, 60)}`;
+                }
+                doc.text(infoCliente, 25, 91);
+                
+                // ===== ITENS DO ORÇAMENTO =====
+                let y = 108;
+                
+                // Agrupar por ambiente
+                const ambientes = {};
+                o.data.itens.forEach(item => {
+                    const amb = item.ambiente || 'Geral';
+                    if (!ambientes[amb]) ambientes[amb] = [];
+                    ambientes[amb].push(item);
+                });
+                
+                for (const [ambiente, itens] of Object.entries(ambientes)) {
+                    // Verificar se precisa de nova página
+                    if (y > 260) {
+                        doc.addPage();
+                        y = 20;
+                    }
+                    
+                    // Título do ambiente
+                    doc.setFillColor(26, 59, 90);
+                    doc.rect(20, y, 170, 8, 'F');
+                    doc.setTextColor(255, 255, 255);
+                    doc.setFontSize(9);
+                    doc.setFont('helvetica', 'bold');
+                    doc.text(`📍 ${ambiente}`, 25, y + 5.5);
+                    y += 10;
+                    
+                    // Cabeçalho da tabela
+                    doc.setFillColor(230, 235, 240);
+                    doc.rect(20, y, 170, 7, 'F');
+                    doc.setTextColor(26, 59, 90);
+                    doc.setFontSize(8);
+                    doc.text('SERVIÇO', 25, y + 5);
+                    doc.text('QTD', 115, y + 5);
+                    doc.text('UNIT.', 140, y + 5);
+                    doc.text('TOTAL', 170, y + 5);
+                    y += 9;
+                    
+                    // Itens
+                    doc.setTextColor(60, 60, 60);
+                    doc.setFont('helvetica', 'normal');
+                    itens.forEach((x, i) => {
+                        if (y > 270) {
+                            doc.addPage();
+                            y = 20;
+                        }
+                        
+                        if (i % 2 === 0) {
+                            doc.setFillColor(250, 250, 250);
+                            doc.rect(20, y - 4, 170, 7, 'F');
+                        }
+                        
+                        doc.text(x.nome.substring(0, 40), 25, y);
+                        doc.text(`${x.qtd.toFixed(2)} ${x.un}`, 115, y);
+                        doc.text(`R$ ${x.preco.toFixed(2)}`, 140, y);
+                        doc.text(`R$ ${x.total.toFixed(2)}`, 170, y);
+                        y += 7;
+                    });
+                    
+                    y += 5;
+                }
+                
+                // ===== TOTAL =====
+                y += 2;
+                if (y > 250) {
+                    doc.addPage();
+                    y = 20;
+                }
+                
+                doc.setFillColor(247, 192, 38); // Amarelo #f7c026
+                doc.roundedRect(120, y, 70, 12, 2, 2, 'F');
+                doc.setTextColor(26, 59, 90);
+                doc.setFontSize(11);
+                doc.setFont('helvetica', 'bold');
+                doc.text(`TOTAL: R$ ${numberToMoeda(o.data.total)}`, 125, y + 8);
+                
+                y += 20;
+                
+                // ===== FORMA DE PAGAMENTO =====
+                if (o.data.pagamento) {
+                    if (y > 250) { doc.addPage(); y = 20; }
+                    doc.setFillColor(245, 247, 250);
+                    doc.roundedRect(20, y, 170, 12, 2, 2, 'F');
+                    doc.setTextColor(26, 59, 90);
+                    doc.setFontSize(9);
+                    doc.setFont('helvetica', 'bold');
+                    doc.text('FORMA DE PAGAMENTO:', 25, y + 8);
+                    doc.setFont('helvetica', 'normal');
+                    doc.text(o.data.pagamento.substring(0, 60), 75, y + 8);
+                    y += 16;
+                }
+                
+                // ===== OBSERVAÇÕES =====
+                if (o.data.obs) {
+                    if (y > 230) { doc.addPage(); y = 20; }
+                    doc.setTextColor(26, 59, 90);
+                    doc.setFontSize(9);
+                    doc.setFont('helvetica', 'bold');
+                    doc.text('OBSERVAÇÕES:', 20, y);
+                    y += 6;
+                    doc.setFont('helvetica', 'normal');
+                    doc.setTextColor(60, 60, 60);
+                    doc.setFontSize(8);
+                    
+                    const obsLines = doc.splitTextToSize(o.data.obs, 170);
+                    obsLines.forEach(line => {
+                        if (y > 280) { doc.addPage(); y = 20; }
+                        doc.text(line, 20, y);
+                        y += 5;
+                    });
+                }
+                
+                // ===== RODAPÉ =====
+                const pageCount = doc.internal.getNumberOfPages();
+                for (let i = 1; i <= pageCount; i++) {
+                    doc.setPage(i);
+                    doc.setTextColor(150, 150, 150);
+                    doc.setFontSize(7);
+                    doc.setFont('helvetica', 'normal');
+                    doc.text('Orçamento gerado pelo PS Pro - Painel Services', 20, 285);
+                }
+                
+                // ===== SALVAR PDF =====
+                const nomeArquivo = `orcamento_${o.data.id}_${cli?.data?.nome?.replace(/\s/g, '_') || 'cliente'}.pdf`;
+                doc.save(nomeArquivo);
+                
+                toast('✅ PDF exportado!');
+                
+            } catch (err) {
+                console.error('Erro ao gerar PDF:', err);
+                toast('❌ Erro ao gerar PDF: ' + err.message);
+            }
         }
 
         function maskCPFCNPJ(v) {
