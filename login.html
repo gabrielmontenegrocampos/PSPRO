@@ -56,11 +56,10 @@
             }
         }
 
-        .login-header {
+        .logo-header {
             background: linear-gradient(135deg, var(--azul) 0%, var(--azul-medio) 100%);
-            padding: 40px 30px 30px;
+            padding: 40px 30px;
             text-align: center;
-            position: relative;
         }
 
         .logo-icon {
@@ -68,88 +67,95 @@
             height: 80px;
             background: var(--branco);
             border-radius: 20px;
+            margin: 0 auto 16px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 20px;
+            font-weight: 800;
             position: relative;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
         }
 
         .logo-icon span:first-child {
             color: var(--azul);
             position: absolute;
-            top: 15px;
-            left: 20px;
-            font-size: 32px;
-            font-weight: 800;
+            top: 12px;
+            left: 16px;
+            font-size: 36px;
         }
 
         .logo-icon span:last-child {
             color: var(--amarelo);
             position: absolute;
-            bottom: 10px;
-            right: 18px;
-            font-size: 28px;
-            font-weight: 800;
+            bottom: 8px;
+            right: 12px;
+            font-size: 32px;
         }
 
-        .login-header h1 {
+        .logo-text h1 {
             color: var(--branco);
             font-size: 28px;
             font-weight: 700;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
 
-        .login-header p {
+        .logo-text p {
             color: rgba(255, 255, 255, 0.85);
             font-size: 14px;
+            font-weight: 400;
         }
 
         .tabs {
             display: flex;
             background: var(--cinza-bg);
-            padding: 6px;
-            margin: 30px;
-            border-radius: 12px;
+            padding: 8px;
+            margin: 0 20px;
+            margin-top: -30px;
+            border-radius: 14px;
+            position: relative;
+            z-index: 10;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
 
         .tab {
             flex: 1;
-            padding: 12px;
             text-align: center;
-            border-radius: 8px;
+            padding: 12px 20px;
+            border-radius: 10px;
             font-weight: 600;
             font-size: 14px;
-            cursor: pointer;
-            transition: all 0.3s;
             color: var(--cinza-texto);
+            cursor: pointer;
+            transition: all 0.3s ease;
         }
 
         .tab.active {
-            background: var(--amarelo);
-            color: var(--azul);
+            background: linear-gradient(135deg, var(--azul) 0%, var(--azul-medio) 100%);
+            color: var(--branco);
+            box-shadow: 0 4px 10px rgba(26, 59, 90, 0.3);
         }
 
         .form-container {
-            padding: 0 30px 40px;
+            padding: 30px;
         }
 
         .form-content {
             display: none;
+            animation: fadeIn 0.4s ease;
         }
 
         .form-content.active {
             display: block;
-            animation: fadeIn 0.3s;
         }
 
         @keyframes fadeIn {
             from {
                 opacity: 0;
+                transform: translateY(10px);
             }
             to {
                 opacity: 1;
+                transform: translateY(0);
             }
         }
 
@@ -168,152 +174,18 @@
         .form-input {
             width: 100%;
             padding: 14px 16px;
-            border: 2px solid #e5e7eb;
-            border-radius: 10px;
+            border: 2px solid #e0e5eb;
+            border-radius: 12px;
             font-family: 'Poppins', sans-serif;
             font-size: 14px;
-            transition: all 0.3s;
+            transition: all 0.3s ease;
             background: var(--branco);
         }
 
         .form-input:focus {
             outline: none;
             border-color: var(--amarelo);
-            box-shadow: 0 0 0 3px rgba(247, 192, 38, 0.1);
-        }
-
-        .form-input::placeholder {
-            color: #9ca3af;
-        }
-
-        .btn {
-            width: 100%;
-            padding: 16px;
-            border: none;
-            border-radius: 12px;
-            font-family: 'Poppins', sans-serif;
-            font-size: 15px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-
-        .btn-primary {
-            background: var(--amarelo);
-            color: var(--azul);
-        }
-
-        .btn-primary:hover {
-            background: var(--amarelo-hover);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(247, 192, 38, 0.3);
-        }
-
-        .btn-primary:active {
-            transform: translateY(0);
-        }
-
-        .btn:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-            transform: none !important;
-        }
-
-        .forgot-password {
-            text-align: center;
-            margin-top: 16px;
-        }
-
-        .forgot-password a {
-            color: var(--azul);
-            text-decoration: none;
-            font-size: 13px;
-            font-weight: 500;
-        }
-
-        .forgot-password a:hover {
-            color: var(--amarelo);
-        }
-
-        .divider {
-            display: flex;
-            align-items: center;
-            margin: 24px 0;
-            color: var(--cinza-texto);
-            font-size: 13px;
-        }
-
-        .divider::before,
-        .divider::after {
-            content: '';
-            flex: 1;
-            height: 1px;
-            background: #e5e7eb;
-        }
-
-        .divider span {
-            padding: 0 12px;
-        }
-
-        .alert {
-            padding: 12px 16px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            font-size: 13px;
-            display: none;
-            animation: slideDown 0.3s;
-        }
-
-        @keyframes slideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .alert.show {
-            display: block;
-        }
-
-        .alert-error {
-            background: rgba(239, 68, 68, 0.1);
-            color: var(--vermelho);
-            border: 1px solid rgba(239, 68, 68, 0.2);
-        }
-
-        .alert-success {
-            background: rgba(34, 197, 94, 0.1);
-            color: var(--verde);
-            border: 1px solid rgba(34, 197, 94, 0.2);
-        }
-
-        .alert-info {
-            background: rgba(247, 192, 38, 0.1);
-            color: #b8860b;
-            border: 1px solid rgba(247, 192, 38, 0.2);
-        }
-
-        .spinner {
-            width: 16px;
-            height: 16px;
-            border: 2px solid var(--azul);
-            border-top-color: transparent;
-            border-radius: 50%;
-            animation: spin 0.8s linear infinite;
-        }
-
-        @keyframes spin {
-            to {
-                transform: rotate(360deg);
-            }
+            box-shadow: 0 0 0 4px rgba(247, 192, 38, 0.1);
         }
 
         .password-toggle {
@@ -327,65 +199,171 @@
             transform: translateY(-50%);
             background: none;
             border: none;
+            font-size: 20px;
             cursor: pointer;
-            color: var(--cinza-texto);
-            padding: 4px;
-            font-size: 18px;
+            padding: 4px 8px;
+            opacity: 0.6;
+            transition: opacity 0.2s;
         }
 
-        .form-info {
-            font-size: 12px;
-            color: var(--cinza-texto);
-            margin-top: 6px;
+        .password-toggle-btn:hover {
+            opacity: 1;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 16px;
+            background: var(--amarelo);
+            color: var(--azul);
+            border: none;
+            border-radius: 12px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 4px 12px rgba(247, 192, 38, 0.3);
+        }
+
+        .btn-submit:hover:not(:disabled) {
+            background: var(--amarelo-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(247, 192, 38, 0.4);
+        }
+
+        .btn-submit:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
+        .spinner {
+            width: 18px;
+            height: 18px;
+            border: 3px solid rgba(26, 59, 90, 0.2);
+            border-top-color: var(--azul);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .forgot-password {
+            text-align: center;
+            margin-top: 16px;
+        }
+
+        .forgot-password a {
+            color: var(--azul);
+            font-size: 13px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .forgot-password a:hover {
+            color: var(--amarelo);
+        }
+
+        .alert {
+            padding: 14px 18px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            font-size: 13px;
+            font-weight: 500;
+            display: none;
+            animation: slideDown 0.3s ease;
+        }
+
+        .alert.show {
+            display: block;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .alert-success {
+            background: rgba(34, 197, 94, 0.1);
+            color: #16a34a;
+            border: 2px solid rgba(34, 197, 94, 0.3);
+        }
+
+        .alert-error {
+            background: rgba(239, 68, 68, 0.1);
+            color: #dc2626;
+            border: 2px solid rgba(239, 68, 68, 0.3);
         }
 
         @media (max-width: 480px) {
-            .login-container {
-                border-radius: 0;
+            .logo-header {
+                padding: 30px 20px;
             }
 
-            .login-header {
-                padding: 30px 20px 20px;
+            .logo-icon {
+                width: 70px;
+                height: 70px;
+            }
+
+            .logo-text h1 {
+                font-size: 24px;
             }
 
             .form-container {
-                padding: 0 20px 30px;
+                padding: 20px;
             }
 
             .tabs {
-                margin: 20px;
+                margin: 0 15px;
+                margin-top: -25px;
             }
         }
     </style>
 </head>
 <body>
     <div class="login-container">
-        <div class="login-header">
+        <!-- Logo -->
+        <div class="logo-header">
             <div class="logo-icon">
                 <span>P</span>
                 <span>S</span>
             </div>
-            <h1>PS Pro</h1>
-            <p>Orçamentos Inteligentes</p>
+            <div class="logo-text">
+                <h1>PS Pro</h1>
+                <p>Orçamentos Inteligentes</p>
+            </div>
         </div>
 
+        <!-- Tabs -->
         <div class="tabs">
-            <div class="tab active" data-tab="login" id="tab-login">Entrar</div>
-            <div class="tab" data-tab="cadastro" id="tab-cadastro">Cadastrar</div>
+            <div class="tab active" id="tab-login" data-tab="login">Entrar</div>
+            <div class="tab" id="tab-cadastro" data-tab="cadastro">Cadastrar</div>
         </div>
 
+        <!-- Formulários -->
         <div class="form-container">
-            <!-- ALERTA -->
+            <!-- Alerta -->
             <div id="alert" class="alert"></div>
 
             <!-- FORMULÁRIO DE LOGIN -->
             <div id="form-login" class="form-content active">
-                <form onsubmit="handleLogin(event)">
+                <form id="login-form">
                     <div class="form-group">
                         <label class="form-label">Email</label>
                         <input type="email" class="form-input" id="login-email" placeholder="seu@email.com" required>
                     </div>
-
                     <div class="form-group">
                         <label class="form-label">Senha</label>
                         <div class="password-toggle">
@@ -393,11 +371,9 @@
                             <button type="button" class="password-toggle-btn" onclick="togglePassword('login-senha')">👁️</button>
                         </div>
                     </div>
-
-                    <button type="submit" class="btn btn-primary" id="btn-login">
+                    <button type="submit" class="btn-submit" id="btn-login">
                         <span>Entrar</span>
                     </button>
-
                     <div class="forgot-password">
                         <a href="#" onclick="showRecuperarSenha(); return false;">Esqueci minha senha</a>
                     </div>
@@ -406,26 +382,22 @@
 
             <!-- FORMULÁRIO DE CADASTRO -->
             <div id="form-cadastro" class="form-content">
-                <form onsubmit="handleCadastro(event)">
+                <form id="cadastro-form">
                     <div class="form-group">
-                        <label class="form-label">Nome Completo / Empresa</label>
-                        <input type="text" class="form-input" id="cadastro-nome" placeholder="Seu nome ou razão social" required>
+                        <label class="form-label">Nome Completo</label>
+                        <input type="text" class="form-input" id="cadastro-nome" placeholder="Seu nome" required>
                     </div>
-
                     <div class="form-group">
                         <label class="form-label">Email</label>
                         <input type="email" class="form-input" id="cadastro-email" placeholder="seu@email.com" required>
                     </div>
-
                     <div class="form-group">
                         <label class="form-label">Senha</label>
                         <div class="password-toggle">
                             <input type="password" class="form-input" id="cadastro-senha" placeholder="Mínimo 6 caracteres" required minlength="6">
                             <button type="button" class="password-toggle-btn" onclick="togglePassword('cadastro-senha')">👁️</button>
                         </div>
-                        <div class="form-info">Mínimo 6 caracteres</div>
                     </div>
-
                     <div class="form-group">
                         <label class="form-label">Confirmar Senha</label>
                         <div class="password-toggle">
@@ -433,8 +405,7 @@
                             <button type="button" class="password-toggle-btn" onclick="togglePassword('cadastro-senha-confirm')">👁️</button>
                         </div>
                     </div>
-
-                    <button type="submit" class="btn btn-primary" id="btn-cadastro">
+                    <button type="submit" class="btn-submit" id="btn-cadastro">
                         <span>Criar Conta</span>
                     </button>
                 </form>
@@ -442,12 +413,29 @@
         </div>
     </div>
 
-    <script type="module">
-        // Importar configuração do Supabase
-        import { supabase } from './src/config/supabase.js';
+    <!-- Importar Supabase Client via CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-        // Event listeners para as tabs
-        document.addEventListener('DOMContentLoaded', () => {
+    <script>
+        // ===== CONFIGURAÇÃO SUPABASE =====
+        // IMPORTANTE: Substitua pelas suas credenciais do Supabase
+        const SUPABASE_URL = 'https://seu-projeto.supabase.co';
+        const SUPABASE_ANON_KEY = 'sua-chave-anon-aqui';
+        
+        const { createClient } = supabase;
+        const supabaseClient = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+        // ===== VERIFICAR SESSÃO AO CARREGAR =====
+        window.addEventListener('DOMContentLoaded', async () => {
+            const { data: { session } } = await supabaseClient.auth.getSession();
+            if (session) {
+                window.location.href = '/index.html';
+            }
+
+            // Configurar event listeners dos formulários
+            document.getElementById('login-form').addEventListener('submit', handleLogin);
+            document.getElementById('cadastro-form').addEventListener('submit', handleCadastro);
+
             // Configurar tabs
             document.querySelectorAll('.tab').forEach(tab => {
                 tab.addEventListener('click', function() {
@@ -457,40 +445,50 @@
             });
         });
 
-        // Verificar se já está logado ao carregar a página
-        window.addEventListener('DOMContentLoaded', async () => {
-            const { data: { session } } = await supabase.auth.getSession();
-            if (session) {
-                // Usuário já está logado, redirecionar para o app
-                window.location.href = '/index.html';
-            }
-        });
+        // ===== FUNÇÃO: ALTERNAR ABAS =====
+        function showTab(tabName) {
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.getElementById('tab-' + tabName).classList.add('active');
+            document.querySelectorAll('.form-content').forEach(c => c.classList.remove('active'));
+            document.getElementById('form-' + tabName).classList.add('active');
+            hideAlert();
+        }
 
-        // Função de Login
-        window.handleLogin = async (event) => {
+        // ===== FUNÇÃO: ALTERNAR VISIBILIDADE DA SENHA =====
+        function togglePassword(inputId) {
+            const input = document.getElementById(inputId);
+            const btn = input.nextElementSibling;
+            if (input.type === 'password') {
+                input.type = 'text';
+                btn.textContent = '🙈';
+            } else {
+                input.type = 'password';
+                btn.textContent = '👁️';
+            }
+        }
+
+        // ===== FUNÇÃO: LOGIN =====
+        async function handleLogin(event) {
             event.preventDefault();
             
             const email = document.getElementById('login-email').value;
             const senha = document.getElementById('login-senha').value;
             const btnLogin = document.getElementById('btn-login');
             
-            // Desabilitar botão e mostrar loading
             btnLogin.disabled = true;
             btnLogin.innerHTML = '<div class="spinner"></div><span>Entrando...</span>';
             hideAlert();
 
             try {
-                const { data, error } = await supabase.auth.signInWithPassword({
+                const { data, error } = await supabaseClient.auth.signInWithPassword({
                     email: email,
                     password: senha
                 });
 
                 if (error) throw error;
 
-                // Login bem-sucedido
                 showAlert('Login realizado com sucesso! Redirecionando...', 'success');
                 
-                // Redirecionar para o app
                 setTimeout(() => {
                     window.location.href = '/index.html';
                 }, 1000);
@@ -501,10 +499,10 @@
                 btnLogin.disabled = false;
                 btnLogin.innerHTML = '<span>Entrar</span>';
             }
-        };
+        }
 
-        // Função de Cadastro
-        window.handleCadastro = async (event) => {
+        // ===== FUNÇÃO: CADASTRO =====
+        async function handleCadastro(event) {
             event.preventDefault();
             
             const nome = document.getElementById('cadastro-nome').value;
@@ -513,20 +511,17 @@
             const senhaConfirm = document.getElementById('cadastro-senha-confirm').value;
             const btnCadastro = document.getElementById('btn-cadastro');
 
-            // Validar senhas
             if (senha !== senhaConfirm) {
                 showAlert('As senhas não coincidem!', 'error');
                 return;
             }
 
-            // Desabilitar botão e mostrar loading
             btnCadastro.disabled = true;
             btnCadastro.innerHTML = '<div class="spinner"></div><span>Criando conta...</span>';
             hideAlert();
 
             try {
-                // Criar usuário no Supabase Auth
-                const { data, error } = await supabase.auth.signUp({
+                const { data, error } = await supabaseClient.auth.signUp({
                     email: email,
                     password: senha,
                     options: {
@@ -538,9 +533,8 @@
 
                 if (error) throw error;
 
-                // Criar perfil no banco de dados
                 if (data.user) {
-                    const { error: perfilError } = await supabase
+                    const { error: perfilError } = await supabaseClient
                         .from('perfil')
                         .insert({
                             user_id: data.user.id,
@@ -553,19 +547,15 @@
                     }
                 }
 
-                // Cadastro bem-sucedido
                 showAlert('Conta criada com sucesso! Você já pode fazer login.', 'success');
                 
-                // Limpar formulário
                 document.getElementById('cadastro-nome').value = '';
                 document.getElementById('cadastro-email').value = '';
                 document.getElementById('cadastro-senha').value = '';
                 document.getElementById('cadastro-senha-confirm').value = '';
                 
-                // Mudar para aba de login após 2 segundos
                 setTimeout(() => {
                     showTab('login');
-                    // Preencher email no login
                     document.getElementById('login-email').value = email;
                 }, 2000);
 
@@ -576,10 +566,10 @@
                 btnCadastro.disabled = false;
                 btnCadastro.innerHTML = '<span>Criar Conta</span>';
             }
-        };
+        }
 
-        // Função para recuperar senha
-        window.showRecuperarSenha = async () => {
+        // ===== FUNÇÃO: RECUPERAR SENHA =====
+        async function showRecuperarSenha() {
             const email = document.getElementById('login-email').value;
             
             if (!email) {
@@ -590,7 +580,7 @@
             hideAlert();
 
             try {
-                const { error } = await supabase.auth.resetPasswordForEmail(email, {
+                const { error } = await supabaseClient.auth.resetPasswordForEmail(email, {
                     redirectTo: window.location.origin + '/reset-password.html'
                 });
 
@@ -601,47 +591,23 @@
                 console.error('Erro ao recuperar senha:', error);
                 showAlert(getErrorMessage(error.message), 'error');
             }
-        };
-
-        // Alternar visibilidade da senha
-        window.togglePassword = (inputId) => {
-            const input = document.getElementById(inputId);
-            input.type = input.type === 'password' ? 'text' : 'password';
-        };
-
-        // Alternar entre abas
-        function showTab(tabName) {
-            // Remover active de todas as tabs
-            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-            
-            // Adicionar active na tab clicada
-            document.getElementById('tab-' + tabName).classList.add('active');
-
-            // Remover active de todos os forms
-            document.querySelectorAll('.form-content').forEach(c => c.classList.remove('active'));
-            
-            // Adicionar active no form correspondente
-            document.getElementById('form-' + tabName).classList.add('active');
-
-            // Limpar alerta
-            hideAlert();
         }
 
-        // Mostrar alerta
-        window.showAlert = (message, type) => {
+        // ===== FUNÇÃO: MOSTRAR ALERTA =====
+        function showAlert(message, type) {
             const alert = document.getElementById('alert');
             alert.textContent = message;
             alert.className = `alert alert-${type} show`;
-        };
+        }
 
-        // Esconder alerta
-        window.hideAlert = () => {
+        // ===== FUNÇÃO: ESCONDER ALERTA =====
+        function hideAlert() {
             const alert = document.getElementById('alert');
             alert.className = 'alert';
-        };
+        }
 
-        // Traduzir mensagens de erro
-        window.getErrorMessage = (error) => {
+        // ===== FUNÇÃO: TRADUZIR ERROS =====
+        function getErrorMessage(error) {
             const errors = {
                 'Invalid login credentials': 'Email ou senha incorretos',
                 'Email not confirmed': 'Email não confirmado. Verifique sua caixa de entrada.',
@@ -652,7 +618,7 @@
             };
             
             return errors[error] || 'Erro: ' + error;
-        };
+        }
     </script>
 </body>
 </html>
