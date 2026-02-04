@@ -1018,14 +1018,22 @@
         });
 
         async function loadServicos() {
-            const s = await supabaseClient.from('servicos').select('*').order('nome');
+            const { data: { user } } = await supabaseClient.auth.getUser();
+            if (!user) return;
+            
+            const s = await supabaseClient
+                .from('servicos')
+                .select('*')
+                .eq('user_id', user.id)
+                .order('nome');
+                
             const c = document.getElementById('servicos-list');
             if (!s.data || !s.data.length) {
                 c.innerHTML = '<div class="empty-state"><p>Nenhum serviço cadastrado</p><button class="btn btn-primary" style="max-width:180px;margin:0 auto;" onclick="openModal(\'modal-servico\')">Cadastrar</button></div>';
                 return;
             }
             c.innerHTML = s.data.map(x => `
-                <div class="list-item" onclick="editServico(${x.id})">
+                <div class="list-item" onclick="editServico('${x.id}')">
                     <div class="list-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg></div>
                     <div class="list-info">
                         <div class="list-title">${x.nome}</div>
@@ -1323,46 +1331,106 @@
             const pagamento = document.getElementById('orc-pagamento').value;
             const obs = document.getElementById('orc-obs').value;
             
-            const { data: { user } } = await supabaseClient.auth.getUser();
-            if (!user) { toast('❌ Usuário não autenticado'); return; }
+            console.log('🔵 Iniciando salvamento de orçamento...');
+            console.log('Cliente ID:', cliId);
+            console.log('Itens:', orcItens);
             
-            if (!cliId) { 
-                toast('Selecione um cliente'); 
-                return; 
+            try {
+                const { data: { user } } = await supabaseClient.auth.getUser();
+                if (!user) { 
+                    console.error('❌ Usuário não autenticado');
+                    toast('❌ Usuário não autenticado'); 
+                    return; 
+                }
+                
+                console.log('✅ User ID:', user.id);
+                
+                if (!cliId) { 
+                    console.error('❌ Cliente não selecionado');
+                    toast('Selecione um cliente'); 
+                    return; 
+                }
+                if (!orcItens.length) { 
+                    console.error('❌ Nenhum item adicionado');
+                    toast('Adicione serviços'); 
+                    return; 
+                }
+                
+                const total = orcItens.reduce((s, x) => s + x.total, 0);
+                const pArr = await loadPerfil();
+                const val = pArr?.val || 15;
+                
+                const data = {
+                    user_id: user.id,
+                    cliente_id: cliId,
+                    titulo,
+                    itens: orcItens,
+                    total,
+                    status: 'pendente',
+                    val,
+                    pagamento,
+                    obs
+                };
+                
+                console.log('📦 Dados a serem salvos:', JSON.stringify(data, null, 2));
+                
+                let result;
+                if (orcId) {
+                    console.log('🔄 Atualizando orçamento existente:', orcId);
+                    result = await supabaseClient
+                        .from('orcamentos')
+                        .update(data)
+                        .eq('id', orcId)
+                        .select();
+                    
+                    if (result.error) {
+                        console.error('❌ Erro ao atualizar:', result.error);
+                        throw result.error;
+                    }
+                    console.log('✅ Orçamento atualizado:', result.data);
+                    toast('✅ Orçamento atualizado!');
+                } else {
+                    console.log('➕ Criando novo orçamento...');
+                    result = await supabaseClient
+                        .from('orcamentos')
+                        .insert(data)
+                        .select();
+                    
+                    if (result.error) {
+                        console.error('❌ Erro ao criar:', result.error);
+                        console.error('Detalhes do erro:', result.error.details);
+                        console.error('Mensagem:', result.error.message);
+                        console.error('Hint:', result.error.hint);
+                        throw result.error;
+                    }
+                    console.log('✅ Orçamento criado:', result.data);
+                    toast('✅ Orçamento criado!');
+                }
+                
+                closeModal('modal-orcamento');
+                orcItens = [];
+                loadDashboard();
+                loadOrcamentos();
+                
+            } catch (err) {
+                console.error('💥 ERRO COMPLETO:', err);
+                console.error('Nome:', err.name);
+                console.error('Mensagem:', err.message);
+                console.error('Stack:', err.stack);
+                toast('❌ Erro: ' + err.message);
             }
-            if (!orcItens.length) { 
-                toast('Adicione serviços'); 
-                return; 
-            }
-            const total = orcItens.reduce((s, x) => s + x.total, 0);
-            const pArr = await loadPerfil();
-            const val = pArr?.val || 15;
-            const data = {
-                user_id: user.id,
-                cliente_id: parseInt(cliId),
-                titulo,
-                itens: orcItens,
-                total,
-                status: 'pendente',
-                val,
-                pagamento,
-                obs
-            };
-            if (orcId) {
-                await supabaseClient.from('orcamentos').update(data).eq('id', parseInt(orcId));
-                toast('Orçamento atualizado!');
-            } else {
-                await supabaseClient.from('orcamentos').insert(data);
-                toast('Orçamento criado!');
-            }
-            closeModal('modal-orcamento');
-            orcItens = [];
-            loadDashboard();
-            loadOrcamentos();
         }
 
         async function loadOrcamentos() {
-            const o = await supabaseClient.from('orcamentos').select('*').order('created_at', { ascending: false });
+            const { data: { user } } = await supabaseClient.auth.getUser();
+            if (!user) return;
+            
+            const o = await supabaseClient
+                .from('orcamentos')
+                .select('*')
+                .eq('user_id', user.id)
+                .order('created_at', { ascending: false });
+                
             const c = document.getElementById('orcamentos-list');
             if (!o.data || !o.data.length) {
                 c.innerHTML = '<div class="empty-state"><p>Nenhum orçamento</p><button class="btn btn-primary" style="max-width:180px;margin:0 auto;" onclick="openModal(\'modal-orcamento\')">Criar</button></div>';
@@ -1370,9 +1438,16 @@
                 return;
             }
             window.allOrcamentos = o.data;
-            const cli = await supabaseClient.from('clientes').select('*');
+            
+            const cli = await supabaseClient
+                .from('clientes')
+                .select('*')
+                .eq('user_id', user.id);
+                
             window.allClientesMap = {}; 
-            cli.data.forEach(x => window.allClientesMap[x.id] = x.nome);
+            if (cli.data) {
+                cli.data.forEach(x => window.allClientesMap[x.id] = x.nome);
+            }
             applyOrcFilters();
         }
 
@@ -1488,7 +1563,14 @@
         let currentFilter = 'todos';
 
         async function loadDashboard() {
-            const o = await supabaseClient.from('orcamentos').select('*');
+            const { data: { user } } = await supabaseClient.auth.getUser();
+            if (!user) return;
+            
+            const o = await supabaseClient
+                .from('orcamentos')
+                .select('*')
+                .eq('user_id', user.id);
+                
             if (!o.data) return;
             const total = o.data.length;
             const fechados = o.data.filter(x => x.status === 'fechado');
@@ -1522,16 +1604,35 @@
         }
 
         async function loadUltimos() {
-            const o = await supabaseClient.from('orcamentos').select('*').eq('status', 'pendente').order('created_at', { ascending: false }).limit(5);
+            const { data: { user } } = await supabaseClient.auth.getUser();
+            if (!user) return;
+            
+            const o = await supabaseClient
+                .from('orcamentos')
+                .select('*')
+                .eq('user_id', user.id)
+                .eq('status', 'pendente')
+                .order('created_at', { ascending: false })
+                .limit(5);
+                
             const c = document.getElementById('ultimos-orc');
             if (!o.data || !o.data.length) { 
                 c.innerHTML = '<div class="empty-state" style="padding:20px;"><p>Nenhum orçamento pendente 🎉</p></div>'; 
                 return; 
             }
-            const cli = await supabaseClient.from('clientes').select('*');
-            const map = {}; cli.data.forEach(x => map[x.id] = x.nome);
+            
+            const cli = await supabaseClient
+                .from('clientes')
+                .select('*')
+                .eq('user_id', user.id);
+                
+            const map = {};
+            if (cli.data) {
+                cli.data.forEach(x => map[x.id] = x.nome);
+            }
+            
             c.innerHTML = o.data.map(x => `
-                <div class="list-item" onclick="viewOrc(${x.id})">
+                <div class="list-item" onclick="viewOrc('${x.id}')">
                     <div class="list-icon" style="background:rgba(247,192,38,0.2);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--amarelo)" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></div>
                     <div class="list-info">
                         <div class="list-title">${x.titulo}</div>
