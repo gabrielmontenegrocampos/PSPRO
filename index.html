@@ -6,7 +6,7 @@
     <meta name="theme-color" content="#1a3b5a">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>PS Pro - OrÃ§amentos Inteligentes</title>
+    <title>PS Pro - Orçamentos Inteligentes</title>
     <link rel="manifest" href="manifest.json">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -393,7 +393,6 @@
         }
         .filters-summary.show { display: block; }
         .filters-summary strong { color: var(--azul); }
-        /* Remover setinhas dos inputs numÃ©ricos */
         input[type="number"]::-webkit-outer-spin-button,
         input[type="number"]::-webkit-inner-spin-button {
             -webkit-appearance: none;
@@ -411,20 +410,13 @@
                 <div class="logo-icon"><span>P</span><span>S</span></div>
                 <div class="logo-text">
                     <h1>PS Pro</h1>
-                    <span>OrÃ§amentos Inteligentes</span>
+                    <span>Orçamentos Inteligentes</span>
                 </div>
             </div>
             <button class="header-btn" onclick="showPage('config')">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
                     <circle cx="12" cy="12" r="3"></circle>
                     <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
-                </svg>
-            </button>
-            <button class="header-btn" onclick="handleLogout()" title="Sair">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
-                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
-                    <polyline points="16 17 21 12 16 7"></polyline>
-                    <line x1="21" y1="12" x2="9" y2="12"></line>
                 </svg>
             </button>
         </div>
@@ -450,50 +442,50 @@
                         <line x1="12" y1="18" x2="12" y2="12"></line>
                         <line x1="9" y1="15" x2="15" y2="15"></line>
                     </svg>
-                    <span>Novo OrÃ§amento</span>
+                    <span>Novo Orçamento</span>
                 </div>
             </div>
 
             <div class="stats-grid">
                 <div class="stat-card highlight" onclick="filterOrcamentos('todos')" style="cursor:pointer;">
                     <div class="stat-value" id="stat-total">0</div>
-                    <div class="stat-label">OrÃ§amentos</div>
+                    <div class="stat-label">Orçamentos</div>
                 </div>
                 <div class="stat-card success" onclick="filterOrcamentos('fechado')" style="cursor:pointer;">
                     <div class="stat-value" id="stat-fechados">0</div>
-                    <div class="stat-label">âœ… Fechados</div>
+                    <div class="stat-label">✅ Fechados</div>
                 </div>
                 <div class="stat-card warning" onclick="filterOrcamentos('pendente')" style="cursor:pointer;">
                     <div class="stat-value" id="stat-pendentes">0</div>
-                    <div class="stat-label">ðŸŸ¡ Pendentes</div>
+                    <div class="stat-label">🟡 Pendentes</div>
                 </div>
                 <div class="stat-card" style="border-left: 4px solid var(--vermelho); cursor:pointer;" onclick="filterOrcamentos('recusado')">
                     <div class="stat-value" id="stat-recusados">0</div>
-                    <div class="stat-label">âŒ Recusados</div>
+                    <div class="stat-label">❌ Recusados</div>
                 </div>
             </div>
 
             <div class="stat-card highlight" style="margin-bottom:16px; cursor:pointer;" onclick="filterOrcamentos('fechado')">
-                <div class="stat-label">ðŸ’° Valor Total Fechado</div>
+                <div class="stat-label">💰 Valor Total Fechado</div>
                 <div class="stat-value" id="stat-valor">R$ 0</div>
             </div>
 
             <div class="section-title">
-                OrÃ§amentos Pendentes
+                Orçamentos Pendentes
                 <a href="#" onclick="showPage('orcamentos');return false;">Ver todos</a>
             </div>
             <div id="ultimos-orc"></div>
         </div>
 
-        <!-- SERVIÃ‡OS -->
+        <!-- SERVIÇOS -->
         <div id="page-servicos" class="page">
             <div class="section-title">
-                Meus ServiÃ§os
+                Meus Serviços
                 <button class="btn btn-primary btn-sm" onclick="openModal('modal-servico')">+ Novo</button>
             </div>
             <div class="search-box">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-                <input type="text" class="form-input" placeholder="Buscar serviÃ§o..." id="search-serv" oninput="filterList('servicos')">
+                <input type="text" class="form-input" placeholder="Buscar serviço..." id="search-serv" oninput="filterList('servicos')">
             </div>
             <div id="servicos-list"></div>
         </div>
@@ -511,35 +503,35 @@
             <div id="clientes-list"></div>
         </div>
 
-        <!-- ORÃ‡AMENTOS -->
+        <!-- ORÇAMENTOS -->
         <div id="page-orcamentos" class="page">
             <div class="section-title">
-                Meus OrÃ§amentos
+                Meus Orçamentos
                 <button class="btn btn-primary btn-sm" onclick="openModal('modal-orcamento')">+ Novo</button>
             </div>
             <div class="search-box">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-                <input type="text" class="form-input" placeholder="Buscar orÃ§amento..." id="search-orc" oninput="applyOrcFilters()">
+                <input type="text" class="form-input" placeholder="Buscar orçamento..." id="search-orc" oninput="applyOrcFilters()">
             </div>
             <div class="filters-row">
                 <div class="filter-group">
                     <label class="filter-label">Status</label>
                     <select class="form-select filter-select" id="filter-status" onchange="applyOrcFilters()">
                         <option value="">Todos</option>
-                        <option value="pendente">ðŸŸ¡ Pendente</option>
-                        <option value="fechado">âœ… Fechado</option>
-                        <option value="recusado">âŒ Recusado</option>
+                        <option value="pendente">🟡 Pendente</option>
+                        <option value="fechado">✅ Fechado</option>
+                        <option value="recusado">❌ Recusado</option>
                     </select>
                 </div>
                 <div class="filter-group">
-                    <label class="filter-label">PerÃ­odo</label>
+                    <label class="filter-label">Período</label>
                     <select class="form-select filter-select" id="filter-periodo" onchange="applyOrcFilters()">
-                        <option value="">Todo perÃ­odo</option>
-                        <option value="7">Ãšltimos 7 dias</option>
-                        <option value="15">Ãšltimos 15 dias</option>
-                        <option value="30">Ãšltimos 30 dias</option>
-                        <option value="60">Ãšltimos 60 dias</option>
-                        <option value="90">Ãšltimos 90 dias</option>
+                        <option value="">Todo período</option>
+                        <option value="7">Últimos 7 dias</option>
+                        <option value="15">Últimos 15 dias</option>
+                        <option value="30">Últimos 30 dias</option>
+                        <option value="60">Últimos 60 dias</option>
+                        <option value="90">Últimos 90 dias</option>
                     </select>
                 </div>
             </div>
@@ -547,13 +539,13 @@
             <div id="orcamentos-list"></div>
         </div>
 
-        <!-- CONFIGURAÃ‡Ã•ES -->
+        <!-- CONFIGURAÇÕES -->
         <div id="page-config" class="page">
             <div class="section-title">Meu Perfil</div>
             <div class="card">
                 <form id="form-perfil">
                     <div class="form-group">
-                        <label class="form-label">Nome / RazÃ£o Social</label>
+                        <label class="form-label">Nome / Razão Social</label>
                         <input type="text" class="form-input" id="perfil-nome" placeholder="Seu nome ou empresa">
                     </div>
                     <div class="form-row">
@@ -576,12 +568,12 @@
                             <input type="text" class="form-input" id="perfil-cep" placeholder="00000-000" maxlength="9" oninput="buscarCEPPerfil(this.value)">
                         </div>
                         <div class="form-group">
-                            <label class="form-label">NÃºmero</label>
-                            <input type="text" class="form-input" id="perfil-num" placeholder="NÂº">
+                            <label class="form-label">Número</label>
+                            <input type="text" class="form-input" id="perfil-num" placeholder="Nº">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="form-label">EndereÃ§o</label>
+                        <label class="form-label">Endereço</label>
                         <input type="text" class="form-input" id="perfil-end" placeholder="Rua, Bairro, Cidade - UF">
                     </div>
                     <div class="form-row">
@@ -590,17 +582,17 @@
                             <input type="text" class="form-input" id="perfil-compl" placeholder="Sala, Apto...">
                         </div>
                         <div class="form-group">
-                            <label class="form-label">Validade OrÃ§amentos (dias)</label>
+                            <label class="form-label">Validade Orçamentos (dias)</label>
                             <input type="number" class="form-input" id="perfil-val" value="15">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="form-label">Formas de Pagamento Aceitas</label>
-                        <input type="text" class="form-input" id="perfil-pagamento" placeholder="Ex: Pix, Dinheiro, CartÃ£o, TransferÃªncia">
+                        <input type="text" class="form-input" id="perfil-pagamento" placeholder="Ex: Pix, Dinheiro, Cartão, Transferência">
                     </div>
                     <div class="form-group">
-                        <label class="form-label">ObservaÃ§Ãµes PadrÃ£o dos OrÃ§amentos</label>
-                        <textarea class="form-input" id="perfil-obs" rows="4" placeholder="Ex: Material nÃ£o incluso. Prazo de execuÃ§Ã£o a combinar. Garantia de 1 ano..."></textarea>
+                        <label class="form-label">Observações Padrão dos Orçamentos</label>
+                        <textarea class="form-input" id="perfil-obs" rows="4" placeholder="Ex: Material não incluso. Prazo de execução a combinar. Garantia de 1 ano..."></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary">Salvar Perfil</button>
                 </form>
@@ -611,11 +603,11 @@
     <nav class="bottom-nav">
         <div class="nav-item active" data-page="dashboard" onclick="showPage('dashboard')">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
-            <span>InÃ­cio</span>
+            <span>Início</span>
         </div>
         <div class="nav-item" data-page="servicos" onclick="showPage('servicos')">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>
-            <span>ServiÃ§os</span>
+            <span>Serviços</span>
         </div>
         <div class="nav-item" data-page="clientes" onclick="showPage('clientes')">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
@@ -623,41 +615,40 @@
         </div>
         <div class="nav-item" data-page="orcamentos" onclick="showPage('orcamentos')">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
-            <span>OrÃ§amentos</span>
+            <span>Orçamentos</span>
         </div>
     </nav>
-
-    <!-- Modal ServiÃ§o -->
+    <!-- Modal Serviço -->
     <div class="modal-overlay" id="modal-servico">
         <div class="modal">
             <div class="modal-header">
-                <div class="modal-title" id="title-servico">Novo ServiÃ§o</div>
-                <button class="modal-close" onclick="closeModal('modal-servico')">âœ•</button>
+                <div class="modal-title" id="title-servico">Novo Serviço</div>
+                <button class="modal-close" onclick="closeModal('modal-servico')">✕</button>
             </div>
             <div class="modal-body">
                 <input type="hidden" id="servico-id">
                 <div class="form-group">
-                    <label class="form-label">Nome do ServiÃ§o</label>
+                    <label class="form-label">Nome do Serviço</label>
                     <input type="text" class="form-input" id="servico-nome" placeholder="Ex: Pintura interna">
                 </div>
                 <div class="form-row">
                     <div class="form-group">
                         <label class="form-label">Unidade</label>
                         <select class="form-select" id="servico-un">
-                            <option value="mÂ²">mÂ²</option>
+                            <option value="m²">m²</option>
                             <option value="m">m linear</option>
                             <option value="un">unidade</option>
                             <option value="h">hora</option>
-                            <option value="diÃ¡ria">diÃ¡ria</option>
+                            <option value="diária">diária</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label class="form-label">PreÃ§o (R$)</label>
+                        <label class="form-label">Preço (R$)</label>
                         <input type="text" class="form-input" id="servico-preco" placeholder="0,00" oninput="this.value = maskMoeda(this.value)">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="form-label">DescriÃ§Ã£o (opcional)</label>
+                    <label class="form-label">Descrição (opcional)</label>
                     <input type="text" class="form-input" id="servico-desc" placeholder="Detalhes">
                 </div>
             </div>
@@ -673,7 +664,7 @@
         <div class="modal">
             <div class="modal-header">
                 <div class="modal-title" id="title-cliente">Novo Cliente</div>
-                <button class="modal-close" onclick="closeModal('modal-cliente')">âœ•</button>
+                <button class="modal-close" onclick="closeModal('modal-cliente')">✕</button>
             </div>
             <div class="modal-body">
                 <input type="hidden" id="cliente-id">
@@ -701,12 +692,12 @@
                         <input type="text" class="form-input" id="cliente-cep" placeholder="00000-000" maxlength="9" oninput="buscarCEP(this.value)">
                     </div>
                     <div class="form-group">
-                        <label class="form-label">NÃºmero</label>
-                        <input type="text" class="form-input" id="cliente-num" placeholder="NÂº">
+                        <label class="form-label">Número</label>
+                        <input type="text" class="form-input" id="cliente-num" placeholder="Nº">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="form-label">EndereÃ§o da Obra</label>
+                    <label class="form-label">Endereço da Obra</label>
                     <input type="text" class="form-input" id="cliente-end" placeholder="Rua, Bairro, Cidade - UF">
                 </div>
                 <div class="form-group">
@@ -714,8 +705,8 @@
                     <input type="text" class="form-input" id="cliente-compl" placeholder="Apto, Bloco, etc.">
                 </div>
                 <div class="form-group">
-                    <label class="form-label">ObservaÃ§Ãµes</label>
-                    <input type="text" class="form-input" id="cliente-obs" placeholder="AnotaÃ§Ãµes">
+                    <label class="form-label">Observações</label>
+                    <input type="text" class="form-input" id="cliente-obs" placeholder="Anotações">
                 </div>
             </div>
             <div class="modal-footer">
@@ -725,12 +716,12 @@
         </div>
     </div>
 
-    <!-- Modal OrÃ§amento -->
+    <!-- Modal Orçamento -->
     <div class="modal-overlay" id="modal-orcamento">
         <div class="modal">
             <div class="modal-header">
-                <div class="modal-title" id="modal-orc-title">Novo OrÃ§amento</div>
-                <button class="modal-close" onclick="closeModal('modal-orcamento')">âœ•</button>
+                <div class="modal-title" id="modal-orc-title">Novo Orçamento</div>
+                <button class="modal-close" onclick="closeModal('modal-orcamento')">✕</button>
             </div>
             <div class="modal-body">
                 <input type="hidden" id="orc-id">
@@ -743,7 +734,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="form-label">TÃ­tulo do OrÃ§amento</label>
+                    <label class="form-label">Título do Orçamento</label>
                     <input type="text" class="form-input" id="orc-titulo" placeholder="Ex: Pintura apartamento 302">
                 </div>
                 
@@ -753,9 +744,9 @@
                 </div>
                 
                 <div class="form-group">
-                    <label class="form-label">Buscar ServiÃ§o</label>
+                    <label class="form-label">Buscar Serviço</label>
                     <div class="autocomplete-wrapper">
-                        <input type="text" class="form-input" id="orc-serv-search" placeholder="Digite para buscar serviÃ§o..." oninput="searchServicos(this.value)">
+                        <input type="text" class="form-input" id="orc-serv-search" placeholder="Digite para buscar serviço..." oninput="searchServicos(this.value)">
                         <input type="hidden" id="orc-serv-sel">
                         <div class="autocomplete-list" id="servico-autocomplete"></div>
                     </div>
@@ -766,7 +757,7 @@
                         <input type="text" class="form-input" id="orc-qtd" placeholder="0,00" oninput="this.value = maskMoeda(this.value)">
                     </div>
                     <div class="form-group">
-                        <label class="form-label">PreÃ§o Unit.</label>
+                        <label class="form-label">Preço Unit.</label>
                         <input type="text" class="form-input" id="orc-preco-unit" placeholder="0,00" oninput="this.value = maskMoeda(this.value)">
                     </div>
                     <div class="form-group">
@@ -776,7 +767,7 @@
                 </div>
                 <div id="orc-itens"></div>
                 <div class="orc-total">
-                    <div class="orc-total-label">Total do OrÃ§amento</div>
+                    <div class="orc-total-label">Total do Orçamento</div>
                     <div class="orc-total-value" id="orc-total">R$ 0,00</div>
                 </div>
                 <div class="form-group" style="margin-top:16px;">
@@ -784,8 +775,8 @@
                     <input type="text" class="form-input" id="orc-pagamento" placeholder="Ex: 50% entrada + 50% na entrega">
                 </div>
                 <div class="form-group">
-                    <label class="form-label">ObservaÃ§Ãµes</label>
-                    <textarea class="form-input" id="orc-obs" rows="3" placeholder="CondiÃ§Ãµes, prazos, garantias..."></textarea>
+                    <label class="form-label">Observações</label>
+                    <textarea class="form-input" id="orc-obs" rows="3" placeholder="Condições, prazos, garantias..."></textarea>
                 </div>
             </div>
             <div class="modal-footer">
@@ -799,33 +790,24 @@
     <div class="modal-overlay" id="modal-det">
         <div class="modal">
             <div class="modal-header">
-                <div class="modal-title">Detalhes do OrÃ§amento</div>
-                <button class="modal-close" onclick="closeModal('modal-det')">âœ•</button>
+                <div class="modal-title">Detalhes do Orçamento</div>
+                <button class="modal-close" onclick="closeModal('modal-det')">✕</button>
             </div>
             <div class="modal-body" id="det-content"></div>
             <div class="modal-footer" style="flex-wrap:wrap;gap:8px;">
-                <button class="btn btn-outline btn-sm" style="flex:1;min-width:70px;" onclick="setStatus('pendente')">ðŸŸ¡ Pendente</button>
-                <button class="btn btn-outline btn-sm" style="flex:1;min-width:70px;" onclick="setStatus('fechado')">âœ… Fechado</button>
-                <button class="btn btn-outline btn-sm" style="flex:1;min-width:70px;" onclick="setStatus('recusado')">âŒ Recusado</button>
-                <button class="btn btn-secondary" style="width:100%;" onclick="editOrcamento()">âœï¸ Editar OrÃ§amento</button>
-                <button class="btn btn-primary" style="width:100%;" onclick="exportPDF()">ðŸ“„ Exportar PDF</button>
+                <button class="btn btn-outline btn-sm" style="flex:1;min-width:70px;" onclick="setStatus('pendente')">🟡 Pendente</button>
+                <button class="btn btn-outline btn-sm" style="flex:1;min-width:70px;" onclick="setStatus('fechado')">✅ Fechado</button>
+                <button class="btn btn-outline btn-sm" style="flex:1;min-width:70px;" onclick="setStatus('recusado')">❌ Recusado</button>
+                <button class="btn btn-secondary" style="width:100%;" onclick="editOrcamento()">✏️ Editar Orçamento</button>
+                <button class="btn btn-primary" style="width:100%;" onclick="exportPDF()">📄 Exportar PDF</button>
             </div>
         </div>
     </div>
 
     <div class="toast" id="toast"></div>
 
-    <div class="toast" id="toast"></div>
-
-    <!-- ============================================ -->
-    <!-- IMPORTAR BIBLIOTECA SUPABASE -->
-    <!-- ============================================ -->
     <script src="js/supabase-config.js"></script>
-    
     <script>
-        // ============================================
-        // VARIÁVEIS GLOBAIS
-        // ============================================
         let orcItens = [];
         let currentOrcId = null;
         let allClientes = [];
@@ -833,36 +815,23 @@
         let selectedServico = null;
         let isEditingOrc = false;
 
-        // ============================================
-        // INICIALIZAÇÃO
-        // ============================================
         document.addEventListener('DOMContentLoaded', async () => {
-            // Verificar autenticação
             const user = await checkAuth();
-            if (!user) return; // Redireciona para login
-
-            // Carregar dashboard
+            if (!user) return;
             loadDashboard();
         });
 
-        // ============================================
-        // FUNÇÃO: LOGOUT
-        // ============================================
         async function handleLogout() {
             if (confirm('Deseja realmente sair?')) {
                 await logout();
             }
         }
 
-        // ============================================
-        // NAVEGAÇÃO
-        // ============================================
         function showPage(p) {
             document.querySelectorAll('.page').forEach(x => x.classList.remove('active'));
             document.querySelectorAll('.nav-item').forEach(x => x.classList.remove('active'));
             document.getElementById('page-' + p).classList.add('active');
-            document.querySelector(\`.nav-item[data-page="\${p}"]\`)?.classList.add('active');
-            
+            document.querySelector(`.nav-item[data-page="${p}"]`)?.classList.add('active');
             if (p === 'dashboard') loadDashboard();
             if (p === 'servicos') loadServicos();
             if (p === 'clientes') loadClientes();
@@ -870,22 +839,16 @@
             if (p === 'config') loadPerfil();
         }
 
-        // ============================================
-        // MODAIS
-        // ============================================
         async function openModal(id) {
             document.getElementById(id).classList.add('active');
-            
             if (id === 'modal-orcamento' && !isEditingOrc) {
                 orcItens = [];
                 renderOrcItens();
-                await loadSelects();
-                
-                // Pré-preencher observações e pagamento do perfil
-                const perfil = await loadPerfil(true);
-                if (perfil) {
-                    document.getElementById('orc-obs').value = perfil.obs || '';
-                    document.getElementById('orc-pagamento').value = perfil.pagamento || '';
+                loadSelects();
+                const pArr = await loadPerfil();
+                if (pArr) {
+                    document.getElementById('orc-obs').value = pArr.obs || '';
+                    document.getElementById('orc-pagamento').value = pArr.pagamento || '';
                 }
             }
             isEditingOrc = false;
@@ -893,7 +856,6 @@
 
         function closeModal(id) {
             document.getElementById(id).classList.remove('active');
-            
             if (id === 'modal-servico') {
                 document.getElementById('servico-id').value = '';
                 document.getElementById('servico-nome').value = '';
@@ -901,7 +863,6 @@
                 document.getElementById('servico-desc').value = '';
                 document.getElementById('title-servico').textContent = 'Novo Serviço';
             }
-            
             if (id === 'modal-cliente') {
                 document.getElementById('cliente-id').value = '';
                 document.getElementById('cliente-nome').value = '';
@@ -915,7 +876,6 @@
                 document.getElementById('cliente-obs').value = '';
                 document.getElementById('title-cliente').textContent = 'Novo Cliente';
             }
-            
             if (id === 'modal-orcamento') {
                 document.getElementById('orc-id').value = '';
                 document.getElementById('orc-titulo').value = '';
@@ -942,172 +902,205 @@
             setTimeout(() => t.classList.remove('show'), 2500);
         }
 
-        // ============================================
-        // PERFIL
-        // ============================================
-        async function loadPerfil(returnData = false) {
-            const perfil = await supabase_loadPerfil();
-            
-            if (returnData) return perfil;
-            
-            if (perfil) {
-                document.getElementById('perfil-nome').value = perfil.nome || '';
-                document.getElementById('perfil-doc').value = perfil.doc || '';
-                document.getElementById('perfil-tel').value = perfil.tel || '';
-                document.getElementById('perfil-email').value = perfil.email || '';
-                document.getElementById('perfil-cep').value = perfil.cep || '';
-                document.getElementById('perfil-num').value = perfil.num || '';
-                document.getElementById('perfil-end').value = perfil.end || '';
-                document.getElementById('perfil-compl').value = perfil.compl || '';
-                document.getElementById('perfil-val').value = perfil.val || 15;
-                document.getElementById('perfil-pagamento').value = perfil.pagamento || '';
-                document.getElementById('perfil-obs').value = perfil.obs || '';
+        async function loadPerfil() {
+            try {
+                const { data: { user } } = await supabaseClient.auth.getUser();
+                if (!user) {
+                    console.error('Usuário não autenticado');
+                    return null;
+                }
+
+                const { data, error } = await supabaseClient
+                    .from('perfil')
+                    .select('*')
+                    .eq('user_id', user.id)
+                    .single();
+
+                if (error && error.code !== 'PGRST116') {
+                    console.error('Erro ao carregar perfil:', error);
+                    return null;
+                }
+
+                if (data) {
+                    document.getElementById('perfil-nome').value = data.nome || '';
+                    document.getElementById('perfil-doc').value = data.doc || '';
+                    document.getElementById('perfil-tel').value = data.tel || '';
+                    document.getElementById('perfil-email').value = data.email || '';
+                    document.getElementById('perfil-cep').value = data.cep || '';
+                    document.getElementById('perfil-num').value = data.num || '';
+                    document.getElementById('perfil-end').value = data.endereco || '';
+                    document.getElementById('perfil-compl').value = data.compl || '';
+                    document.getElementById('perfil-val').value = data.val || 15;
+                    document.getElementById('perfil-pagamento').value = data.pagamento || '';
+                    document.getElementById('perfil-obs').value = data.obs || '';
+                    return data;
+                }
+                return null;
+            } catch (err) {
+                console.error('Erro inesperado ao carregar perfil:', err);
+                return null;
             }
         }
 
-        document.getElementById('form-perfil')?.addEventListener('submit', async (e) => {
+        document.getElementById('form-perfil')?.addEventListener('submit', async e => {
             e.preventDefault();
             
-            const num = document.getElementById('perfil-num').value;
-            const compl = document.getElementById('perfil-compl').value;
-            let end = document.getElementById('perfil-end').value;
-            
-            // Monta endereço completo
-            let endCompleto = end;
-            if (num && !end.includes(', ' + num)) {
-                endCompleto = end.replace(/,/, ', ' + num + ',');
-            }
-            if (compl) {
-                endCompleto += ' - ' + compl;
-            }
-            
-            const data = {
-                nome: document.getElementById('perfil-nome').value,
-                doc: document.getElementById('perfil-doc').value,
-                tel: document.getElementById('perfil-tel').value,
-                email: document.getElementById('perfil-email').value,
-                cep: document.getElementById('perfil-cep').value,
-                num: num,
-                end: endCompleto,
-                compl: compl,
-                val: parseInt(document.getElementById('perfil-val').value) || 15,
-                pagamento: document.getElementById('perfil-pagamento').value,
-                obs: document.getElementById('perfil-obs').value
-            };
-            
-            const success = await supabase_savePerfil(data);
-            if (success) {
-                toast('Perfil salvo!');
+            try {
+                const { data: { user } } = await supabaseClient.auth.getUser();
+                if (!user) {
+                    toast('❌ Erro: Usuário não autenticado');
+                    return;
+                }
+
+                const num = document.getElementById('perfil-num').value;
+                const compl = document.getElementById('perfil-compl').value;
+                let end = document.getElementById('perfil-end').value;
+                
+                let endCompleto = end;
+                if (num && !end.includes(', ' + num)) {
+                    endCompleto = end.replace(/,/, ', ' + num + ',');
+                }
+                if (compl) {
+                    endCompleto += ' - ' + compl;
+                }
+                
+                const data = {
+                    user_id: user.id,
+                    nome: document.getElementById('perfil-nome').value,
+                    doc: document.getElementById('perfil-doc').value,
+                    tel: document.getElementById('perfil-tel').value,
+                    email: document.getElementById('perfil-email').value,
+                    cep: document.getElementById('perfil-cep').value,
+                    num: num,
+                    endereco: endCompleto,
+                    compl: compl,
+                    val: parseInt(document.getElementById('perfil-val').value) || 15,
+                    pagamento: document.getElementById('perfil-pagamento').value,
+                    obs: document.getElementById('perfil-obs').value
+                };
+                
+                console.log('Salvando perfil:', data);
+                
+                const { data: existing } = await supabaseClient
+                    .from('perfil')
+                    .select('id')
+                    .eq('user_id', user.id)
+                    .single();
+                
+                let result;
+                if (existing) {
+                    console.log('Atualizando perfil existente...');
+                    result = await supabaseClient
+                        .from('perfil')
+                        .update(data)
+                        .eq('user_id', user.id);
+                } else {
+                    console.log('Criando novo perfil...');
+                    result = await supabaseClient
+                        .from('perfil')
+                        .insert(data);
+                }
+                
+                if (result.error) {
+                    console.error('Erro ao salvar perfil:', result.error);
+                    toast('❌ Erro ao salvar: ' + result.error.message);
+                    return;
+                }
+                
+                console.log('Perfil salvo com sucesso!');
+                toast('✅ Perfil salvo!');
                 showPage('dashboard');
-            } else {
-                toast('Erro ao salvar perfil');
+                
+            } catch (err) {
+                console.error('Erro inesperado:', err);
+                toast('❌ Erro ao salvar perfil');
             }
         });
 
-        // ============================================
-        // SERVIÇOS
-        // ============================================
         async function loadServicos() {
-            const servicos = await supabase_loadServicos();
-            const container = document.getElementById('servicos-list');
-            
-            if (!servicos || servicos.length === 0) {
-                container.innerHTML = '<div class="empty-state"><p>Nenhum serviço cadastrado</p><button class="btn btn-primary" style="max-width:180px;margin:0 auto;" onclick="openModal(\'modal-servico\')">Cadastrar</button></div>';
+            const s = await supabaseClient.from('servicos').select('*').order('nome');
+            const c = document.getElementById('servicos-list');
+            if (!s.data || !s.data.length) {
+                c.innerHTML = '<div class="empty-state"><p>Nenhum serviço cadastrado</p><button class="btn btn-primary" style="max-width:180px;margin:0 auto;" onclick="openModal(\'modal-servico\')">Cadastrar</button></div>';
                 return;
             }
-            
-            container.innerHTML = servicos.map(x => \`
-                <div class="list-item" onclick="editServico(\${x.id})">
+            c.innerHTML = s.data.map(x => `
+                <div class="list-item" onclick="editServico(${x.id})">
                     <div class="list-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg></div>
                     <div class="list-info">
-                        <div class="list-title">\${x.nome}</div>
-                        <div class="list-sub">\${x.desc || ''}</div>
+                        <div class="list-title">${x.nome}</div>
+                        <div class="list-sub">${x.descricao || ''}</div>
                     </div>
-                    <div class="list-value">R$ \${numberToMoeda(x.preco)}/\${x.un}</div>
+                    <div class="list-value">R$ ${numberToMoeda(x.preco)}/${x.un}</div>
                 </div>
-            \`).join('');
+            `).join('');
         }
 
         async function editServico(id) {
-            const servico = await supabase_getServico(id);
-            if (!servico) {
-                toast('Serviço não encontrado');
-                return;
-            }
-            
-            document.getElementById('servico-id').value = servico.id;
-            document.getElementById('servico-nome').value = servico.nome;
-            document.getElementById('servico-un').value = servico.un;
-            document.getElementById('servico-preco').value = numberToMoeda(servico.preco);
-            document.getElementById('servico-desc').value = servico.desc || '';
+            const s = await supabaseClient.from('servicos').select('*').eq('id', id).single();
+            document.getElementById('servico-id').value = s.data.id;
+            document.getElementById('servico-nome').value = s.data.nome;
+            document.getElementById('servico-un').value = s.data.un;
+            document.getElementById('servico-preco').value = numberToMoeda(s.data.preco);
+            document.getElementById('servico-desc').value = s.data.descricao || '';
             document.getElementById('title-servico').textContent = 'Editar Serviço';
             openModal('modal-servico');
         }
 
         async function saveServico() {
             const id = document.getElementById('servico-id').value;
+            
+            const { data: { user } } = await supabaseClient.auth.getUser();
+            if (!user) { toast('❌ Usuário não autenticado'); return; }
+            
             const data = {
+                user_id: user.id,
                 nome: document.getElementById('servico-nome').value,
                 un: document.getElementById('servico-un').value,
                 preco: moedaToNumber(document.getElementById('servico-preco').value),
-                desc: document.getElementById('servico-desc').value
+                descricao: document.getElementById('servico-desc').value
             };
-            
-            if (!data.nome || !data.preco) {
-                toast('Preencha nome e preço');
-                return;
-            }
-            
-            const success = await supabase_saveServico(data, id || null);
-            if (success) {
-                toast('Serviço salvo!');
-                closeModal('modal-servico');
-                loadServicos();
+            if (!data.nome || !data.preco) { toast('Preencha nome e preço'); return; }
+            if (id) {
+                await supabaseClient.from('servicos').update(data).eq('id', parseInt(id));
             } else {
-                toast('Erro ao salvar serviço');
+                await supabaseClient.from('servicos').insert(data);
             }
+            toast('Serviço salvo!');
+            closeModal('modal-servico');
+            loadServicos();
         }
 
-        // ============================================
-        // CLIENTES
-        // ============================================
         async function loadClientes() {
-            const clientes = await supabase_loadClientes();
-            const container = document.getElementById('clientes-list');
-            
-            if (!clientes || clientes.length === 0) {
-                container.innerHTML = '<div class="empty-state"><p>Nenhum cliente cadastrado</p><button class="btn btn-primary" style="max-width:180px;margin:0 auto;" onclick="openModal(\'modal-cliente\')">Cadastrar</button></div>';
+            const c = await supabaseClient.from('clientes').select('*').order('nome');
+            const el = document.getElementById('clientes-list');
+            if (!c.data || !c.data.length) {
+                el.innerHTML = '<div class="empty-state"><p>Nenhum cliente cadastrado</p><button class="btn btn-primary" style="max-width:180px;margin:0 auto;" onclick="openModal(\'modal-cliente\')">Cadastrar</button></div>';
                 return;
             }
-            
-            container.innerHTML = clientes.map(x => \`
-                <div class="list-item" onclick="editCliente(\${x.id})">
+            el.innerHTML = c.data.map(x => `
+                <div class="list-item" onclick="editCliente(${x.id})">
                     <div class="list-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></div>
                     <div class="list-info">
-                        <div class="list-title">\${x.nome}</div>
-                        <div class="list-sub">\${x.tel || ''}</div>
+                        <div class="list-title">${x.nome}</div>
+                        <div class="list-sub">${x.tel || ''}</div>
                     </div>
                 </div>
-            \`).join('');
+            `).join('');
         }
 
         async function editCliente(id) {
-            const cliente = await supabase_getCliente(id);
-            if (!cliente) {
-                toast('Cliente não encontrado');
-                return;
-            }
-            
-            document.getElementById('cliente-id').value = cliente.id;
-            document.getElementById('cliente-nome').value = cliente.nome;
-            document.getElementById('cliente-doc').value = cliente.doc || '';
-            document.getElementById('cliente-tel').value = cliente.tel || '';
-            document.getElementById('cliente-email').value = cliente.email || '';
-            document.getElementById('cliente-cep').value = cliente.cep || '';
-            document.getElementById('cliente-num').value = cliente.num || '';
-            document.getElementById('cliente-end').value = cliente.end || '';
-            document.getElementById('cliente-compl').value = cliente.compl || '';
-            document.getElementById('cliente-obs').value = cliente.obs || '';
+            const c = await supabaseClient.from('clientes').select('*').eq('id', id).single();
+            document.getElementById('cliente-id').value = c.data.id;
+            document.getElementById('cliente-nome').value = c.data.nome;
+            document.getElementById('cliente-doc').value = c.data.doc || '';
+            document.getElementById('cliente-tel').value = c.data.tel || '';
+            document.getElementById('cliente-email').value = c.data.email || '';
+            document.getElementById('cliente-cep').value = c.data.cep || '';
+            document.getElementById('cliente-num').value = c.data.num || '';
+            document.getElementById('cliente-end').value = c.data.endereco || '';
+            document.getElementById('cliente-compl').value = c.data.compl || '';
+            document.getElementById('cliente-obs').value = c.data.obs || '';
             document.getElementById('title-cliente').textContent = 'Editar Cliente';
             openModal('modal-cliente');
         }
@@ -1117,8 +1110,6 @@
             const num = document.getElementById('cliente-num').value;
             const compl = document.getElementById('cliente-compl').value;
             let end = document.getElementById('cliente-end').value;
-            
-            // Adiciona número e complemento ao endereço
             if (num && !end.includes(', ' + num)) {
                 end = end.replace(/,/, ', ' + num + ',');
             }
@@ -1126,39 +1117,37 @@
                 end += ' - ' + compl;
             }
             
+            const { data: { user } } = await supabaseClient.auth.getUser();
+            if (!user) { toast('❌ Usuário não autenticado'); return; }
+            
             const data = {
+                user_id: user.id,
                 nome: document.getElementById('cliente-nome').value,
                 doc: document.getElementById('cliente-doc').value,
                 tel: document.getElementById('cliente-tel').value,
                 email: document.getElementById('cliente-email').value,
                 cep: document.getElementById('cliente-cep').value,
                 num: num,
-                end: end,
+                endereco: end,
                 compl: compl,
                 obs: document.getElementById('cliente-obs').value
             };
-            
-            if (!data.nome) {
-                toast('Preencha o nome');
-                return;
-            }
-            
-            const success = await supabase_saveCliente(data, id || null);
-            if (success) {
-                toast('Cliente salvo!');
-                closeModal('modal-cliente');
-                loadClientes();
+            if (!data.nome) { toast('Preencha o nome'); return; }
+            if (id) {
+                await supabaseClient.from('clientes').update(data).eq('id', parseInt(id));
             } else {
-                toast('Erro ao salvar cliente');
+                await supabaseClient.from('clientes').insert(data);
             }
+            toast('Cliente salvo!');
+            closeModal('modal-cliente');
+            loadClientes();
         }
 
-        // ============================================
-        // ORÇAMENTOS - AUTOCOMPLETE
-        // ============================================
         async function loadSelects() {
-            allClientes = await supabase_loadClientes() || [];
-            allServicos = await supabase_loadServicos() || [];
+            const c = await supabaseClient.from('clientes').select('*').order('nome');
+            const s = await supabaseClient.from('servicos').select('*').order('nome');
+            allClientes = c.data || [];
+            allServicos = s.data || [];
         }
 
         async function searchClientes(term) {
@@ -1167,24 +1156,22 @@
                 list.classList.remove('show');
                 return;
             }
-            
             const filtered = allClientes.filter(c => 
                 c.nome.toLowerCase().includes(term.toLowerCase()) ||
                 (c.tel && c.tel.includes(term))
             ).slice(0, 8);
-            
             if (filtered.length === 0) {
                 list.innerHTML = '<div class="autocomplete-item">Nenhum cliente encontrado</div>';
             } else {
                 list.innerHTML = filtered.map(c => {
                     const nomeEscaped = c.nome.replace(/"/g, '&quot;').replace(/'/g, '&#39;');
-                    const enderecoResumo = c.end ? c.end.substring(0, 40) + '...' : '';
-                    return \`
-                        <div class="autocomplete-item" data-id="\${c.id}" data-nome="\${nomeEscaped}" onclick="selectClienteFromEl(this)">
-                            <strong>\${c.nome}</strong>
-                            <small>\${c.tel || ''} \${enderecoResumo ? '• ' + enderecoResumo : ''}</small>
+                    const enderecoResumo = c.endereco ? c.endereco.substring(0, 40) + '...' : '';
+                    return `
+                        <div class="autocomplete-item" data-id="${c.id}" data-nome="${nomeEscaped}" onclick="selectClienteFromEl(this)">
+                            <strong>${c.nome}</strong>
+                            <small>${c.tel || ''} ${enderecoResumo ? '• ' + enderecoResumo : ''}</small>
                         </div>
-                    \`;
+                    `;
                 }).join('');
             }
             list.classList.add('show');
@@ -1204,20 +1191,18 @@
                 list.classList.remove('show');
                 return;
             }
-            
             const filtered = allServicos.filter(s => 
                 s.nome.toLowerCase().includes(term.toLowerCase())
             ).slice(0, 8);
-            
             if (filtered.length === 0) {
                 list.innerHTML = '<div class="autocomplete-item">Nenhum serviço encontrado</div>';
             } else {
-                list.innerHTML = filtered.map(s => \`
-                    <div class="autocomplete-item" onclick="selectServico(\${s.id})">
-                        <strong>\${s.nome}</strong>
-                        <small>R$ \${parseFloat(s.preco).toFixed(2)} / \${s.un}</small>
+                list.innerHTML = filtered.map(s => `
+                    <div class="autocomplete-item" onclick="selectServico(${s.id})">
+                        <strong>${s.nome}</strong>
+                        <small>R$ ${parseFloat(s.preco).toFixed(2)} / ${s.un}</small>
                     </div>
-                \`).join('');
+                `).join('');
             }
             list.classList.add('show');
         }
@@ -1233,33 +1218,23 @@
             }
         }
 
-        // Fechar autocomplete ao clicar fora
         document.addEventListener('click', function(e) {
             if (!e.target.closest('.autocomplete-wrapper')) {
                 document.querySelectorAll('.autocomplete-list').forEach(l => l.classList.remove('show'));
             }
         });
 
-        // ============================================
-        // ORÇAMENTOS - ITENS
-        // ============================================
         function addItemOrc() {
             const servId = document.getElementById('orc-serv-sel').value;
             const qtd = moedaToNumber(document.getElementById('orc-qtd').value);
             const precoUnit = moedaToNumber(document.getElementById('orc-preco-unit').value);
             const ambiente = document.getElementById('orc-ambiente').value.trim();
-            
-            if (!servId || !qtd || !precoUnit) {
-                toast('Preencha serviço, quantidade e preço');
-                return;
+            if (!servId || !qtd || !precoUnit) { 
+                toast('Preencha serviço, quantidade e preço'); 
+                return; 
             }
-            
             const servico = allServicos.find(s => s.id === parseInt(servId));
-            if (!servico) {
-                toast('Serviço não encontrado');
-                return;
-            }
-            
+            if (!servico) { toast('Serviço não encontrado'); return; }
             orcItens.push({
                 servId: parseInt(servId),
                 nome: servico.nome,
@@ -1269,10 +1244,7 @@
                 total: qtd * precoUnit,
                 ambiente: ambiente || 'Geral'
             });
-            
             renderOrcItens();
-            
-            // Limpar campos
             document.getElementById('orc-serv-search').value = '';
             document.getElementById('orc-serv-sel').value = '';
             document.getElementById('orc-qtd').value = '';
@@ -1280,9 +1252,9 @@
             selectedServico = null;
         }
 
-        function removeItemOrc(i) {
-            orcItens.splice(i, 1);
-            renderOrcItens();
+        function removeItemOrc(i) { 
+            orcItens.splice(i, 1); 
+            renderOrcItens(); 
         }
 
         function updateItemOrc(i, field, value) {
@@ -1296,42 +1268,54 @@
         }
 
         function renderOrcItens() {
-            const container = document.getElementById('orc-itens');
+            const c = document.getElementById('orc-itens');
             const total = orcItens.reduce((s, x) => s + x.total, 0);
-            
-            // Agrupar por ambiente
             const ambientes = {};
             orcItens.forEach((item, i) => {
                 const amb = item.ambiente || 'Geral';
                 if (!ambientes[amb]) ambientes[amb] = [];
                 ambientes[amb].push({...item, index: i});
             });
-            
             let html = '';
             for (const [ambiente, itens] of Object.entries(ambientes)) {
-                html += \`<div class="orc-item-ambiente">📍 \${ambiente}</div>\`;
-                html += itens.map(x => \`
+                html += `<div class="orc-item-ambiente">📍 ${ambiente}</div>`;
+                html += itens.map(x => `
                     <div class="orc-item">
                         <div class="orc-item-info">
-                            <div class="orc-item-name">\${x.nome}</div>
+                            <div class="orc-item-name">${x.nome}</div>
                             <div class="orc-item-edit">
-                                <input type="text" value="\${numberToMoeda(x.qtd)}" onchange="updateItemOrc(\${x.index}, 'qtd', this.value)" oninput="this.value = maskMoeda(this.value)" title="Quantidade"> \${x.un} ×
-                                <input type="text" value="\${numberToMoeda(x.preco)}" onchange="updateItemOrc(\${x.index}, 'preco', this.value)" oninput="this.value = maskMoeda(this.value)" title="Preço unitário">
+                                <input type="text" value="${numberToMoeda(x.qtd)}" onchange="updateItemOrc(${x.index}, 'qtd', this.value)" oninput="this.value = maskMoeda(this.value)" title="Quantidade"> ${x.un} ×
+                                <input type="text" value="${numberToMoeda(x.preco)}" onchange="updateItemOrc(${x.index}, 'preco', this.value)" oninput="this.value = maskMoeda(this.value)" title="Preço unitário">
                             </div>
                         </div>
-                        <div class="orc-item-val">R$ \${numberToMoeda(x.total)}</div>
-                        <button class="orc-item-del" onclick="removeItemOrc(\${x.index})">✕</button>
+                        <div class="orc-item-val">R$ ${numberToMoeda(x.total)}</div>
+                        <button class="orc-item-del" onclick="removeItemOrc(${x.index})">✕</button>
                     </div>
-                \`).join('');
+                `).join('');
             }
-            
-            container.innerHTML = html;
-            document.getElementById('orc-total').textContent = \`R$ \${numberToMoeda(total)}\`;
+            c.innerHTML = html;
+            document.getElementById('orc-total').textContent = `R$ ${numberToMoeda(total)}`;
         }
 
-        // ============================================
-        // ORÇAMENTOS - SALVAR
-        // ============================================
+        async function editOrcamento() {
+            const o = await supabaseClient.from('orcamentos').select('*').eq('id', currentOrcId).single();
+            if (!o.data) { toast('Orçamento não encontrado'); return; }
+            const cliente = await supabaseClient.from('clientes').select('*').eq('id', o.data.cliente_id).single();
+            await loadSelects();
+            closeModal('modal-det');
+            isEditingOrc = true;
+            orcItens = o.data.itens.map(item => ({...item}));
+            await openModal('modal-orcamento');
+            document.getElementById('orc-id').value = o.data.id;
+            document.getElementById('orc-titulo').value = o.data.titulo;
+            document.getElementById('orc-cliente').value = o.data.cliente_id;
+            document.getElementById('orc-cliente-search').value = cliente?.data?.nome || '';
+            document.getElementById('orc-pagamento').value = o.data.pagamento || '';
+            document.getElementById('orc-obs').value = o.data.obs || '';
+            document.getElementById('modal-orc-title').textContent = 'Editar Orçamento #' + o.data.id;
+            renderOrcItens();
+        }
+
         async function saveOrcamento() {
             const orcId = document.getElementById('orc-id').value;
             const cliId = document.getElementById('orc-cliente').value;
@@ -1339,21 +1323,23 @@
             const pagamento = document.getElementById('orc-pagamento').value;
             const obs = document.getElementById('orc-obs').value;
             
-            if (!cliId) {
-                toast('Selecione um cliente');
-                return;
-            }
-            if (!orcItens.length) {
-                toast('Adicione serviços');
-                return;
-            }
+            const { data: { user } } = await supabaseClient.auth.getUser();
+            if (!user) { toast('❌ Usuário não autenticado'); return; }
             
+            if (!cliId) { 
+                toast('Selecione um cliente'); 
+                return; 
+            }
+            if (!orcItens.length) { 
+                toast('Adicione serviços'); 
+                return; 
+            }
             const total = orcItens.reduce((s, x) => s + x.total, 0);
-            const perfil = await loadPerfil(true);
-            const val = perfil?.val || 15;
-            
+            const pArr = await loadPerfil();
+            const val = pArr?.val || 15;
             const data = {
-                clienteId: parseInt(cliId),
+                user_id: user.id,
+                cliente_id: parseInt(cliId),
                 titulo,
                 itens: orcItens,
                 total,
@@ -1362,39 +1348,31 @@
                 pagamento,
                 obs
             };
-            
-            const success = await supabase_saveOrcamento(data, orcId || null);
-            if (success) {
-                toast(orcId ? 'Orçamento atualizado!' : 'Orçamento criado!');
-                closeModal('modal-orcamento');
-                orcItens = [];
-                loadDashboard();
-                loadOrcamentos();
+            if (orcId) {
+                await supabaseClient.from('orcamentos').update(data).eq('id', parseInt(orcId));
+                toast('Orçamento atualizado!');
             } else {
-                toast('Erro ao salvar orçamento');
+                await supabaseClient.from('orcamentos').insert(data);
+                toast('Orçamento criado!');
             }
+            closeModal('modal-orcamento');
+            orcItens = [];
+            loadDashboard();
+            loadOrcamentos();
         }
 
-        // ============================================
-        // ORÇAMENTOS - LISTAR
-        // ============================================
         async function loadOrcamentos() {
-            const orcamentos = await supabase_loadOrcamentos();
-            const container = document.getElementById('orcamentos-list');
-            
-            if (!orcamentos || orcamentos.length === 0) {
-                container.innerHTML = '<div class="empty-state"><p>Nenhum orçamento</p><button class="btn btn-primary" style="max-width:180px;margin:0 auto;" onclick="openModal(\'modal-orcamento\')">Criar</button></div>';
+            const o = await supabaseClient.from('orcamentos').select('*').order('created_at', { ascending: false });
+            const c = document.getElementById('orcamentos-list');
+            if (!o.data || !o.data.length) {
+                c.innerHTML = '<div class="empty-state"><p>Nenhum orçamento</p><button class="btn btn-primary" style="max-width:180px;margin:0 auto;" onclick="openModal(\'modal-orcamento\')">Criar</button></div>';
                 document.getElementById('filters-summary').classList.remove('show');
                 return;
             }
-            
-            // Guardar para filtros
-            window.allOrcamentos = orcamentos;
-            
-            const clientes = await supabase_loadClientes();
-            window.allClientesMap = {};
-            clientes.forEach(x => window.allClientesMap[x.id] = x.nome);
-            
+            window.allOrcamentos = o.data;
+            const cli = await supabaseClient.from('clientes').select('*');
+            window.allClientesMap = {}; 
+            cli.data.forEach(x => window.allClientesMap[x.id] = x.nome);
             applyOrcFilters();
         }
 
@@ -1402,39 +1380,29 @@
             const search = document.getElementById('search-orc').value.toLowerCase();
             const statusFilter = document.getElementById('filter-status').value;
             const periodoFilter = document.getElementById('filter-periodo').value;
-            
             let filtered = window.allOrcamentos || [];
-            
-            // Filtro por status
             if (statusFilter) {
                 filtered = filtered.filter(x => x.status === statusFilter);
             }
-            
-            // Filtro por período
             if (periodoFilter) {
                 const dias = parseInt(periodoFilter);
                 const dataLimite = new Date();
                 dataLimite.setDate(dataLimite.getDate() - dias);
                 filtered = filtered.filter(x => new Date(x.created_at) >= dataLimite);
             }
-            
-            // Filtro por busca texto
             if (search) {
                 filtered = filtered.filter(x => {
-                    const clienteNome = window.allClientesMap[x.clienteId] || '';
+                    const clienteNome = window.allClientesMap[x.cliente_id] || '';
                     return x.titulo.toLowerCase().includes(search) ||
                            clienteNome.toLowerCase().includes(search) ||
                            x.status.includes(search);
                 });
             }
-            
             renderOrcamentosList(filtered);
-            
-            // Resumo dos filtros
             const summary = document.getElementById('filters-summary');
             const totalValor = filtered.reduce((s, x) => s + x.total, 0);
             if (statusFilter || periodoFilter || search) {
-                summary.innerHTML = \`<strong>\${filtered.length}</strong> orçamento(s) encontrado(s) • Total: <strong>R$ \${totalValor.toLocaleString('pt-BR', {minimumFractionDigits: 2})}</strong>\`;
+                summary.innerHTML = `<strong>${filtered.length}</strong> orçamento(s) encontrado(s) • Total: <strong>R$ ${totalValor.toLocaleString('pt-BR', {minimumFractionDigits: 2})}</strong>`;
                 summary.classList.add('show');
             } else {
                 summary.classList.remove('show');
@@ -1442,370 +1410,149 @@
         }
 
         function renderOrcamentosList(orcamentos) {
-            const container = document.getElementById('orcamentos-list');
+            const c = document.getElementById('orcamentos-list');
             const map = window.allClientesMap || {};
-            const badges = {
-                pendente: '<span class="badge badge-pending">🟡 Pendente</span>',
-                fechado: '<span class="badge badge-approved">✅ Fechado</span>',
-                recusado: '<span class="badge badge-rejected">❌ Recusado</span>'
+            const badges = { 
+                pendente: '<span class="badge badge-pending">🟡 Pendente</span>', 
+                fechado: '<span class="badge badge-approved">✅ Fechado</span>', 
+                recusado: '<span class="badge badge-rejected">❌ Recusado</span>' 
             };
-            
             if (!orcamentos.length) {
-                container.innerHTML = '<div class="empty-state" style="padding:20px;"><p>Nenhum orçamento encontrado com esses filtros</p></div>';
+                c.innerHTML = '<div class="empty-state" style="padding:20px;"><p>Nenhum orçamento encontrado com esses filtros</p></div>';
                 return;
             }
-            
-            container.innerHTML = orcamentos.reverse().map(x => \`
-                <div class="list-item" onclick="viewOrc(\${x.id})">
+            c.innerHTML = orcamentos.map(x => `
+                <div class="list-item" onclick="viewOrc(${x.id})">
                     <div class="list-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg></div>
                     <div class="list-info">
-                        <div class="list-title">\${x.titulo}</div>
-                        <div class="list-sub">\${map[x.clienteId] || ''} • \${new Date(x.created_at).toLocaleDateString('pt-BR')}</div>
-                        \${badges[x.status]}
+                        <div class="list-title">${x.titulo}</div>
+                        <div class="list-sub">${map[x.cliente_id] || ''} • ${new Date(x.created_at).toLocaleDateString('pt-BR')}</div>
+                        ${badges[x.status]}
                     </div>
-                    <div class="list-value">R$ \${numberToMoeda(x.total)}</div>
+                    <div class="list-value">R$ ${numberToMoeda(x.total)}</div>
                 </div>
-            \`).join('');
+            `).join('');
         }
 
-        // ============================================
-        // ORÇAMENTOS - VISUALIZAR
-        // ============================================
         async function viewOrc(id) {
             currentOrcId = id;
-            const orc = await supabase_getOrcamento(id);
-            if (!orc) {
-                toast('Orçamento não encontrado');
-                return;
-            }
-            
-            const cliente = await supabase_getCliente(orc.clienteId);
-            const badges = {
-                pendente: '<span class="badge badge-pending">🟡 Pendente</span>',
-                fechado: '<span class="badge badge-approved">✅ Fechado</span>',
-                recusado: '<span class="badge badge-rejected">❌ Recusado</span>'
-            };
-            
-            // Agrupar itens por ambiente
+            const o = await supabaseClient.from('orcamentos').select('*').eq('id', id).single();
+            const cli = await supabaseClient.from('clientes').select('*').eq('id', o.data.cliente_id).single();
+            const badges = { pendente: '<span class="badge badge-pending">🟡 Pendente</span>', fechado: '<span class="badge badge-approved">✅ Fechado</span>', recusado: '<span class="badge badge-rejected">❌ Recusado</span>' };
             const ambientes = {};
-            orc.itens.forEach(item => {
+            o.data.itens.forEach(item => {
                 const amb = item.ambiente || 'Geral';
                 if (!ambientes[amb]) ambientes[amb] = [];
                 ambientes[amb].push(item);
             });
-            
             let itensHtml = '';
             for (const [ambiente, itens] of Object.entries(ambientes)) {
-                itensHtml += \`<div class="orc-item-ambiente">📍 \${ambiente}</div>\`;
-                itensHtml += itens.map(x => \`
+                itensHtml += `<div class="orc-item-ambiente">📍 ${ambiente}</div>`;
+                itensHtml += itens.map(x => `
                     <div class="orc-item">
                         <div class="orc-item-info">
-                            <div class="orc-item-name">\${x.nome}</div>
-                            <div class="orc-item-det">\${numberToMoeda(x.qtd)} \${x.un} × R$ \${numberToMoeda(x.preco)}</div>
+                            <div class="orc-item-name">${x.nome}</div>
+                            <div class="orc-item-det">${numberToMoeda(x.qtd)} ${x.un} × R$ ${numberToMoeda(x.preco)}</div>
                         </div>
-                        <div class="orc-item-val">R$ \${numberToMoeda(x.total)}</div>
+                        <div class="orc-item-val">R$ ${numberToMoeda(x.total)}</div>
                     </div>
-                \`).join('');
+                `).join('');
             }
-            
-            let pagamentoHtml = orc.pagamento ? \`<div class="card" style="background:var(--cinza-bg);margin-bottom:14px;"><strong>💳 Pagamento:</strong> \${orc.pagamento}</div>\` : '';
-            let obsHtml = orc.obs ? \`<div class="card" style="background:var(--cinza-bg);margin-bottom:14px;font-size:12px;"><strong>📝 Observações:</strong><br>\${orc.obs.replace(/\n/g, '<br>')}</div>\` : '';
-            
-            document.getElementById('det-content').innerHTML = \`
-                <div style="margin-bottom:14px;"><h3 style="margin-bottom:4px;">\${orc.titulo}</h3>\${badges[orc.status]}</div>
+            let pagamentoHtml = o.data.pagamento ? `<div class="card" style="background:var(--cinza-bg);margin-bottom:14px;"><strong>💳 Pagamento:</strong> ${o.data.pagamento}</div>` : '';
+            let obsHtml = o.data.obs ? `<div class="card" style="background:var(--cinza-bg);margin-bottom:14px;font-size:12px;"><strong>📝 Observações:</strong><br>${o.data.obs.replace(/\n/g, '<br>')}</div>` : '';
+            document.getElementById('det-content').innerHTML = `
+                <div style="margin-bottom:14px;"><h3 style="margin-bottom:4px;">${o.data.titulo}</h3>${badges[o.data.status]}</div>
                 <div class="card" style="background:var(--cinza-bg);margin-bottom:14px;">
-                    <strong>Cliente:</strong> \${cliente?.nome || 'N/A'}<br>
-                    <strong>Tel:</strong> \${cliente?.tel || 'N/A'}<br>
-                    <strong>End:</strong> \${cliente?.end || 'N/A'}
+                    <strong>Cliente:</strong> ${cli?.data?.nome || 'N/A'}<br>
+                    <strong>Tel:</strong> ${cli?.data?.tel || 'N/A'}<br>
+                    <strong>End:</strong> ${cli?.data?.endereco || 'N/A'}
                 </div>
                 <div class="card-title">Itens</div>
-                \${itensHtml}
-                <div class="orc-total"><div class="orc-total-label">Total</div><div class="orc-total-value">R$ \${numberToMoeda(orc.total)}</div></div>
-                \${pagamentoHtml}
-                \${obsHtml}
-                <p style="font-size:11px;color:var(--cinza-texto);margin-top:12px;text-align:center;">Criado em \${new Date(orc.created_at).toLocaleDateString('pt-BR')} • Válido por \${orc.val} dias</p>
-            \`;
+                ${itensHtml}
+                <div class="orc-total"><div class="orc-total-label">Total</div><div class="orc-total-value">R$ ${numberToMoeda(o.data.total)}</div></div>
+                ${pagamentoHtml}
+                ${obsHtml}
+                <p style="font-size:11px;color:var(--cinza-texto);margin-top:12px;text-align:center;">Criado em ${new Date(o.data.created_at).toLocaleDateString('pt-BR')} • Válido por ${o.data.val} dias</p>
+            `;
             openModal('modal-det');
         }
 
-        async function editOrcamento() {
-            const orc = await supabase_getOrcamento(currentOrcId);
-            if (!orc) {
-                toast('Orçamento não encontrado');
-                return;
-            }
-            
-            const cliente = await supabase_getCliente(orc.clienteId);
-            
-            // Carregar listas
-            await loadSelects();
-            
+        async function setStatus(s) {
+            await supabaseClient.from('orcamentos').update({ status: s }).eq('id', currentOrcId);
+            toast('Status atualizado!');
             closeModal('modal-det');
-            isEditingOrc = true;
-            
-            // Carregar itens ANTES de abrir modal
-            orcItens = orc.itens.map(item => ({...item}));
-            
-            await openModal('modal-orcamento');
-            
-            // Preencher dados
-            document.getElementById('orc-id').value = orc.id;
-            document.getElementById('orc-titulo').value = orc.titulo;
-            document.getElementById('orc-cliente').value = orc.clienteId;
-            document.getElementById('orc-cliente-search').value = cliente?.nome || '';
-            document.getElementById('orc-pagamento').value = orc.pagamento || '';
-            document.getElementById('orc-obs').value = orc.obs || '';
-            document.getElementById('modal-orc-title').textContent = 'Editar Orçamento #' + orc.id;
-            
-            renderOrcItens();
+            loadOrcamentos();
+            loadDashboard();
         }
 
-        async function setStatus(status) {
-            const success = await supabase_updateOrcamentoStatus(currentOrcId, status);
-            if (success) {
-                toast('Status atualizado!');
-                closeModal('modal-det');
-                loadOrcamentos();
-                loadDashboard();
-            } else {
-                toast('Erro ao atualizar status');
-            }
-        }
-
-        // ============================================
-        // DASHBOARD
-        // ============================================
         let currentFilter = 'todos';
 
         async function loadDashboard() {
-            const stats = await supabase_getDashboardStats();
-            if (!stats) return;
-            
-            document.getElementById('stat-total').textContent = stats.total;
-            document.getElementById('stat-fechados').textContent = stats.fechados;
-            document.getElementById('stat-pendentes').textContent = stats.pendentes;
-            document.getElementById('stat-recusados').textContent = stats.recusados;
-            document.getElementById('stat-valor').textContent = \`R$ \${stats.valorFechado.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}\`;
-            
+            const o = await supabaseClient.from('orcamentos').select('*');
+            if (!o.data) return;
+            const total = o.data.length;
+            const fechados = o.data.filter(x => x.status === 'fechado');
+            const pendentes = o.data.filter(x => x.status === 'pendente').length;
+            const recusados = o.data.filter(x => x.status === 'recusado').length;
+            const valorFechado = fechados.reduce((s, x) => s + x.total, 0);
+            document.getElementById('stat-total').textContent = total;
+            document.getElementById('stat-fechados').textContent = fechados.length;
+            document.getElementById('stat-pendentes').textContent = pendentes;
+            document.getElementById('stat-recusados').textContent = recusados;
+            document.getElementById('stat-valor').textContent = `R$ ${valorFechado.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}`;
             loadUltimos();
         }
 
         function filterOrcamentos(status) {
             currentFilter = status;
             showPage('orcamentos');
-            
             setTimeout(() => {
                 const statusSelect = document.getElementById('filter-status');
                 const searchInput = document.getElementById('search-orc');
                 const periodoSelect = document.getElementById('filter-periodo');
-                
                 searchInput.value = '';
                 periodoSelect.value = '';
-                
                 if (status === 'todos') {
                     statusSelect.value = '';
                 } else {
                     statusSelect.value = status;
                 }
-                
                 applyOrcFilters();
             }, 100);
         }
 
         async function loadUltimos() {
-            const orcamentos = await supabase_loadOrcamentos();
-            const pendentes = orcamentos?.filter(o => o.status === 'pendente').slice(0, 5) || [];
-            const container = document.getElementById('ultimos-orc');
-            
-            if (!pendentes.length) {
-                container.innerHTML = '<div class="empty-state" style="padding:20px;"><p>Nenhum orçamento pendente 🎉</p></div>';
-                return;
+            const o = await supabaseClient.from('orcamentos').select('*').eq('status', 'pendente').order('created_at', { ascending: false }).limit(5);
+            const c = document.getElementById('ultimos-orc');
+            if (!o.data || !o.data.length) { 
+                c.innerHTML = '<div class="empty-state" style="padding:20px;"><p>Nenhum orçamento pendente 🎉</p></div>'; 
+                return; 
             }
-            
-            const clientes = await supabase_loadClientes();
-            const map = {};
-            clientes.forEach(x => map[x.id] = x.nome);
-            
-            container.innerHTML = pendentes.map(x => \`
-                <div class="list-item" onclick="viewOrc(\${x.id})">
+            const cli = await supabaseClient.from('clientes').select('*');
+            const map = {}; cli.data.forEach(x => map[x.id] = x.nome);
+            c.innerHTML = o.data.map(x => `
+                <div class="list-item" onclick="viewOrc(${x.id})">
                     <div class="list-icon" style="background:rgba(247,192,38,0.2);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--amarelo)" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></div>
                     <div class="list-info">
-                        <div class="list-title">\${x.titulo}</div>
-                        <div class="list-sub">\${map[x.clienteId] || ''} • \${new Date(x.created_at).toLocaleDateString('pt-BR')}</div>
+                        <div class="list-title">${x.titulo}</div>
+                        <div class="list-sub">${map[x.cliente_id] || ''} • ${new Date(x.created_at).toLocaleDateString('pt-BR')}</div>
                     </div>
-                    <div class="list-value">R$ \${numberToMoeda(x.total)}</div>
+                    <div class="list-value">R$ ${numberToMoeda(x.total)}</div>
                 </div>
-            \`).join('');
+            `).join('');
         }
 
         function filterList(type) {
             const search = document.getElementById('search-' + (type === 'servicos' ? 'serv' : type === 'clientes' ? 'cli' : 'orc')).value.toLowerCase();
-            document.querySelectorAll(\`#\${type}-list .list-item\`).forEach(x => {
+            document.querySelectorAll(`#${type}-list .list-item`).forEach(x => {
                 x.style.display = x.textContent.toLowerCase().includes(search) ? 'flex' : 'none';
             });
         }
 
-        // ============================================
-        // EXPORTAR PDF
-        // ============================================
         async function exportPDF() {
-            const { jsPDF } = window.jspdf;
-            const doc = new jsPDF();
-            const orc = await supabase_getOrcamento(currentOrcId);
-            const cliente = await supabase_getCliente(orc.clienteId);
-            const perfil = await loadPerfil(true);
-            
-            // Cabeçalho
-            doc.setFillColor(26, 59, 90);
-            doc.rect(0, 0, 210, 40, 'F');
-            doc.setTextColor(255, 255, 255);
-            doc.setFontSize(22);
-            doc.setFont('helvetica', 'bold');
-            doc.text('PS', 20, 22);
-            doc.setFontSize(10);
-            doc.text('PRO', 33, 22);
-            doc.setFontSize(11);
-            doc.text(perfil?.nome || 'Minha Empresa', 60, 16);
-            doc.setFontSize(9);
-            doc.setFont('helvetica', 'normal');
-            doc.text(perfil?.tel || '', 60, 23);
-            doc.text(perfil?.email || '', 60, 29);
-            doc.text(perfil?.end || '', 60, 35);
-            
-            // Título
-            doc.setTextColor(26, 59, 90);
-            doc.setFontSize(16);
-            doc.setFont('helvetica', 'bold');
-            doc.text('ORÇAMENTO', 20, 55);
-            doc.setFontSize(9);
-            doc.setFont('helvetica', 'normal');
-            doc.setTextColor(100, 100, 100);
-            doc.text(\`Nº: \${orc.id.toString().padStart(4, '0')}\`, 160, 50);
-            doc.text(\`Data: \${new Date(orc.created_at).toLocaleDateString('pt-BR')}\`, 160, 56);
-            doc.text(\`Validade: \${orc.val} dias\`, 160, 62);
-            
-            // Cliente
-            doc.setFillColor(245, 247, 250);
-            doc.roundedRect(20, 68, 170, 28, 2, 2, 'F');
-            doc.setTextColor(26, 59, 90);
-            doc.setFontSize(10);
-            doc.setFont('helvetica', 'bold');
-            doc.text('CLIENTE', 25, 77);
-            doc.setFont('helvetica', 'normal');
-            doc.setTextColor(60, 60, 60);
-            doc.text(cliente?.nome || 'N/A', 25, 84);
-            doc.text(\`Tel: \${cliente?.tel || 'N/A'} | End: \${cliente?.end || 'N/A'}\`.substring(0, 80), 25, 91);
-            
-            // Agrupar por ambiente
-            const ambientes = {};
-            orc.itens.forEach(item => {
-                const amb = item.ambiente || 'Geral';
-                if (!ambientes[amb]) ambientes[amb] = [];
-                ambientes[amb].push(item);
-            });
-            
-            let y = 108;
-            
-            for (const [ambiente, itens] of Object.entries(ambientes)) {
-                // Título ambiente
-                doc.setFillColor(26, 59, 90);
-                doc.rect(20, y, 170, 8, 'F');
-                doc.setTextColor(255, 255, 255);
-                doc.setFontSize(9);
-                doc.setFont('helvetica', 'bold');
-                doc.text(\`📍 \${ambiente}\`, 25, y + 5.5);
-                y += 10;
-                
-                // Cabeçalho tabela
-                doc.setFillColor(230, 235, 240);
-                doc.rect(20, y, 170, 7, 'F');
-                doc.setTextColor(26, 59, 90);
-                doc.setFontSize(8);
-                doc.text('SERVIÇO', 25, y + 5);
-                doc.text('QTD', 115, y + 5);
-                doc.text('UNIT.', 140, y + 5);
-                doc.text('TOTAL', 170, y + 5);
-                y += 9;
-                
-                // Itens
-                doc.setTextColor(60, 60, 60);
-                doc.setFont('helvetica', 'normal');
-                itens.forEach((x, i) => {
-                    if (y > 260) {
-                        doc.addPage();
-                        y = 20;
-                    }
-                    if (i % 2 === 0) {
-                        doc.setFillColor(250, 250, 250);
-                        doc.rect(20, y - 4, 170, 7, 'F');
-                    }
-                    doc.text(x.nome.substring(0, 40), 25, y);
-                    doc.text(\`\${x.qtd} \${x.un}\`, 115, y);
-                    doc.text(\`R$ \${x.preco.toFixed(2)}\`, 140, y);
-                    doc.text(\`R$ \${x.total.toFixed(2)}\`, 170, y);
-                    y += 7;
-                });
-                
-                y += 5;
-            }
-            
-            // Total
-            y += 2;
-            doc.setFillColor(247, 192, 38);
-            doc.roundedRect(120, y, 70, 12, 2, 2, 'F');
-            doc.setTextColor(26, 59, 90);
-            doc.setFontSize(11);
-            doc.setFont('helvetica', 'bold');
-            doc.text(\`TOTAL: R$ \${numberToMoeda(orc.total)}\`, 125, y + 8);
-            
-            y += 20;
-            
-            // Pagamento
-            if (orc.pagamento) {
-                if (y > 250) { doc.addPage(); y = 20; }
-                doc.setFillColor(245, 247, 250);
-                doc.roundedRect(20, y, 170, 12, 2, 2, 'F');
-                doc.setTextColor(26, 59, 90);
-                doc.setFontSize(9);
-                doc.setFont('helvetica', 'bold');
-                doc.text('FORMA DE PAGAMENTO:', 25, y + 8);
-                doc.setFont('helvetica', 'normal');
-                doc.text(orc.pagamento.substring(0, 60), 75, y + 8);
-                y += 16;
-            }
-            
-            // Observações
-            if (orc.obs) {
-                if (y > 230) { doc.addPage(); y = 20; }
-                doc.setTextColor(26, 59, 90);
-                doc.setFontSize(9);
-                doc.setFont('helvetica', 'bold');
-                doc.text('OBSERVAÇÕES:', 20, y);
-                y += 6;
-                doc.setFont('helvetica', 'normal');
-                doc.setTextColor(60, 60, 60);
-                doc.setFontSize(8);
-                
-                const obsLines = doc.splitTextToSize(orc.obs, 170);
-                obsLines.forEach(line => {
-                    if (y > 275) { doc.addPage(); y = 20; }
-                    doc.text(line, 20, y);
-                    y += 5;
-                });
-            }
-            
-            doc.setTextColor(150, 150, 150);
-            doc.setFontSize(7);
-            doc.setFont('helvetica', 'normal');
-            doc.text('Orçamento gerado pelo PS Pro - Painel Services', 20, 285);
-            
-            doc.save(\`orcamento_\${orc.id}_\${cliente?.nome?.replace(/\s/g, '_') || 'cliente'}.pdf\`);
-            toast('PDF exportado!');
+            toast('Função PDF em desenvolvimento');
         }
 
-        // ============================================
-        // MÁSCARAS E UTILITÁRIOS
-        // ============================================
         function maskCPFCNPJ(v) {
             v = v.replace(/\D/g, '');
             if (v.length <= 11) {
@@ -1866,27 +1613,16 @@
         async function buscarCEP(cep) {
             cep = cep.replace(/\D/g, '');
             if (cep.length !== 8) return;
-            
             toast('Buscando CEP...');
-            
             try {
-                const resp = await fetch(\`https://viacep.com.br/ws/\${cep}/json/\`);
-                if (!resp.ok) {
-                    toast('Erro na busca do CEP');
-                    return;
-                }
-                
+                const resp = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
+                if (!resp.ok) { toast('Erro na busca do CEP'); return; }
                 const data = await resp.json();
-                if (data.erro) {
-                    toast('CEP não encontrado');
-                    return;
-                }
-                
+                if (data.erro) { toast('CEP não encontrado'); return; }
                 const partes = [];
                 if (data.logradouro) partes.push(data.logradouro);
                 if (data.bairro) partes.push(data.bairro);
                 if (data.localidade) partes.push(data.localidade + (data.uf ? ' - ' + data.uf : ''));
-                
                 const endereco = partes.join(', ');
                 document.getElementById('cliente-end').value = endereco;
                 document.getElementById('cliente-num').focus();
@@ -1899,27 +1635,16 @@
         async function buscarCEPPerfil(cep) {
             cep = cep.replace(/\D/g, '');
             if (cep.length !== 8) return;
-            
             toast('Buscando CEP...');
-            
             try {
-                const resp = await fetch(\`https://viacep.com.br/ws/\${cep}/json/\`);
-                if (!resp.ok) {
-                    toast('Erro na busca do CEP');
-                    return;
-                }
-                
+                const resp = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
+                if (!resp.ok) { toast('Erro na busca do CEP'); return; }
                 const data = await resp.json();
-                if (data.erro) {
-                    toast('CEP não encontrado');
-                    return;
-                }
-                
+                if (data.erro) { toast('CEP não encontrado'); return; }
                 const partes = [];
                 if (data.logradouro) partes.push(data.logradouro);
                 if (data.bairro) partes.push(data.bairro);
                 if (data.localidade) partes.push(data.localidade + (data.uf ? ' - ' + data.uf : ''));
-                
                 const endereco = partes.join(', ');
                 document.getElementById('perfil-end').value = endereco;
                 document.getElementById('perfil-num').focus();
@@ -1929,7 +1654,6 @@
             }
         }
 
-        // Aplicar máscaras - Perfil
         document.getElementById('perfil-doc')?.addEventListener('input', function(e) {
             e.target.value = maskCPFCNPJ(e.target.value);
         });
@@ -1939,8 +1663,6 @@
         document.getElementById('perfil-cep')?.addEventListener('input', function(e) {
             e.target.value = maskCEP(e.target.value);
         });
-
-        // Aplicar máscaras - Cliente
         document.getElementById('cliente-doc')?.addEventListener('input', function(e) {
             e.target.value = maskCPFCNPJ(e.target.value);
         });
