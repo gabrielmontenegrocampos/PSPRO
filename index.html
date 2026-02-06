@@ -6,7 +6,7 @@
     <meta name="theme-color" content="#1a3b5a">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>PS Pro - OrÃ§amentos Inteligentes</title>
+    <title>PS Pro - Orçamentos Inteligentes</title>
     <link rel="manifest" href="manifest.json">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/dexie@3.2.4/dist/dexie.min.js"></script>
@@ -393,7 +393,7 @@
         }
         .filters-summary.show { display: block; }
         .filters-summary strong { color: var(--azul); }
-        /* Remover setinhas dos inputs numÃ©ricos */
+        /* Remover setinhas dos inputs numéricos */
         input[type="number"]::-webkit-outer-spin-button,
         input[type="number"]::-webkit-inner-spin-button {
             -webkit-appearance: none;
@@ -411,7 +411,7 @@
                 <div class="logo-icon"><span>P</span><span>S</span></div>
                 <div class="logo-text">
                     <h1>PS Pro</h1>
-                    <span>OrÃ§amentos Inteligentes</span>
+                    <span>Orçamentos Inteligentes</span>
                 </div>
             </div>
             <button class="header-btn" onclick="showPage('config')">
@@ -443,50 +443,50 @@
                         <line x1="12" y1="18" x2="12" y2="12"></line>
                         <line x1="9" y1="15" x2="15" y2="15"></line>
                     </svg>
-                    <span>Novo OrÃ§amento</span>
+                    <span>Novo Orçamento</span>
                 </div>
             </div>
 
             <div class="stats-grid">
                 <div class="stat-card highlight" onclick="filterOrcamentos('todos')" style="cursor:pointer;">
                     <div class="stat-value" id="stat-total">0</div>
-                    <div class="stat-label">OrÃ§amentos</div>
+                    <div class="stat-label">Orçamentos</div>
                 </div>
                 <div class="stat-card success" onclick="filterOrcamentos('fechado')" style="cursor:pointer;">
                     <div class="stat-value" id="stat-fechados">0</div>
-                    <div class="stat-label">âœ… Fechados</div>
+                    <div class="stat-label">✅ Fechados</div>
                 </div>
                 <div class="stat-card warning" onclick="filterOrcamentos('pendente')" style="cursor:pointer;">
                     <div class="stat-value" id="stat-pendentes">0</div>
-                    <div class="stat-label">ðŸŸ¡ Pendentes</div>
+                    <div class="stat-label">🟡 Pendentes</div>
                 </div>
                 <div class="stat-card" style="border-left: 4px solid var(--vermelho); cursor:pointer;" onclick="filterOrcamentos('recusado')">
                     <div class="stat-value" id="stat-recusados">0</div>
-                    <div class="stat-label">âŒ Recusados</div>
+                    <div class="stat-label">❌ Recusados</div>
                 </div>
             </div>
 
             <div class="stat-card highlight" style="margin-bottom:16px; cursor:pointer;" onclick="filterOrcamentos('fechado')">
-                <div class="stat-label">ðŸ’° Valor Total Fechado</div>
+                <div class="stat-label">💰 Valor Total Fechado</div>
                 <div class="stat-value" id="stat-valor">R$ 0</div>
             </div>
 
             <div class="section-title">
-                OrÃ§amentos Pendentes
+                Orçamentos Pendentes
                 <a href="#" onclick="showPage('orcamentos');return false;">Ver todos</a>
             </div>
             <div id="ultimos-orc"></div>
         </div>
 
-        <!-- SERVIÃ‡OS -->
+        <!-- SERVIÇOS -->
         <div id="page-servicos" class="page">
             <div class="section-title">
-                Meus ServiÃ§os
+                Meus Serviços
                 <button class="btn btn-primary btn-sm" onclick="openModal('modal-servico')">+ Novo</button>
             </div>
             <div class="search-box">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-                <input type="text" class="form-input" placeholder="Buscar serviÃ§o..." id="search-serv" oninput="filterList('servicos')">
+                <input type="text" class="form-input" placeholder="Buscar serviço..." id="search-serv" oninput="filterList('servicos')">
             </div>
             <div id="servicos-list"></div>
         </div>
@@ -504,35 +504,35 @@
             <div id="clientes-list"></div>
         </div>
 
-        <!-- ORÃ‡AMENTOS -->
+        <!-- ORÇAMENTOS -->
         <div id="page-orcamentos" class="page">
             <div class="section-title">
-                Meus OrÃ§amentos
+                Meus Orçamentos
                 <button class="btn btn-primary btn-sm" onclick="openModal('modal-orcamento')">+ Novo</button>
             </div>
             <div class="search-box">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-                <input type="text" class="form-input" placeholder="Buscar orÃ§amento..." id="search-orc" oninput="applyOrcFilters()">
+                <input type="text" class="form-input" placeholder="Buscar orçamento..." id="search-orc" oninput="applyOrcFilters()">
             </div>
             <div class="filters-row">
                 <div class="filter-group">
                     <label class="filter-label">Status</label>
                     <select class="form-select filter-select" id="filter-status" onchange="applyOrcFilters()">
                         <option value="">Todos</option>
-                        <option value="pendente">ðŸŸ¡ Pendente</option>
-                        <option value="fechado">âœ… Fechado</option>
-                        <option value="recusado">âŒ Recusado</option>
+                        <option value="pendente">🟡 Pendente</option>
+                        <option value="fechado">✅ Fechado</option>
+                        <option value="recusado">❌ Recusado</option>
                     </select>
                 </div>
                 <div class="filter-group">
-                    <label class="filter-label">PerÃ­odo</label>
+                    <label class="filter-label">Período</label>
                     <select class="form-select filter-select" id="filter-periodo" onchange="applyOrcFilters()">
-                        <option value="">Todo perÃ­odo</option>
-                        <option value="7">Ãšltimos 7 dias</option>
-                        <option value="15">Ãšltimos 15 dias</option>
-                        <option value="30">Ãšltimos 30 dias</option>
-                        <option value="60">Ãšltimos 60 dias</option>
-                        <option value="90">Ãšltimos 90 dias</option>
+                        <option value="">Todo período</option>
+                        <option value="7">Últimos 7 dias</option>
+                        <option value="15">Últimos 15 dias</option>
+                        <option value="30">Últimos 30 dias</option>
+                        <option value="60">Últimos 60 dias</option>
+                        <option value="90">Últimos 90 dias</option>
                     </select>
                 </div>
             </div>
@@ -540,13 +540,13 @@
             <div id="orcamentos-list"></div>
         </div>
 
-        <!-- CONFIGURAÃ‡Ã•ES -->
+        <!-- CONFIGURAÇÕES -->
         <div id="page-config" class="page">
             <div class="section-title">Meu Perfil</div>
             <div class="card">
                 <form id="form-perfil">
                     <div class="form-group">
-                        <label class="form-label">Nome / RazÃ£o Social</label>
+                        <label class="form-label">Nome / Razão Social</label>
                         <input type="text" class="form-input" id="perfil-nome" placeholder="Seu nome ou empresa">
                     </div>
                     <div class="form-row">
@@ -569,12 +569,12 @@
                             <input type="text" class="form-input" id="perfil-cep" placeholder="00000-000" maxlength="9" oninput="buscarCEPPerfil(this.value)">
                         </div>
                         <div class="form-group">
-                            <label class="form-label">NÃºmero</label>
-                            <input type="text" class="form-input" id="perfil-num" placeholder="NÂº">
+                            <label class="form-label">Número</label>
+                            <input type="text" class="form-input" id="perfil-num" placeholder="Nº">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="form-label">EndereÃ§o</label>
+                        <label class="form-label">Endereço</label>
                         <input type="text" class="form-input" id="perfil-end" placeholder="Rua, Bairro, Cidade - UF">
                     </div>
                     <div class="form-row">
@@ -583,17 +583,17 @@
                             <input type="text" class="form-input" id="perfil-compl" placeholder="Sala, Apto...">
                         </div>
                         <div class="form-group">
-                            <label class="form-label">Validade OrÃ§amentos (dias)</label>
+                            <label class="form-label">Validade Orçamentos (dias)</label>
                             <input type="number" class="form-input" id="perfil-val" value="15">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="form-label">Formas de Pagamento Aceitas</label>
-                        <input type="text" class="form-input" id="perfil-pagamento" placeholder="Ex: Pix, Dinheiro, CartÃ£o, TransferÃªncia">
+                        <input type="text" class="form-input" id="perfil-pagamento" placeholder="Ex: Pix, Dinheiro, Cartão, Transferência">
                     </div>
                     <div class="form-group">
-                        <label class="form-label">ObservaÃ§Ãµes PadrÃ£o dos OrÃ§amentos</label>
-                        <textarea class="form-input" id="perfil-obs" rows="4" placeholder="Ex: Material nÃ£o incluso. Prazo de execuÃ§Ã£o a combinar. Garantia de 1 ano..."></textarea>
+                        <label class="form-label">Observações Padrão dos Orçamentos</label>
+                        <textarea class="form-input" id="perfil-obs" rows="4" placeholder="Ex: Material não incluso. Prazo de execução a combinar. Garantia de 1 ano..."></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary">Salvar Perfil</button>
                 </form>
@@ -604,11 +604,11 @@
     <nav class="bottom-nav">
         <div class="nav-item active" data-page="dashboard" onclick="showPage('dashboard')">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
-            <span>InÃ­cio</span>
+            <span>Início</span>
         </div>
         <div class="nav-item" data-page="servicos" onclick="showPage('servicos')">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>
-            <span>ServiÃ§os</span>
+            <span>Serviços</span>
         </div>
         <div class="nav-item" data-page="clientes" onclick="showPage('clientes')">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
@@ -616,41 +616,41 @@
         </div>
         <div class="nav-item" data-page="orcamentos" onclick="showPage('orcamentos')">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
-            <span>OrÃ§amentos</span>
+            <span>Orçamentos</span>
         </div>
     </nav>
 
-    <!-- Modal ServiÃ§o -->
+    <!-- Modal Serviço -->
     <div class="modal-overlay" id="modal-servico">
         <div class="modal">
             <div class="modal-header">
-                <div class="modal-title" id="title-servico">Novo ServiÃ§o</div>
-                <button class="modal-close" onclick="closeModal('modal-servico')">âœ•</button>
+                <div class="modal-title" id="title-servico">Novo Serviço</div>
+                <button class="modal-close" onclick="closeModal('modal-servico')">✕</button>
             </div>
             <div class="modal-body">
                 <input type="hidden" id="servico-id">
                 <div class="form-group">
-                    <label class="form-label">Nome do ServiÃ§o</label>
+                    <label class="form-label">Nome do Serviço</label>
                     <input type="text" class="form-input" id="servico-nome" placeholder="Ex: Pintura interna">
                 </div>
                 <div class="form-row">
                     <div class="form-group">
                         <label class="form-label">Unidade</label>
                         <select class="form-select" id="servico-un">
-                            <option value="mÂ²">mÂ²</option>
+                            <option value="m²">m²</option>
                             <option value="m">m linear</option>
                             <option value="un">unidade</option>
                             <option value="h">hora</option>
-                            <option value="diÃ¡ria">diÃ¡ria</option>
+                            <option value="diária">diária</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label class="form-label">PreÃ§o (R$)</label>
+                        <label class="form-label">Preço (R$)</label>
                         <input type="text" class="form-input" id="servico-preco" placeholder="0,00" oninput="this.value = maskMoeda(this.value)">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="form-label">DescriÃ§Ã£o (opcional)</label>
+                    <label class="form-label">Descrição (opcional)</label>
                     <input type="text" class="form-input" id="servico-desc" placeholder="Detalhes">
                 </div>
             </div>
@@ -666,7 +666,7 @@
         <div class="modal">
             <div class="modal-header">
                 <div class="modal-title" id="title-cliente">Novo Cliente</div>
-                <button class="modal-close" onclick="closeModal('modal-cliente')">âœ•</button>
+                <button class="modal-close" onclick="closeModal('modal-cliente')">✕</button>
             </div>
             <div class="modal-body">
                 <input type="hidden" id="cliente-id">
@@ -694,12 +694,12 @@
                         <input type="text" class="form-input" id="cliente-cep" placeholder="00000-000" maxlength="9" oninput="buscarCEP(this.value)">
                     </div>
                     <div class="form-group">
-                        <label class="form-label">NÃºmero</label>
-                        <input type="text" class="form-input" id="cliente-num" placeholder="NÂº">
+                        <label class="form-label">Número</label>
+                        <input type="text" class="form-input" id="cliente-num" placeholder="Nº">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="form-label">EndereÃ§o da Obra</label>
+                    <label class="form-label">Endereço da Obra</label>
                     <input type="text" class="form-input" id="cliente-end" placeholder="Rua, Bairro, Cidade - UF">
                 </div>
                 <div class="form-group">
@@ -707,8 +707,8 @@
                     <input type="text" class="form-input" id="cliente-compl" placeholder="Apto, Bloco, etc.">
                 </div>
                 <div class="form-group">
-                    <label class="form-label">ObservaÃ§Ãµes</label>
-                    <input type="text" class="form-input" id="cliente-obs" placeholder="AnotaÃ§Ãµes">
+                    <label class="form-label">Observações</label>
+                    <input type="text" class="form-input" id="cliente-obs" placeholder="Anotações">
                 </div>
             </div>
             <div class="modal-footer">
@@ -718,12 +718,12 @@
         </div>
     </div>
 
-    <!-- Modal OrÃ§amento -->
+    <!-- Modal Orçamento -->
     <div class="modal-overlay" id="modal-orcamento">
         <div class="modal">
             <div class="modal-header">
-                <div class="modal-title" id="modal-orc-title">Novo OrÃ§amento</div>
-                <button class="modal-close" onclick="closeModal('modal-orcamento')">âœ•</button>
+                <div class="modal-title" id="modal-orc-title">Novo Orçamento</div>
+                <button class="modal-close" onclick="closeModal('modal-orcamento')">✕</button>
             </div>
             <div class="modal-body">
                 <input type="hidden" id="orc-id">
@@ -736,7 +736,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="form-label">TÃ­tulo do OrÃ§amento</label>
+                    <label class="form-label">Título do Orçamento</label>
                     <input type="text" class="form-input" id="orc-titulo" placeholder="Ex: Pintura apartamento 302">
                 </div>
                 
@@ -746,9 +746,9 @@
                 </div>
                 
                 <div class="form-group">
-                    <label class="form-label">Buscar ServiÃ§o</label>
+                    <label class="form-label">Buscar Serviço</label>
                     <div class="autocomplete-wrapper">
-                        <input type="text" class="form-input" id="orc-serv-search" placeholder="Digite para buscar serviÃ§o..." oninput="searchServicos(this.value)">
+                        <input type="text" class="form-input" id="orc-serv-search" placeholder="Digite para buscar serviço..." oninput="searchServicos(this.value)">
                         <input type="hidden" id="orc-serv-sel">
                         <div class="autocomplete-list" id="servico-autocomplete"></div>
                     </div>
@@ -759,7 +759,7 @@
                         <input type="text" class="form-input" id="orc-qtd" placeholder="0,00" oninput="this.value = maskMoeda(this.value)">
                     </div>
                     <div class="form-group">
-                        <label class="form-label">PreÃ§o Unit.</label>
+                        <label class="form-label">Preço Unit.</label>
                         <input type="text" class="form-input" id="orc-preco-unit" placeholder="0,00" oninput="this.value = maskMoeda(this.value)">
                     </div>
                     <div class="form-group">
@@ -769,7 +769,7 @@
                 </div>
                 <div id="orc-itens"></div>
                 <div class="orc-total">
-                    <div class="orc-total-label">Total do OrÃ§amento</div>
+                    <div class="orc-total-label">Total do Orçamento</div>
                     <div class="orc-total-value" id="orc-total">R$ 0,00</div>
                 </div>
                 <div class="form-group" style="margin-top:16px;">
@@ -777,8 +777,8 @@
                     <input type="text" class="form-input" id="orc-pagamento" placeholder="Ex: 50% entrada + 50% na entrega">
                 </div>
                 <div class="form-group">
-                    <label class="form-label">ObservaÃ§Ãµes</label>
-                    <textarea class="form-input" id="orc-obs" rows="3" placeholder="CondiÃ§Ãµes, prazos, garantias..."></textarea>
+                    <label class="form-label">Observações</label>
+                    <textarea class="form-input" id="orc-obs" rows="3" placeholder="Condições, prazos, garantias..."></textarea>
                 </div>
             </div>
             <div class="modal-footer">
@@ -792,16 +792,16 @@
     <div class="modal-overlay" id="modal-det">
         <div class="modal">
             <div class="modal-header">
-                <div class="modal-title">Detalhes do OrÃ§amento</div>
-                <button class="modal-close" onclick="closeModal('modal-det')">âœ•</button>
+                <div class="modal-title">Detalhes do Orçamento</div>
+                <button class="modal-close" onclick="closeModal('modal-det')">✕</button>
             </div>
             <div class="modal-body" id="det-content"></div>
             <div class="modal-footer" style="flex-wrap:wrap;gap:8px;">
-                <button class="btn btn-outline btn-sm" style="flex:1;min-width:70px;" onclick="setStatus('pendente')">ðŸŸ¡ Pendente</button>
-                <button class="btn btn-outline btn-sm" style="flex:1;min-width:70px;" onclick="setStatus('fechado')">âœ… Fechado</button>
-                <button class="btn btn-outline btn-sm" style="flex:1;min-width:70px;" onclick="setStatus('recusado')">âŒ Recusado</button>
-                <button class="btn btn-secondary" style="width:100%;" onclick="editOrcamento()">âœï¸ Editar OrÃ§amento</button>
-                <button class="btn btn-primary" style="width:100%;" onclick="exportPDF()">ðŸ“„ Exportar PDF</button>
+                <button class="btn btn-outline btn-sm" style="flex:1;min-width:70px;" onclick="setStatus('pendente')">🟡 Pendente</button>
+                <button class="btn btn-outline btn-sm" style="flex:1;min-width:70px;" onclick="setStatus('fechado')">✅ Fechado</button>
+                <button class="btn btn-outline btn-sm" style="flex:1;min-width:70px;" onclick="setStatus('recusado')">❌ Recusado</button>
+                <button class="btn btn-secondary" style="width:100%;" onclick="editOrcamento()">✏️ Editar Orçamento</button>
+                <button class="btn btn-primary" style="width:100%;" onclick="exportPDF()">📄 Exportar PDF</button>
             </div>
         </div>
     </div>
@@ -841,7 +841,7 @@
                 renderOrcItens();
                 loadSelects();
                 
-                // PrÃ©-preencher observaÃ§Ãµes e pagamento do perfil
+                // Pré-preencher observações e pagamento do perfil
                 const pArr = await db.perfil.toArray();
                 if (pArr[0]) {
                     document.getElementById('orc-obs').value = pArr[0].obs || '';
@@ -858,7 +858,7 @@
                 document.getElementById('servico-nome').value = '';
                 document.getElementById('servico-preco').value = '';
                 document.getElementById('servico-desc').value = '';
-                document.getElementById('title-servico').textContent = 'Novo ServiÃ§o';
+                document.getElementById('title-servico').textContent = 'Novo Serviço';
             }
             if (id === 'modal-cliente') {
                 document.getElementById('cliente-id').value = '';
@@ -885,7 +885,7 @@
                 document.getElementById('orc-ambiente').value = '';
                 document.getElementById('orc-pagamento').value = '';
                 document.getElementById('orc-obs').value = '';
-                document.getElementById('modal-orc-title').textContent = 'Novo OrÃ§amento';
+                document.getElementById('modal-orc-title').textContent = 'Novo Orçamento';
                 orcItens = [];
                 selectedServico = null;
                 renderOrcItens();
@@ -924,7 +924,7 @@
             const compl = document.getElementById('perfil-compl').value;
             let end = document.getElementById('perfil-end').value;
             
-            // Monta endereÃ§o completo para exibiÃ§Ã£o
+            // Monta endereço completo para exibição
             let endCompleto = end;
             if (num && !end.includes(', ' + num)) {
                 endCompleto = end.replace(/,/, ', ' + num + ',');
@@ -955,12 +955,12 @@
             showPage('dashboard');
         });
 
-        // SERVIÃ‡OS
+        // SERVIÇOS
         async function loadServicos() {
             const s = await db.servicos.toArray();
             const c = document.getElementById('servicos-list');
             if (!s.length) {
-                c.innerHTML = '<div class="empty-state"><p>Nenhum serviÃ§o cadastrado</p><button class="btn btn-primary" style="max-width:180px;margin:0 auto;" onclick="openModal(\'modal-servico\')">Cadastrar</button></div>';
+                c.innerHTML = '<div class="empty-state"><p>Nenhum serviço cadastrado</p><button class="btn btn-primary" style="max-width:180px;margin:0 auto;" onclick="openModal(\'modal-servico\')">Cadastrar</button></div>';
                 return;
             }
             c.innerHTML = s.map(x => `
@@ -982,7 +982,7 @@
             document.getElementById('servico-un').value = s.un;
             document.getElementById('servico-preco').value = numberToMoeda(s.preco);
             document.getElementById('servico-desc').value = s.desc || '';
-            document.getElementById('title-servico').textContent = 'Editar ServiÃ§o';
+            document.getElementById('title-servico').textContent = 'Editar Serviço';
             openModal('modal-servico');
         }
 
@@ -994,10 +994,10 @@
                 preco: moedaToNumber(document.getElementById('servico-preco').value),
                 desc: document.getElementById('servico-desc').value
             };
-            if (!data.nome || !data.preco) { toast('Preencha nome e preÃ§o'); return; }
+            if (!data.nome || !data.preco) { toast('Preencha nome e preço'); return; }
             if (id) await db.servicos.update(parseInt(id), data);
             else await db.servicos.add(data);
-            toast('ServiÃ§o salvo!');
+            toast('Serviço salvo!');
             closeModal('modal-servico');
             loadServicos();
         }
@@ -1043,7 +1043,7 @@
             const compl = document.getElementById('cliente-compl').value;
             let end = document.getElementById('cliente-end').value;
             
-            // Adiciona nÃºmero e complemento ao endereÃ§o se preenchidos
+            // Adiciona número e complemento ao endereço se preenchidos
             if (num && !end.includes(', ' + num)) {
                 end = end.replace(/,/, ', ' + num + ',');
             }
@@ -1070,7 +1070,7 @@
             loadClientes();
         }
 
-        // ORÃ‡AMENTOS
+        // ORÇAMENTOS
         let allClientes = [];
         let allServicos = [];
         let selectedServico = null;
@@ -1100,7 +1100,7 @@
                     return `
                         <div class="autocomplete-item" data-id="${c.id}" data-nome="${nomeEscaped}" onclick="selectClienteFromEl(this)">
                             <strong>${c.nome}</strong>
-                            <small>${c.tel || ''} ${enderecoResumo ? 'â€¢ ' + enderecoResumo : ''}</small>
+                            <small>${c.tel || ''} ${enderecoResumo ? '• ' + enderecoResumo : ''}</small>
                         </div>
                     `;
                 }).join('');
@@ -1133,7 +1133,7 @@
             ).slice(0, 8);
             
             if (filtered.length === 0) {
-                list.innerHTML = '<div class="autocomplete-item">Nenhum serviÃ§o encontrado</div>';
+                list.innerHTML = '<div class="autocomplete-item">Nenhum serviço encontrado</div>';
             } else {
                 list.innerHTML = filtered.map(s => `
                     <div class="autocomplete-item" onclick="selectServico(${s.id})">
@@ -1170,12 +1170,12 @@
             const ambiente = document.getElementById('orc-ambiente').value.trim();
             
             if (!servId || !qtd || !precoUnit) { 
-                toast('Preencha serviÃ§o, quantidade e preÃ§o'); 
+                toast('Preencha serviço, quantidade e preço'); 
                 return; 
             }
             
             const servico = allServicos.find(s => s.id === parseInt(servId));
-            if (!servico) { toast('ServiÃ§o nÃ£o encontrado'); return; }
+            if (!servico) { toast('Serviço não encontrado'); return; }
             
             orcItens.push({
                 servId: parseInt(servId),
@@ -1226,18 +1226,18 @@
             
             let html = '';
             for (const [ambiente, itens] of Object.entries(ambientes)) {
-                html += `<div class="orc-item-ambiente">ðŸ“ ${ambiente}</div>`;
+                html += `<div class="orc-item-ambiente">📍 ${ambiente}</div>`;
                 html += itens.map(x => `
                     <div class="orc-item">
                         <div class="orc-item-info">
                             <div class="orc-item-name">${x.nome}</div>
                             <div class="orc-item-edit">
-                                <input type="text" value="${numberToMoeda(x.qtd)}" onchange="updateItemOrc(${x.index}, 'qtd', this.value)" oninput="this.value = maskMoeda(this.value)" title="Quantidade"> ${x.un} Ã—
-                                <input type="text" value="${numberToMoeda(x.preco)}" onchange="updateItemOrc(${x.index}, 'preco', this.value)" oninput="this.value = maskMoeda(this.value)" title="PreÃ§o unitÃ¡rio">
+                                <input type="text" value="${numberToMoeda(x.qtd)}" onchange="updateItemOrc(${x.index}, 'qtd', this.value)" oninput="this.value = maskMoeda(this.value)" title="Quantidade"> ${x.un} ×
+                                <input type="text" value="${numberToMoeda(x.preco)}" onchange="updateItemOrc(${x.index}, 'preco', this.value)" oninput="this.value = maskMoeda(this.value)" title="Preço unitário">
                             </div>
                         </div>
                         <div class="orc-item-val">R$ ${numberToMoeda(x.total)}</div>
-                        <button class="orc-item-del" onclick="removeItemOrc(${x.index})">âœ•</button>
+                        <button class="orc-item-del" onclick="removeItemOrc(${x.index})">✕</button>
                     </div>
                 `).join('');
             }
@@ -1248,7 +1248,7 @@
 
         async function editOrcamento() {
             const o = await db.orcamentos.get(currentOrcId);
-            if (!o) { toast('OrÃ§amento nÃ£o encontrado'); return; }
+            if (!o) { toast('Orçamento não encontrado'); return; }
             
             const cliente = await db.clientes.get(o.clienteId);
             
@@ -1258,7 +1258,7 @@
             // Fechar modal de detalhes
             closeModal('modal-det');
             
-            // Marcar como ediÃ§Ã£o para nÃ£o limpar os dados
+            // Marcar como edição para não limpar os dados
             isEditingOrc = true;
             
             // Carregar itens ANTES de abrir o modal
@@ -1267,14 +1267,14 @@
             // Abrir modal
             await openModal('modal-orcamento');
             
-            // Preencher dados no modal de ediÃ§Ã£o DEPOIS de abrir
+            // Preencher dados no modal de edição DEPOIS de abrir
             document.getElementById('orc-id').value = o.id;
             document.getElementById('orc-titulo').value = o.titulo;
             document.getElementById('orc-cliente').value = o.clienteId;
             document.getElementById('orc-cliente-search').value = cliente?.nome || '';
             document.getElementById('orc-pagamento').value = o.pagamento || '';
             document.getElementById('orc-obs').value = o.obs || '';
-            document.getElementById('modal-orc-title').textContent = 'Editar OrÃ§amento #' + o.id;
+            document.getElementById('modal-orc-title').textContent = 'Editar Orçamento #' + o.id;
             
             // Renderizar itens
             renderOrcItens();
@@ -1283,19 +1283,19 @@
         async function saveOrcamento() {
             const orcId = document.getElementById('orc-id').value;
             const cliId = document.getElementById('orc-cliente').value;
-            const titulo = document.getElementById('orc-titulo').value || 'OrÃ§amento';
+            const titulo = document.getElementById('orc-titulo').value || 'Orçamento';
             const pagamento = document.getElementById('orc-pagamento').value;
             const obs = document.getElementById('orc-obs').value;
             
-            console.log('Salvando orÃ§amento:', { orcId, cliId, titulo, itens: orcItens });
+            console.log('Salvando orçamento:', { orcId, cliId, titulo, itens: orcItens });
             
             if (!cliId) { 
                 toast('Selecione um cliente'); 
-                console.error('Cliente nÃ£o selecionado');
+                console.error('Cliente não selecionado');
                 return; 
             }
             if (!orcItens.length) { 
-                toast('Adicione serviÃ§os'); 
+                toast('Adicione serviços'); 
                 console.error('Nenhum item adicionado');
                 return; 
             }
@@ -1315,8 +1315,8 @@
                         pagamento,
                         obs
                     });
-                    console.log('OrÃ§amento atualizado:', orcId);
-                    toast('OrÃ§amento atualizado!');
+                    console.log('Orçamento atualizado:', orcId);
+                    toast('Orçamento atualizado!');
                 } else {
                     // Criar novo
                     const novoOrc = {
@@ -1334,8 +1334,8 @@
                     console.log('Objeto a salvar:', novoOrc);
                     
                     const id = await db.orcamentos.add(novoOrc);
-                    console.log('OrÃ§amento salvo com ID:', id);
-                    toast('OrÃ§amento criado!');
+                    console.log('Orçamento salvo com ID:', id);
+                    toast('Orçamento criado!');
                 }
                 
                 closeModal('modal-orcamento');
@@ -1344,7 +1344,7 @@
                 loadOrcamentos();
             } catch (err) {
                 console.error('Erro ao salvar:', err);
-                toast('Erro ao salvar orÃ§amento!');
+                toast('Erro ao salvar orçamento!');
             }
         }
 
@@ -1353,7 +1353,7 @@
             const c = document.getElementById('orcamentos-list');
             
             if (!o.length) {
-                c.innerHTML = '<div class="empty-state"><p>Nenhum orÃ§amento</p><button class="btn btn-primary" style="max-width:180px;margin:0 auto;" onclick="openModal(\'modal-orcamento\')">Criar</button></div>';
+                c.innerHTML = '<div class="empty-state"><p>Nenhum orçamento</p><button class="btn btn-primary" style="max-width:180px;margin:0 auto;" onclick="openModal(\'modal-orcamento\')">Criar</button></div>';
                 document.getElementById('filters-summary').classList.remove('show');
                 return;
             }
@@ -1380,7 +1380,7 @@
                 filtered = filtered.filter(x => x.status === statusFilter);
             }
             
-            // Filtro por perÃ­odo
+            // Filtro por período
             if (periodoFilter) {
                 const dias = parseInt(periodoFilter);
                 const dataLimite = new Date();
@@ -1404,7 +1404,7 @@
             const summary = document.getElementById('filters-summary');
             const totalValor = filtered.reduce((s, x) => s + x.total, 0);
             if (statusFilter || periodoFilter || search) {
-                summary.innerHTML = `<strong>${filtered.length}</strong> orÃ§amento(s) encontrado(s) â€¢ Total: <strong>R$ ${totalValor.toLocaleString('pt-BR', {minimumFractionDigits: 2})}</strong>`;
+                summary.innerHTML = `<strong>${filtered.length}</strong> orçamento(s) encontrado(s) • Total: <strong>R$ ${totalValor.toLocaleString('pt-BR', {minimumFractionDigits: 2})}</strong>`;
                 summary.classList.add('show');
             } else {
                 summary.classList.remove('show');
@@ -1415,13 +1415,13 @@
             const c = document.getElementById('orcamentos-list');
             const map = window.allClientesMap || {};
             const badges = { 
-                pendente: '<span class="badge badge-pending">ðŸŸ¡ Pendente</span>', 
-                fechado: '<span class="badge badge-approved">âœ… Fechado</span>', 
-                recusado: '<span class="badge badge-rejected">âŒ Recusado</span>' 
+                pendente: '<span class="badge badge-pending">🟡 Pendente</span>', 
+                fechado: '<span class="badge badge-approved">✅ Fechado</span>', 
+                recusado: '<span class="badge badge-rejected">❌ Recusado</span>' 
             };
             
             if (!orcamentos.length) {
-                c.innerHTML = '<div class="empty-state" style="padding:20px;"><p>Nenhum orÃ§amento encontrado com esses filtros</p></div>';
+                c.innerHTML = '<div class="empty-state" style="padding:20px;"><p>Nenhum orçamento encontrado com esses filtros</p></div>';
                 return;
             }
             
@@ -1430,7 +1430,7 @@
                     <div class="list-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg></div>
                     <div class="list-info">
                         <div class="list-title">${x.titulo}</div>
-                        <div class="list-sub">${map[x.clienteId] || ''} â€¢ ${new Date(x.data).toLocaleDateString('pt-BR')}</div>
+                        <div class="list-sub">${map[x.clienteId] || ''} • ${new Date(x.data).toLocaleDateString('pt-BR')}</div>
                         ${badges[x.status]}
                     </div>
                     <div class="list-value">R$ ${numberToMoeda(x.total)}</div>
@@ -1442,7 +1442,7 @@
             currentOrcId = id;
             const o = await db.orcamentos.get(id);
             const cli = await db.clientes.get(o.clienteId);
-            const badges = { pendente: '<span class="badge badge-pending">ðŸŸ¡ Pendente</span>', fechado: '<span class="badge badge-approved">âœ… Fechado</span>', recusado: '<span class="badge badge-rejected">âŒ Recusado</span>' };
+            const badges = { pendente: '<span class="badge badge-pending">🟡 Pendente</span>', fechado: '<span class="badge badge-approved">✅ Fechado</span>', recusado: '<span class="badge badge-rejected">❌ Recusado</span>' };
             
             // Agrupar itens por ambiente
             const ambientes = {};
@@ -1454,20 +1454,20 @@
             
             let itensHtml = '';
             for (const [ambiente, itens] of Object.entries(ambientes)) {
-                itensHtml += `<div class="orc-item-ambiente">ðŸ“ ${ambiente}</div>`;
+                itensHtml += `<div class="orc-item-ambiente">📍 ${ambiente}</div>`;
                 itensHtml += itens.map(x => `
                     <div class="orc-item">
                         <div class="orc-item-info">
                             <div class="orc-item-name">${x.nome}</div>
-                            <div class="orc-item-det">${numberToMoeda(x.qtd)} ${x.un} Ã— R$ ${numberToMoeda(x.preco)}</div>
+                            <div class="orc-item-det">${numberToMoeda(x.qtd)} ${x.un} × R$ ${numberToMoeda(x.preco)}</div>
                         </div>
                         <div class="orc-item-val">R$ ${numberToMoeda(x.total)}</div>
                     </div>
                 `).join('');
             }
             
-            let pagamentoHtml = o.pagamento ? `<div class="card" style="background:var(--cinza-bg);margin-bottom:14px;"><strong>ðŸ’³ Pagamento:</strong> ${o.pagamento}</div>` : '';
-            let obsHtml = o.obs ? `<div class="card" style="background:var(--cinza-bg);margin-bottom:14px;font-size:12px;"><strong>ðŸ“ ObservaÃ§Ãµes:</strong><br>${o.obs.replace(/\n/g, '<br>')}</div>` : '';
+            let pagamentoHtml = o.pagamento ? `<div class="card" style="background:var(--cinza-bg);margin-bottom:14px;"><strong>💳 Pagamento:</strong> ${o.pagamento}</div>` : '';
+            let obsHtml = o.obs ? `<div class="card" style="background:var(--cinza-bg);margin-bottom:14px;font-size:12px;"><strong>📝 Observações:</strong><br>${o.obs.replace(/\n/g, '<br>')}</div>` : '';
             
             document.getElementById('det-content').innerHTML = `
                 <div style="margin-bottom:14px;"><h3 style="margin-bottom:4px;">${o.titulo}</h3>${badges[o.status]}</div>
@@ -1481,7 +1481,7 @@
                 <div class="orc-total"><div class="orc-total-label">Total</div><div class="orc-total-value">R$ ${numberToMoeda(o.total)}</div></div>
                 ${pagamentoHtml}
                 ${obsHtml}
-                <p style="font-size:11px;color:var(--cinza-texto);margin-top:12px;text-align:center;">Criado em ${new Date(o.data).toLocaleDateString('pt-BR')} â€¢ VÃ¡lido por ${o.val} dias</p>
+                <p style="font-size:11px;color:var(--cinza-texto);margin-top:12px;text-align:center;">Criado em ${new Date(o.data).toLocaleDateString('pt-BR')} • Válido por ${o.val} dias</p>
             `;
             openModal('modal-det');
         }
@@ -1518,7 +1518,7 @@
             currentFilter = status;
             showPage('orcamentos');
             
-            // Aplica o filtro apÃ³s carregar a pÃ¡gina
+            // Aplica o filtro após carregar a página
             setTimeout(() => {
                 const statusSelect = document.getElementById('filter-status');
                 const searchInput = document.getElementById('search-orc');
@@ -1543,7 +1543,7 @@
             const o = await db.orcamentos.where('status').equals('pendente').reverse().toArray();
             const c = document.getElementById('ultimos-orc');
             if (!o.length) { 
-                c.innerHTML = '<div class="empty-state" style="padding:20px;"><p>Nenhum orÃ§amento pendente ðŸŽ‰</p></div>'; 
+                c.innerHTML = '<div class="empty-state" style="padding:20px;"><p>Nenhum orçamento pendente 🎉</p></div>'; 
                 return; 
             }
             const cli = await db.clientes.toArray();
@@ -1553,7 +1553,7 @@
                     <div class="list-icon" style="background:rgba(247,192,38,0.2);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--amarelo)" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></div>
                     <div class="list-info">
                         <div class="list-title">${x.titulo}</div>
-                        <div class="list-sub">${map[x.clienteId] || ''} â€¢ ${new Date(x.data).toLocaleDateString('pt-BR')}</div>
+                        <div class="list-sub">${map[x.clienteId] || ''} • ${new Date(x.data).toLocaleDateString('pt-BR')}</div>
                     </div>
                     <div class="list-value">R$ ${numberToMoeda(x.total)}</div>
                 </div>
@@ -1568,213 +1568,6 @@
         }
 
         // PDF
-// SUBSTITUIR A FUNÇÃO exportPDF() COMPLETA
-
-async function exportPDF() {
-    const { jsPDF } = window.jspdf;
-    const doc = new jsPDF();
-    const o = await db.orcamentos.get(currentOrcId);
-    const cli = await db.clientes.get(o.clienteId);
-    const pArr = await db.perfil.toArray();
-    const p = pArr[0] || {};
-    
-    // ========== CABEÇALHO ==========
-    doc.setFillColor(26, 59, 90);
-    doc.rect(0, 0, 210, 40, 'F');
-    doc.setTextColor(255, 255, 255);
-    doc.setFontSize(22);
-    doc.setFont('helvetica', 'bold');
-    doc.text('PS', 20, 22);
-    doc.setFontSize(10);
-    doc.text('PRO', 33, 22);
-    doc.setFontSize(11);
-    doc.text(p.nome || 'Minha Empresa', 60, 16);
-    doc.setFontSize(9);
-    doc.setFont('helvetica', 'normal');
-    doc.text(p.tel || '', 60, 23);
-    doc.text(p.email || '', 60, 29);
-    doc.text(p.end || '', 60, 35);
-    
-    // ========== TÍTULO ORÇAMENTO ==========
-    doc.setTextColor(26, 59, 90);
-    doc.setFontSize(16);
-    doc.setFont('helvetica', 'bold');
-    doc.text('ORCAMENTO', 20, 55);
-    doc.setFontSize(9);
-    doc.setFont('helvetica', 'normal');
-    doc.setTextColor(100, 100, 100);
-    doc.text(`No: ${o.id.toString().padStart(4, '0')}`, 160, 50);
-    doc.text(`Data: ${new Date(o.data).toLocaleDateString('pt-BR')}`, 160, 56);
-    doc.text(`Validade: ${o.val} dias`, 160, 62);
-    
-    // ========== BOX CLIENTE ==========
-    doc.setFillColor(245, 247, 250);
-    doc.roundedRect(20, 68, 170, 28, 2, 2, 'F');
-    doc.setTextColor(26, 59, 90);
-    doc.setFontSize(10);
-    doc.setFont('helvetica', 'bold');
-    doc.text('CLIENTE', 25, 77);
-    doc.setFont('helvetica', 'normal');
-    doc.setTextColor(60, 60, 60);
-    doc.text(cli?.nome || 'N/A', 25, 84);
-    doc.text(`Tel: ${cli?.tel || 'N/A'} | End: ${cli?.end || 'N/A'}`.substring(0, 80), 25, 91);
-    
-    // ========== ITENS POR AMBIENTE ==========
-    const ambientes = {};
-    o.itens.forEach(item => {
-        const amb = item.ambiente || 'Geral';
-        if (!ambientes[amb]) ambientes[amb] = [];
-        ambientes[amb].push(item);
-    });
-    
-    let y = 108;
-    
-    for (const [ambiente, itens] of Object.entries(ambientes)) {
-        // Verificar espaço na página
-        if (y > 240) {
-            doc.addPage();
-            y = 20;
-        }
-        
-        // ===== TÍTULO AMBIENTE =====
-        doc.setFillColor(26, 59, 90);
-        doc.rect(20, y, 170, 8, 'F');
-        doc.setTextColor(255, 255, 255);
-        doc.setFontSize(9);
-        doc.setFont('helvetica', 'bold');
-        doc.text(`LOCAL: ${ambiente}`, 25, y + 5.5);
-        y += 10;
-        
-        // ===== CABEÇALHO TABELA =====
-        doc.setFillColor(230, 235, 240);
-        doc.rect(20, y, 170, 8, 'F');
-        doc.setTextColor(26, 59, 90);
-        doc.setFontSize(8);
-        doc.setFont('helvetica', 'bold');
-        
-        // Colunas: SERVIÇO (70mm) | QTD (30mm) | UNIT. (30mm) | TOTAL (40mm)
-        doc.text('SERVICO', 25, y + 5.5);
-        doc.text('QTD', 100, y + 5.5);
-        doc.text('UNIT.', 130, y + 5.5);
-        doc.text('TOTAL', 170, y + 5.5);
-        y += 10;
-        
-        // ===== ITENS =====
-        doc.setTextColor(60, 60, 60);
-        doc.setFontSize(8);
-        doc.setFont('helvetica', 'normal');
-        
-        itens.forEach((item, i) => {
-            // Nova página se necessário
-            if (y > 260) {
-                doc.addPage();
-                y = 20;
-                // Repetir cabeçalho
-                doc.setFillColor(26, 59, 90);
-                doc.rect(20, y, 170, 8, 'F');
-                doc.setTextColor(255, 255, 255);
-                doc.setFontSize(9);
-                doc.setFont('helvetica', 'bold');
-                doc.text(`LOCAL: ${ambiente} (cont.)`, 25, y + 5.5);
-                y += 10;
-                doc.setFillColor(230, 235, 240);
-                doc.rect(20, y, 170, 8, 'F');
-                doc.setTextColor(26, 59, 90);
-                doc.setFontSize(8);
-                doc.text('SERVICO', 25, y + 5.5);
-                doc.text('QTD', 100, y + 5.5);
-                doc.text('UNIT.', 130, y + 5.5);
-                doc.text('TOTAL', 170, y + 5.5);
-                y += 10;
-                doc.setTextColor(60, 60, 60);
-                doc.setFont('helvetica', 'normal');
-            }
-            
-            // Linha zebrada
-            if (i % 2 === 0) {
-                doc.setFillColor(250, 250, 250);
-                doc.rect(20, y - 3.5, 170, 7, 'F');
-            }
-            
-            // Coluna 1: SERVIÇO (máx 38 chars)
-            doc.text(item.nome.substring(0, 38), 25, y);
-            
-            // Coluna 2: QTD (alinhado à direita)
-            const qtdText = `${item.qtd.toLocaleString('pt-BR', {minimumFractionDigits: 2})} ${item.un}`;
-            const qtdWidth = doc.getTextWidth(qtdText);
-            doc.text(qtdText, 125 - qtdWidth, y);
-            
-            // Coluna 3: UNIT. (alinhado à direita)
-            const unitText = `R$ ${item.preco.toLocaleString('pt-BR', {minimumFractionDigits: 2})}`;
-            const unitWidth = doc.getTextWidth(unitText);
-            doc.text(unitText, 158 - unitWidth, y);
-            
-            // Coluna 4: TOTAL (alinhado à direita)
-            const totalText = `R$ ${item.total.toLocaleString('pt-BR', {minimumFractionDigits: 2})}`;
-            const totalWidth = doc.getTextWidth(totalText);
-            doc.text(totalText, 188 - totalWidth, y);
-            
-            y += 7;
-        });
-        
-        y += 6;
-    }
-    
-    // ========== TOTAL GERAL ==========
-    if (y > 250) { doc.addPage(); y = 20; }
-    y += 2;
-    doc.setFillColor(247, 192, 38);
-    doc.roundedRect(120, y, 70, 12, 2, 2, 'F');
-    doc.setTextColor(26, 59, 90);
-    doc.setFontSize(11);
-    doc.setFont('helvetica', 'bold');
-    doc.text(`TOTAL: R$ ${o.total.toLocaleString('pt-BR', {minimumFractionDigits: 2})}`, 125, y + 8);
-    y += 20;
-    
-    // ========== PAGAMENTO ==========
-    if (o.pagamento) {
-        if (y > 250) { doc.addPage(); y = 20; }
-        doc.setFillColor(245, 247, 250);
-        doc.roundedRect(20, y, 170, 12, 2, 2, 'F');
-        doc.setTextColor(26, 59, 90);
-        doc.setFontSize(9);
-        doc.setFont('helvetica', 'bold');
-        doc.text('FORMA DE PAGAMENTO:', 25, y + 8);
-        doc.setFont('helvetica', 'normal');
-        doc.text(o.pagamento.substring(0, 60), 75, y + 8);
-        y += 16;
-    }
-    
-    // ========== OBSERVAÇÕES ==========
-    if (o.obs) {
-        if (y > 230) { doc.addPage(); y = 20; }
-        doc.setTextColor(26, 59, 90);
-        doc.setFontSize(9);
-        doc.setFont('helvetica', 'bold');
-        doc.text('OBSERVACOES:', 20, y);
-        y += 6;
-        doc.setFont('helvetica', 'normal');
-        doc.setTextColor(60, 60, 60);
-        doc.setFontSize(8);
-        
-        const obsLines = doc.splitTextToSize(o.obs, 170);
-        obsLines.forEach(line => {
-            if (y > 275) { doc.addPage(); y = 20; }
-            doc.text(line, 20, y);
-            y += 5;
-        });
-    }
-    
-    // ========== RODAPÉ ==========
-    doc.setTextColor(150, 150, 150);
-    doc.setFontSize(7);
-    doc.setFont('helvetica', 'normal');
-    doc.text('Orcamento gerado pelo PS Pro - Painel Services', 20, 285);
-    
-    doc.save(`orcamento_${o.id}_${cli?.nome?.replace(/\s/g, '_') || 'cliente'}.pdf`);
-    toast('PDF exportado!');
-}
-        // PDF
         async function exportPDF() {
             const { jsPDF } = window.jspdf;
             const doc = new jsPDF();
@@ -1783,6 +1576,7 @@ async function exportPDF() {
             const pArr = await db.perfil.toArray();
             const p = pArr[0] || {};
             
+            // Cabeçalho
             doc.setFillColor(26, 59, 90);
             doc.rect(0, 0, 210, 40, 'F');
             doc.setTextColor(255, 255, 255);
@@ -1797,19 +1591,21 @@ async function exportPDF() {
             doc.setFont('helvetica', 'normal');
             doc.text(p.tel || '', 60, 23);
             doc.text(p.email || '', 60, 29);
-            doc.text(p.end || '', 60, 35);
+            doc.text((p.end || '').substring(0, 60), 60, 35);
             
+            // Título e dados do orçamento
             doc.setTextColor(26, 59, 90);
             doc.setFontSize(16);
             doc.setFont('helvetica', 'bold');
-            doc.text('ORÃ‡AMENTO', 20, 55);
+            doc.text('ORCAMENTO', 20, 55);
             doc.setFontSize(9);
             doc.setFont('helvetica', 'normal');
             doc.setTextColor(100, 100, 100);
-            doc.text(`NÂº: ${o.id.toString().padStart(4, '0')}`, 160, 50);
-            doc.text(`Data: ${new Date(o.data).toLocaleDateString('pt-BR')}`, 160, 56);
-            doc.text(`Validade: ${o.val} dias`, 160, 62);
+            doc.text('No: ' + o.id.toString().padStart(4, '0'), 160, 50);
+            doc.text('Data: ' + new Date(o.data).toLocaleDateString('pt-BR'), 160, 56);
+            doc.text('Validade: ' + o.val + ' dias', 160, 62);
             
+            // Box Cliente
             doc.setFillColor(245, 247, 250);
             doc.roundedRect(20, 68, 170, 28, 2, 2, 'F');
             doc.setTextColor(26, 59, 90);
@@ -1819,7 +1615,8 @@ async function exportPDF() {
             doc.setFont('helvetica', 'normal');
             doc.setTextColor(60, 60, 60);
             doc.text(cli?.nome || 'N/A', 25, 84);
-            doc.text(`Tel: ${cli?.tel || 'N/A'} | End: ${cli?.end || 'N/A'}`.substring(0, 80), 25, 91);
+            const cliInfo = 'Tel: ' + (cli?.tel || 'N/A') + ' | End: ' + (cli?.end || 'N/A');
+            doc.text(cliInfo.substring(0, 85), 25, 91);
             
             // Agrupar itens por ambiente
             const ambientes = {};
@@ -1831,43 +1628,63 @@ async function exportPDF() {
             
             let y = 108;
             
+            // Posições das colunas (alinhadas)
+            const colServico = 22;
+            const colQtd = 120;
+            const colUnit = 145;
+            const colTotal = 172;
+            
             for (const [ambiente, itens] of Object.entries(ambientes)) {
-                // TÃ­tulo do ambiente
+                // Verificar se precisa nova página
+                if (y > 250) {
+                    doc.addPage();
+                    y = 20;
+                }
+                
+                // Título do ambiente (sem emoji)
                 doc.setFillColor(26, 59, 90);
                 doc.rect(20, y, 170, 8, 'F');
                 doc.setTextColor(255, 255, 255);
                 doc.setFontSize(9);
                 doc.setFont('helvetica', 'bold');
-                doc.text(`ðŸ“ ${ambiente}`, 25, y + 5.5);
+                doc.text('LOCAL: ' + ambiente.toUpperCase(), 25, y + 5.5);
                 y += 10;
                 
-                // CabeÃ§alho da tabela
+                // Cabeçalho da tabela
                 doc.setFillColor(230, 235, 240);
                 doc.rect(20, y, 170, 7, 'F');
                 doc.setTextColor(26, 59, 90);
                 doc.setFontSize(8);
-                doc.text('SERVIÃ‡O', 25, y + 5);
-                doc.text('QTD', 115, y + 5);
-                doc.text('UNIT.', 140, y + 5);
-                doc.text('TOTAL', 170, y + 5);
+                doc.setFont('helvetica', 'bold');
+                doc.text('SERVICO', colServico, y + 5);
+                doc.text('QTD', colQtd, y + 5);
+                doc.text('UNIT.', colUnit, y + 5);
+                doc.text('TOTAL', colTotal, y + 5);
                 y += 9;
                 
                 // Itens
-                doc.setTextColor(60, 60, 60);
                 doc.setFont('helvetica', 'normal');
+                doc.setTextColor(60, 60, 60);
+                doc.setFontSize(8);
+                
                 itens.forEach((x, i) => {
                     if (y > 260) {
                         doc.addPage();
                         y = 20;
                     }
+                    
+                    // Fundo alternado
                     if (i % 2 === 0) { 
                         doc.setFillColor(250, 250, 250); 
                         doc.rect(20, y - 4, 170, 7, 'F'); 
                     }
-                    doc.text(x.nome.substring(0, 40), 25, y);
-                    doc.text(`${x.qtd} ${x.un}`, 115, y);
-                    doc.text(`R$ ${x.preco.toFixed(2)}`, 140, y);
-                    doc.text(`R$ ${x.total.toFixed(2)}`, 170, y);
+                    
+                    // Dados
+                    doc.setTextColor(60, 60, 60);
+                    doc.text(x.nome.substring(0, 45), colServico, y);
+                    doc.text(numberToMoeda(x.qtd) + ' ' + x.un, colQtd, y);
+                    doc.text('R$ ' + numberToMoeda(x.preco), colUnit, y);
+                    doc.text('R$ ' + numberToMoeda(x.total), colTotal, y);
                     y += 7;
                 });
                 
@@ -1881,7 +1698,7 @@ async function exportPDF() {
             doc.setTextColor(26, 59, 90);
             doc.setFontSize(11);
             doc.setFont('helvetica', 'bold');
-            doc.text(`TOTAL: R$ ${numberToMoeda(o.total)}`, 125, y + 8);
+            doc.text('TOTAL: R$ ' + numberToMoeda(o.total), 125, y + 8);
             
             y += 20;
             
@@ -1895,42 +1712,47 @@ async function exportPDF() {
                 doc.setFont('helvetica', 'bold');
                 doc.text('FORMA DE PAGAMENTO:', 25, y + 8);
                 doc.setFont('helvetica', 'normal');
-                doc.text(o.pagamento.substring(0, 60), 75, y + 8);
-                y += 16;
+                doc.setTextColor(60, 60, 60);
+                doc.text(o.pagamento.substring(0, 55), 78, y + 8);
+                y += 18;
             }
             
-            // ObservaÃ§Ãµes
+            // Observações
             if (o.obs) {
                 if (y > 230) { doc.addPage(); y = 20; }
+                
                 doc.setFillColor(245, 247, 250);
+                doc.roundedRect(20, y, 170, 8, 2, 2, 'F');
                 doc.setTextColor(26, 59, 90);
                 doc.setFontSize(9);
                 doc.setFont('helvetica', 'bold');
-                doc.text('OBSERVAÃ‡Ã•ES:', 20, y);
-                y += 6;
+                doc.text('OBSERVACOES:', 25, y + 5.5);
+                y += 12;
+                
                 doc.setFont('helvetica', 'normal');
                 doc.setTextColor(60, 60, 60);
                 doc.setFontSize(8);
                 
-                // Quebrar observaÃ§Ãµes em linhas
-                const obsLines = doc.splitTextToSize(o.obs, 170);
+                // Quebrar observações em linhas
+                const obsLines = doc.splitTextToSize(o.obs, 165);
                 obsLines.forEach(line => {
                     if (y > 275) { doc.addPage(); y = 20; }
-                    doc.text(line, 20, y);
+                    doc.text(line, 25, y);
                     y += 5;
                 });
             }
             
+            // Rodapé
             doc.setTextColor(150, 150, 150);
             doc.setFontSize(7);
             doc.setFont('helvetica', 'normal');
-            doc.text('OrÃ§amento gerado pelo PS Pro - Painel Services', 20, 285);
+            doc.text('Orcamento gerado pelo PS Pro - Painel Services', 20, 285);
             
-            doc.save(`orcamento_${o.id}_${cli?.nome?.replace(/\s/g, '_') || 'cliente'}.pdf`);
+            doc.save('orcamento_' + o.id + '_' + (cli?.nome?.replace(/\s/g, '_') || 'cliente') + '.pdf');
             toast('PDF exportado!');
         }
 
-        // MÃSCARAS
+        // MÁSCARAS
         function maskCPFCNPJ(v) {
             v = v.replace(/\D/g, '');
             if (v.length <= 11) {
@@ -1962,7 +1784,7 @@ async function exportPDF() {
             return v;
         }
 
-        // Aplicar mÃ¡scaras - Perfil
+        // Aplicar máscaras - Perfil
         document.getElementById('perfil-doc').addEventListener('input', function(e) {
             e.target.value = maskCPFCNPJ(e.target.value);
         });
@@ -1994,7 +1816,7 @@ async function exportPDF() {
                 const data = await resp.json();
                 
                 if (data.erro) {
-                    toast('CEP nÃ£o encontrado');
+                    toast('CEP não encontrado');
                     return;
                 }
                 
@@ -2006,14 +1828,14 @@ async function exportPDF() {
                 const endereco = partes.join(', ');
                 document.getElementById('perfil-end').value = endereco;
                 document.getElementById('perfil-num').focus();
-                toast('EndereÃ§o encontrado!');
+                toast('Endereço encontrado!');
             } catch (err) {
                 console.error('Erro CEP:', err);
-                toast('Erro ao buscar CEP. Verifique sua conexÃ£o.');
+                toast('Erro ao buscar CEP. Verifique sua conexão.');
             }
         }
 
-        // Aplicar mÃ¡scaras - Cliente
+        // Aplicar máscaras - Cliente
         document.getElementById('cliente-doc').addEventListener('input', function(e) {
             e.target.value = maskCPFCNPJ(e.target.value);
         });
@@ -2024,7 +1846,7 @@ async function exportPDF() {
             e.target.value = maskCEP(e.target.value);
         });
 
-        // MÃ¡scara CEP
+        // Máscara CEP
         function maskCEP(v) {
             v = v.replace(/\D/g, '');
             v = v.substring(0, 8);
@@ -2032,7 +1854,7 @@ async function exportPDF() {
             return v;
         }
 
-        // MÃ¡scara Moeda Brasileira (1.234,56)
+        // Máscara Moeda Brasileira (1.234,56)
         function maskMoeda(v) {
             v = v.replace(/\D/g, '');
             if (v === '') return '';
@@ -2042,13 +1864,13 @@ async function exportPDF() {
             return v;
         }
 
-        // Converter moeda formatada para nÃºmero
+        // Converter moeda formatada para número
         function moedaToNumber(v) {
             if (!v) return 0;
             return parseFloat(v.replace(/\./g, '').replace(',', '.')) || 0;
         }
 
-        // Formatar nÃºmero para moeda
+        // Formatar número para moeda
         function numberToMoeda(n) {
             if (!n && n !== 0) return '';
             return n.toFixed(2).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, '.');
@@ -2075,7 +1897,7 @@ async function exportPDF() {
                 const data = await resp.json();
                 
                 if (data.erro) {
-                    toast('CEP nÃ£o encontrado');
+                    toast('CEP não encontrado');
                     return;
                 }
                 
@@ -2087,177 +1909,177 @@ async function exportPDF() {
                 const endereco = partes.join(', ');
                 document.getElementById('cliente-end').value = endereco;
                 document.getElementById('cliente-num').focus();
-                toast('EndereÃ§o encontrado!');
+                toast('Endereço encontrado!');
             } catch (err) {
                 console.error('Erro CEP:', err);
-                toast('Erro ao buscar CEP. Verifique sua conexÃ£o.');
+                toast('Erro ao buscar CEP. Verifique sua conexão.');
             }
         }
 
         // DADOS INICIAIS
         async function seedDatabase() {
             const servicosCount = await db.servicos.count();
-            if (servicosCount > 0) return; // JÃ¡ tem dados
+            if (servicosCount > 0) return; // Já tem dados
 
-            // SERVIÃ‡OS - Tabela de Pintura 2025
+            // SERVIÇOS - Tabela de Pintura 2025
             const servicos = [
-                // DIÃRIAS
-                { nome: 'DiÃ¡ria Ajudante', un: 'diÃ¡ria', preco: 116.35, desc: 'ServiÃ§o bÃ¡sico - 8hs' },
-                { nome: 'DiÃ¡ria Profissional', un: 'diÃ¡ria', preco: 202.08, desc: 'ServiÃ§os gerais de pintura - 8hs' },
-                { nome: 'DiÃ¡ria LÃ­der', un: 'diÃ¡ria', preco: 232.70, desc: 'Pintor Profissional LÃ­der - 8hs' },
-                { nome: 'DiÃ¡ria Cordeiro Ajudante', un: 'diÃ¡ria', preco: 220.45, desc: 'Pintor Ajudante Cordeiro/Cadeirinha - 8hs' },
-                { nome: 'DiÃ¡ria Cordeiro Profissional', un: 'diÃ¡ria', preco: 281.69, desc: 'Pintor Profissional Cordeiro/Cadeirinha - 8hs' },
-                { nome: 'DiÃ¡ria ProprietÃ¡rio', un: 'diÃ¡ria', preco: 330.67, desc: 'Com ferramentas, equipamentos e certificados' },
+                // DIÁRIAS
+                { nome: 'Diária Ajudante', un: 'diária', preco: 116.35, desc: 'Serviço básico - 8hs' },
+                { nome: 'Diária Profissional', un: 'diária', preco: 202.08, desc: 'Serviços gerais de pintura - 8hs' },
+                { nome: 'Diária Líder', un: 'diária', preco: 232.70, desc: 'Pintor Profissional Líder - 8hs' },
+                { nome: 'Diária Cordeiro Ajudante', un: 'diária', preco: 220.45, desc: 'Pintor Ajudante Cordeiro/Cadeirinha - 8hs' },
+                { nome: 'Diária Cordeiro Profissional', un: 'diária', preco: 281.69, desc: 'Pintor Profissional Cordeiro/Cadeirinha - 8hs' },
+                { nome: 'Diária Proprietário', un: 'diária', preco: 330.67, desc: 'Com ferramentas, equipamentos e certificados' },
                 
                 // LAVAGEM
-                { nome: 'Lavagem Tijolinho', un: 'mÂ²', preco: 5.16, desc: 'Para aplicaÃ§Ã£o de silicone - atÃ© 3m altura' },
-                { nome: 'Lavagem Calha Simples', un: 'm', preco: 13.78, desc: 'Telhado simples - atÃ© 3m altura' },
+                { nome: 'Lavagem Tijolinho', un: 'm²', preco: 5.16, desc: 'Para aplicação de silicone - até 3m altura' },
+                { nome: 'Lavagem Calha Simples', un: 'm', preco: 13.78, desc: 'Telhado simples - até 3m altura' },
                 { nome: 'Lavagem Calha Sobrado', un: 'm', preco: 21.77, desc: 'Acima 3 metros' },
                 { nome: 'Lavagem Pingadeiras', un: 'm', preco: 9.53, desc: 'Para muros' },
-                { nome: 'Lavagem Caixa DÃ¡gua Baixa', un: 'un', preco: 217.61, desc: 'Telhado baixo - atÃ© 3m' },
-                { nome: 'Lavagem Caixa DÃ¡gua Alta', un: 'un', preco: 326.37, desc: 'Telhado alto - acima 3m' },
-                { nome: 'Lavagem Telhado Baixo', un: 'mÂ²', preco: 13.61, desc: 'Lavadora pressurizada - atÃ© 3m' },
-                { nome: 'Lavagem Telhado Alto', un: 'mÂ²', preco: 17.63, desc: 'Lavadora pressurizada - acima 3m' },
-                { nome: 'Lavagem Parede atÃ© 3m', un: 'mÂ²', preco: 4.54, desc: 'Sujeiras em geral' },
-                { nome: 'Lavagem Parede acima 3m', un: 'mÂ²', preco: 11.51, desc: 'Sujeiras em geral' },
-                { nome: 'Lavagem Piso Mangueira', un: 'mÂ²', preco: 5.20, desc: 'Lavagem simples' },
-                { nome: 'Lavagem Piso Pressurizada', un: 'mÂ²', preco: 8.56, desc: 'Ãgua pressurizada' },
+                { nome: 'Lavagem Caixa Dágua Baixa', un: 'un', preco: 217.61, desc: 'Telhado baixo - até 3m' },
+                { nome: 'Lavagem Caixa Dágua Alta', un: 'un', preco: 326.37, desc: 'Telhado alto - acima 3m' },
+                { nome: 'Lavagem Telhado Baixo', un: 'm²', preco: 13.61, desc: 'Lavadora pressurizada - até 3m' },
+                { nome: 'Lavagem Telhado Alto', un: 'm²', preco: 17.63, desc: 'Lavadora pressurizada - acima 3m' },
+                { nome: 'Lavagem Parede até 3m', un: 'm²', preco: 4.54, desc: 'Sujeiras em geral' },
+                { nome: 'Lavagem Parede acima 3m', un: 'm²', preco: 11.51, desc: 'Sujeiras em geral' },
+                { nome: 'Lavagem Piso Mangueira', un: 'm²', preco: 5.20, desc: 'Lavagem simples' },
+                { nome: 'Lavagem Piso Pressurizada', un: 'm²', preco: 8.56, desc: 'Água pressurizada' },
                 
                 // TELHAS
-                { nome: 'Resina Telhas 2 demÃ£os', un: 'mÂ²', preco: 23.47, desc: 'Lavagem incluso' },
-                { nome: 'Resina Telhas 3 demÃ£os', un: 'mÂ²', preco: 29.99, desc: 'Lavagem incluso' },
-                { nome: 'Resina Telhas Fibrocimento', un: 'mÂ²', preco: 35.38, desc: 'Fibrocimento ou Amianto' },
+                { nome: 'Resina Telhas 2 demãos', un: 'm²', preco: 23.47, desc: 'Lavagem incluso' },
+                { nome: 'Resina Telhas 3 demãos', un: 'm²', preco: 29.99, desc: 'Lavagem incluso' },
+                { nome: 'Resina Telhas Fibrocimento', un: 'm²', preco: 35.38, desc: 'Fibrocimento ou Amianto' },
                 
                 // CALHAS PINTURA
-                { nome: 'Pintura Calha Simples', un: 'm', preco: 30.50, desc: 'Telhado simples - atÃ© 3m' },
+                { nome: 'Pintura Calha Simples', un: 'm', preco: 30.50, desc: 'Telhado simples - até 3m' },
                 { nome: 'Pintura Calha Sobrado', un: 'm', preco: 38.10, desc: 'Acima 3 metros' },
                 { nome: 'Pintura Pingadeiras', un: 'm', preco: 18.43, desc: 'Para muros' },
                 
-                // EPÃ“XI
-                { nome: 'EpÃ³xi Industrial', un: 'mÂ²', preco: 285.48, desc: 'Alta espessura - Fundo + Acabamento' },
-                { nome: 'EpÃ³xi 3D ArtÃ­stico', un: 'mÂ²', preco: 407.84, desc: 'Fundo + Acab + Adesivo' },
+                // EPÓXI
+                { nome: 'Epóxi Industrial', un: 'm²', preco: 285.48, desc: 'Alta espessura - Fundo + Acabamento' },
+                { nome: 'Epóxi 3D Artístico', un: 'm²', preco: 407.84, desc: 'Fundo + Acab + Adesivo' },
                 
                 // REPAROS
-                { nome: 'Acerto Cimento Parede', un: 'mÂ²', preco: 18.37, desc: 'Grandes correÃ§Ãµes - atÃ© 3m' },
+                { nome: 'Acerto Cimento Parede', un: 'm²', preco: 18.37, desc: 'Grandes correções - até 3m' },
                 { nome: 'Fissuras Selante', un: 'm', preco: 11.45, desc: 'Selante para trincas' },
                 { nome: 'Trincas Tela e Massa', un: 'm', preco: 22.45, desc: 'Tela e massa' },
                 
                 // PAPEL PAREDE
-                { nome: 'Papel Parede Comum atÃ© 3m', un: 'un', preco: 91.74, desc: 'Por rolo' },
+                { nome: 'Papel Parede Comum até 3m', un: 'un', preco: 91.74, desc: 'Por rolo' },
                 { nome: 'Papel Parede Comum acima 3m', un: 'un', preco: 139.37, desc: 'Por rolo' },
-                { nome: 'Papel Parede Importado atÃ© 3m', un: 'un', preco: 125.70, desc: 'Por rolo' },
+                { nome: 'Papel Parede Importado até 3m', un: 'un', preco: 125.70, desc: 'Por rolo' },
                 
-                // PINTURA PAREDE - LÃTEX PVA
-                { nome: 'Repintura LÃ¡tex PVA 2 demÃ£os', un: 'mÂ²', preco: 8.50, desc: 'Apenas repintura' },
-                { nome: 'Selador + 2 LÃ¡tex PVA', un: 'mÂ²', preco: 12.80, desc: '1 selador + 2 demÃ£os tinta' },
-                { nome: 'Selador + 3 LÃ¡tex PVA', un: 'mÂ²', preco: 14.50, desc: '1 selador + 3 demÃ£os tinta' },
-                { nome: 'Selador + Massa PVA + 2 LÃ¡tex', un: 'mÂ²', preco: 22.50, desc: 'Selador + 2 massa + 2 tinta' },
-                { nome: 'Selador + Massa PVA + 3 LÃ¡tex', un: 'mÂ²', preco: 25.80, desc: 'Selador + 2 massa + 3 tinta' },
+                // PINTURA PAREDE - LÁTEX PVA
+                { nome: 'Repintura Látex PVA 2 demãos', un: 'm²', preco: 8.50, desc: 'Apenas repintura' },
+                { nome: 'Selador + 2 Látex PVA', un: 'm²', preco: 12.80, desc: '1 selador + 2 demãos tinta' },
+                { nome: 'Selador + 3 Látex PVA', un: 'm²', preco: 14.50, desc: '1 selador + 3 demãos tinta' },
+                { nome: 'Selador + Massa PVA + 2 Látex', un: 'm²', preco: 22.50, desc: 'Selador + 2 massa + 2 tinta' },
+                { nome: 'Selador + Massa PVA + 3 Látex', un: 'm²', preco: 25.80, desc: 'Selador + 2 massa + 3 tinta' },
                 
-                // PINTURA PAREDE - ACRÃLICA
-                { nome: 'Repintura AcrÃ­lica Fosca 2 demÃ£os', un: 'mÂ²', preco: 10.20, desc: 'Apenas repintura' },
-                { nome: 'Selador + 2 AcrÃ­lica Fosca', un: 'mÂ²', preco: 15.30, desc: '1 selador + 2 demÃ£os' },
-                { nome: 'Selador + 3 AcrÃ­lica Fosca', un: 'mÂ²', preco: 17.80, desc: '1 selador + 3 demÃ£os' },
-                { nome: 'Selador + Massa AcrÃ­lica + 2 AcrÃ­lica', un: 'mÂ²', preco: 28.50, desc: 'Selador + 2 massa + 2 tinta' },
-                { nome: 'Selador + Massa AcrÃ­lica + 3 AcrÃ­lica', un: 'mÂ²', preco: 32.80, desc: 'Selador + 2 massa + 3 tinta' },
-                { nome: 'Selador + 3 Massa + 2 AcrÃ­lica Acetinado', un: 'mÂ²', preco: 48.28, desc: 'Premium acetinado' },
-                { nome: 'Selador + 3 Massa + 3 AcrÃ­lica Acetinado', un: 'mÂ²', preco: 51.11, desc: 'Premium acetinado' },
-                { nome: 'Selador + 2 Massa + 2 AcrÃ­lica Semi-Brilho', un: 'mÂ²', preco: 49.90, desc: 'Premium semi-brilho' },
-                { nome: 'Selador + 3 Massa + 3 AcrÃ­lica Semi-Brilho', un: 'mÂ²', preco: 54.86, desc: 'Premium semi-brilho' },
+                // PINTURA PAREDE - ACRÍLICA
+                { nome: 'Repintura Acrílica Fosca 2 demãos', un: 'm²', preco: 10.20, desc: 'Apenas repintura' },
+                { nome: 'Selador + 2 Acrílica Fosca', un: 'm²', preco: 15.30, desc: '1 selador + 2 demãos' },
+                { nome: 'Selador + 3 Acrílica Fosca', un: 'm²', preco: 17.80, desc: '1 selador + 3 demãos' },
+                { nome: 'Selador + Massa Acrílica + 2 Acrílica', un: 'm²', preco: 28.50, desc: 'Selador + 2 massa + 2 tinta' },
+                { nome: 'Selador + Massa Acrílica + 3 Acrílica', un: 'm²', preco: 32.80, desc: 'Selador + 2 massa + 3 tinta' },
+                { nome: 'Selador + 3 Massa + 2 Acrílica Acetinado', un: 'm²', preco: 48.28, desc: 'Premium acetinado' },
+                { nome: 'Selador + 3 Massa + 3 Acrílica Acetinado', un: 'm²', preco: 51.11, desc: 'Premium acetinado' },
+                { nome: 'Selador + 2 Massa + 2 Acrílica Semi-Brilho', un: 'm²', preco: 49.90, desc: 'Premium semi-brilho' },
+                { nome: 'Selador + 3 Massa + 3 Acrílica Semi-Brilho', un: 'm²', preco: 54.86, desc: 'Premium semi-brilho' },
                 
                 // DRYWALL
-                { nome: 'Repintura Drywall', un: 'mÂ²', preco: 14.29, desc: 'Drywall jÃ¡ pintado' },
-                { nome: 'Drywall Fundo + 2 Fosco', un: 'mÂ²', preco: 23.13, desc: 'Lixar + Fundo + 2 demÃ£os fosco' },
-                { nome: 'Drywall Massa Emendas + 2 Fosco', un: 'mÂ²', preco: 29.20, desc: 'Fundo + Massa emendas + 2 fosco' },
-                { nome: 'Drywall Massa Geral + 2 Fosco', un: 'mÂ²', preco: 39.46, desc: 'Fundo + Massa geral + 2 fosco' },
-                { nome: 'Drywall Massa Emendas + 2 Acetinado', un: 'mÂ²', preco: 34.64, desc: 'Fundo + Massa emendas + 2 acetinado' },
-                { nome: 'Drywall Massa Geral + 2 Acetinado', un: 'mÂ²', preco: 44.85, desc: 'Fundo + Massa geral + 2 acetinado' },
-                { nome: 'Drywall Massa Emendas + 2 Semi-Brilho', un: 'mÂ²', preco: 45.47, desc: 'Fundo + Massa emendas + 2 semi-brilho' },
-                { nome: 'Drywall Massa Geral + 2 Semi-Brilho', un: 'mÂ²', preco: 44.91, desc: 'Fundo + Massa geral + 2 semi-brilho' },
+                { nome: 'Repintura Drywall', un: 'm²', preco: 14.29, desc: 'Drywall já pintado' },
+                { nome: 'Drywall Fundo + 2 Fosco', un: 'm²', preco: 23.13, desc: 'Lixar + Fundo + 2 demãos fosco' },
+                { nome: 'Drywall Massa Emendas + 2 Fosco', un: 'm²', preco: 29.20, desc: 'Fundo + Massa emendas + 2 fosco' },
+                { nome: 'Drywall Massa Geral + 2 Fosco', un: 'm²', preco: 39.46, desc: 'Fundo + Massa geral + 2 fosco' },
+                { nome: 'Drywall Massa Emendas + 2 Acetinado', un: 'm²', preco: 34.64, desc: 'Fundo + Massa emendas + 2 acetinado' },
+                { nome: 'Drywall Massa Geral + 2 Acetinado', un: 'm²', preco: 44.85, desc: 'Fundo + Massa geral + 2 acetinado' },
+                { nome: 'Drywall Massa Emendas + 2 Semi-Brilho', un: 'm²', preco: 45.47, desc: 'Fundo + Massa emendas + 2 semi-brilho' },
+                { nome: 'Drywall Massa Geral + 2 Semi-Brilho', un: 'm²', preco: 44.91, desc: 'Fundo + Massa geral + 2 semi-brilho' },
                 
                 // EXTERNOS
-                { nome: 'Pintura Muro Externo', un: 'mÂ²', preco: 16.50, desc: '2 demÃ£os acrÃ­lica externa' },
-                { nome: 'Pintura Fachada atÃ© 3m', un: 'mÂ²', preco: 18.80, desc: 'AcrÃ­lica externa' },
-                { nome: 'Pintura Fachada acima 3m', un: 'mÂ²', preco: 24.50, desc: 'AcrÃ­lica externa com andaime' },
-                { nome: 'Textura RÃºstica', un: 'mÂ²', preco: 28.00, desc: 'Textura grafiato/rÃºstica' },
-                { nome: 'Textura Lisa', un: 'mÂ²', preco: 22.50, desc: 'Textura lisa rolada' },
+                { nome: 'Pintura Muro Externo', un: 'm²', preco: 16.50, desc: '2 demãos acrílica externa' },
+                { nome: 'Pintura Fachada até 3m', un: 'm²', preco: 18.80, desc: 'Acrílica externa' },
+                { nome: 'Pintura Fachada acima 3m', un: 'm²', preco: 24.50, desc: 'Acrílica externa com andaime' },
+                { nome: 'Textura Rústica', un: 'm²', preco: 28.00, desc: 'Textura grafiato/rústica' },
+                { nome: 'Textura Lisa', un: 'm²', preco: 22.50, desc: 'Textura lisa rolada' },
                 
                 // PORTAS E JANELAS
                 { nome: 'Pintura Porta Lisa', un: 'un', preco: 85.00, desc: 'Porta lisa dos dois lados' },
                 { nome: 'Pintura Porta Frisada', un: 'un', preco: 120.00, desc: 'Porta frisada dos dois lados' },
                 { nome: 'Pintura Janela Madeira P', un: 'un', preco: 95.00, desc: 'Janela pequena' },
-                { nome: 'Pintura Janela Madeira M', un: 'un', preco: 145.00, desc: 'Janela mÃ©dia' },
+                { nome: 'Pintura Janela Madeira M', un: 'un', preco: 145.00, desc: 'Janela média' },
                 { nome: 'Pintura Janela Madeira G', un: 'un', preco: 195.00, desc: 'Janela grande' },
-                { nome: 'Pintura Grade/PortÃ£o P', un: 'un', preco: 150.00, desc: 'Grade ou portÃ£o pequeno' },
-                { nome: 'Pintura Grade/PortÃ£o M', un: 'un', preco: 280.00, desc: 'Grade ou portÃ£o mÃ©dio' },
-                { nome: 'Pintura Grade/PortÃ£o G', un: 'un', preco: 450.00, desc: 'Grade ou portÃ£o grande' },
+                { nome: 'Pintura Grade/Portão P', un: 'un', preco: 150.00, desc: 'Grade ou portão pequeno' },
+                { nome: 'Pintura Grade/Portão M', un: 'un', preco: 280.00, desc: 'Grade ou portão médio' },
+                { nome: 'Pintura Grade/Portão G', un: 'un', preco: 450.00, desc: 'Grade ou portão grande' },
                 
                 // TETO
-                { nome: 'Pintura Teto Repintura', un: 'mÂ²', preco: 12.50, desc: 'Apenas repintura' },
-                { nome: 'Pintura Teto Selador + 2 demÃ£os', un: 'mÂ²', preco: 18.00, desc: 'Selador + 2 demÃ£os' },
-                { nome: 'Pintura Teto com Massa', un: 'mÂ²', preco: 32.00, desc: 'Selador + Massa + 2 demÃ£os' },
+                { nome: 'Pintura Teto Repintura', un: 'm²', preco: 12.50, desc: 'Apenas repintura' },
+                { nome: 'Pintura Teto Selador + 2 demãos', un: 'm²', preco: 18.00, desc: 'Selador + 2 demãos' },
+                { nome: 'Pintura Teto com Massa', un: 'm²', preco: 32.00, desc: 'Selador + Massa + 2 demãos' },
                 
                 // DESLOCAMENTO
-                { nome: 'Deslocamento por KM', un: 'un', preco: 8.11, desc: 'Por quilÃ´metro rodado' }
+                { nome: 'Deslocamento por KM', un: 'un', preco: 8.11, desc: 'Por quilômetro rodado' }
             ];
 
             await db.servicos.bulkAdd(servicos);
 
             // CLIENTES
             const clientes = [
-                { nome: 'JoÃ£o Silva Santos', doc: '123.456.789-00', tel: '(11) 99876-5432', email: 'joao.silva@email.com', end: 'Rua das Flores, 123 - Vila Nova, SÃ£o Paulo - SP', obs: 'Cliente antigo, sempre paga em dia' },
-                { nome: 'Maria Oliveira Costa', doc: '234.567.890-11', tel: '(11) 98765-4321', email: 'maria.oliveira@email.com', end: 'Av. Brasil, 456 - Centro, SÃ£o Paulo - SP', obs: 'Prefere pagamento parcelado' },
-                { nome: 'Carlos Eduardo Ferreira', doc: '345.678.901-22', tel: '(11) 97654-3210', email: 'carlos.ferreira@email.com', end: 'Rua dos Pinheiros, 789 - Pinheiros, SÃ£o Paulo - SP', obs: '' },
-                { nome: 'Ana Paula Rodrigues', doc: '456.789.012-33', tel: '(11) 96543-2109', email: 'ana.rodrigues@email.com', end: 'Rua Augusta, 321 - ConsolaÃ§Ã£o, SÃ£o Paulo - SP', obs: 'IndicaÃ§Ã£o do JoÃ£o Silva' },
-                { nome: 'Pedro Henrique Almeida', doc: '567.890.123-44', tel: '(11) 95432-1098', email: 'pedro.almeida@email.com', end: 'Av. Paulista, 1000 - Bela Vista, SÃ£o Paulo - SP', obs: 'Apartamento de alto padrÃ£o' },
-                { nome: 'Fernanda Lima Souza', doc: '678.901.234-55', tel: '(11) 94321-0987', email: 'fernanda.souza@email.com', end: 'Rua Oscar Freire, 555 - Jardins, SÃ£o Paulo - SP', obs: '' },
-                { nome: 'Ricardo Mendes Neto', doc: '789.012.345-66', tel: '(11) 93210-9876', email: 'ricardo.mendes@email.com', end: 'Alameda Santos, 888 - Cerqueira CÃ©sar, SÃ£o Paulo - SP', obs: 'EscritÃ³rio comercial' },
-                { nome: 'Juliana Martins Pereira', doc: '890.123.456-77', tel: '(11) 92109-8765', email: 'juliana.martins@email.com', end: 'Rua Haddock Lobo, 222 - Jardim Paulista, SÃ£o Paulo - SP', obs: '' },
-                { nome: 'Marcos AntÃ´nio Ribeiro', doc: '901.234.567-88', tel: '(11) 91098-7654', email: 'marcos.ribeiro@email.com', end: 'Av. RebouÃ§as, 3333 - Pinheiros, SÃ£o Paulo - SP', obs: 'PrÃ©dio comercial' },
-                { nome: 'PatrÃ­cia Gomes Cardoso', doc: '012.345.678-99', tel: '(11) 90987-6543', email: 'patricia.cardoso@email.com', end: 'Rua da ConsolaÃ§Ã£o, 444 - ConsolaÃ§Ã£o, SÃ£o Paulo - SP', obs: '' },
-                { nome: 'Lucas Fernandes Silva', doc: '111.222.333-44', tel: '(11) 99111-2222', email: 'lucas.fernandes@email.com', end: 'Rua Vergueiro, 1500 - Vila Mariana, SÃ£o Paulo - SP', obs: 'Casa tÃ©rrea' },
-                { nome: 'Camila Rocha Dias', doc: '222.333.444-55', tel: '(11) 98222-3333', email: 'camila.rocha@email.com', end: 'Av. Ibirapuera, 2500 - Moema, SÃ£o Paulo - SP', obs: '' },
-                { nome: 'Bruno Costa Machado', doc: '333.444.555-66', tel: '(11) 97333-4444', email: 'bruno.costa@email.com', end: 'Rua Pamplona, 666 - Jardim Paulista, SÃ£o Paulo - SP', obs: 'Cobertura duplex' },
-                { nome: 'Amanda Freitas Lopes', doc: '444.555.666-77', tel: '(11) 96444-5555', email: 'amanda.freitas@email.com', end: 'Alameda JaÃº, 777 - Jardim Paulista, SÃ£o Paulo - SP', obs: '' },
-                { nome: 'Thiago Alves Moreira', doc: '555.666.777-88', tel: '(11) 95555-6666', email: 'thiago.alves@email.com', end: 'Rua Estados Unidos, 888 - Jardim AmÃ©rica, SÃ£o Paulo - SP', obs: 'Reforma completa' },
-                { nome: 'Larissa Santos AraÃºjo', doc: '666.777.888-99', tel: '(11) 94666-7777', email: 'larissa.santos@email.com', end: 'Av. Europa, 999 - Jardim Europa, SÃ£o Paulo - SP', obs: '' },
-                { nome: 'Felipe Barbosa Lima', doc: '777.888.999-00', tel: '(11) 93777-8888', email: 'felipe.barbosa@email.com', end: 'Rua GroenlÃ¢ndia, 111 - Jardim AmÃ©rica, SÃ£o Paulo - SP', obs: 'Casa de 3 andares' },
-                { nome: 'Mariana Teixeira Ramos', doc: '888.999.000-11', tel: '(11) 92888-9999', email: 'mariana.teixeira@email.com', end: 'Alameda Lorena, 222 - Jardins, SÃ£o Paulo - SP', obs: '' },
-                { nome: 'Gustavo Pereira Nunes', doc: '999.000.111-22', tel: '(11) 91999-0000', email: 'gustavo.pereira@email.com', end: 'Rua Bela Cintra, 333 - ConsolaÃ§Ã£o, SÃ£o Paulo - SP', obs: 'Apartamento 150mÂ²' },
-                { nome: 'Isabela Cunha Monteiro', doc: '000.111.222-33', tel: '(11) 90000-1111', email: 'isabela.cunha@email.com', end: 'Av. Cidade Jardim, 444 - Itaim Bibi, SÃ£o Paulo - SP', obs: '' },
-                { nome: 'Rafael Campos Duarte', doc: '112.233.445-56', tel: '(11) 99112-2334', email: 'rafael.campos@email.com', end: 'Rua Funchal, 555 - Vila OlÃ­mpia, SÃ£o Paulo - SP', obs: 'Sala comercial' },
-                { nome: 'Beatriz Moura Vieira', doc: '223.344.556-67', tel: '(11) 98223-3445', email: 'beatriz.moura@email.com', end: 'Av. Faria Lima, 666 - Pinheiros, SÃ£o Paulo - SP', obs: '' },
-                { nome: 'AndrÃ© Luiz Correia', doc: '334.455.667-78', tel: '(11) 97334-4556', email: 'andre.correia@email.com', end: 'Rua Joaquim Floriano, 777 - Itaim Bibi, SÃ£o Paulo - SP', obs: 'Empresa de TI' },
-                { nome: 'Carolina Pinto Azevedo', doc: '445.566.778-89', tel: '(11) 96445-5667', email: 'carolina.pinto@email.com', end: 'Alameda Gabriel Monteiro da Silva, 888 - Jardins, SÃ£o Paulo - SP', obs: '' },
-                { nome: 'Diego Santana Reis', doc: '556.677.889-90', tel: '(11) 95556-6778', email: 'diego.santana@email.com', end: 'Rua TabapuÃ£, 999 - Itaim Bibi, SÃ£o Paulo - SP', obs: 'Loja de roupas' },
-                { nome: 'LetÃ­cia Carvalho Melo', doc: '667.788.990-01', tel: '(11) 94667-7889', email: 'leticia.carvalho@email.com', end: 'Av. Brigadeiro Faria Lima, 1010 - Pinheiros, SÃ£o Paulo - SP', obs: '' },
-                { nome: 'VinÃ­cius Ramos Castro', doc: '778.899.001-12', tel: '(11) 93778-8990', email: 'vinicius.ramos@email.com', end: 'Rua Leopoldo Couto MagalhÃ£es Jr, 1111 - Itaim Bibi, SÃ£o Paulo - SP', obs: 'ClÃ­nica mÃ©dica' },
-                { nome: 'NatÃ¡lia Borges Prado', doc: '889.900.112-23', tel: '(11) 92889-9001', email: 'natalia.borges@email.com', end: 'Alameda Itu, 1212 - Jardim Paulista, SÃ£o Paulo - SP', obs: '' },
-                { nome: 'Eduardo Fonseca Dias', doc: '990.011.223-34', tel: '(11) 91990-0112', email: 'eduardo.fonseca@email.com', end: 'Rua Peixoto Gomide, 1313 - Jardins, SÃ£o Paulo - SP', obs: 'Restaurante' },
-                { nome: 'Vanessa Lima Nogueira', doc: '001.122.334-45', tel: '(11) 90001-1223', email: 'vanessa.lima@email.com', end: 'Av. Santo Amaro, 1414 - Vila Nova ConceiÃ§Ã£o, SÃ£o Paulo - SP', obs: '' },
-                { nome: 'Roberto Maia Gomes', doc: '113.224.335-46', tel: '(11) 99113-2243', email: 'roberto.maia@email.com', end: 'Rua Normandia, 1515 - Vila Madalena, SÃ£o Paulo - SP', obs: 'EstÃºdio de mÃºsica' },
-                { nome: 'Aline Vasconcelos Cruz', doc: '224.335.446-57', tel: '(11) 98224-3354', email: 'aline.vasconcelos@email.com', end: 'Rua Aspicuelta, 1616 - Vila Madalena, SÃ£o Paulo - SP', obs: '' },
-                { nome: 'Henrique Barros Leal', doc: '335.446.557-68', tel: '(11) 97335-4465', email: 'henrique.barros@email.com', end: 'Rua Harmonia, 1717 - Vila Madalena, SÃ£o Paulo - SP', obs: 'Galeria de arte' },
-                { nome: 'Renata Silveira Matos', doc: '446.557.668-79', tel: '(11) 96446-5576', email: 'renata.silveira@email.com', end: 'Rua Fidalga, 1818 - Vila Madalena, SÃ£o Paulo - SP', obs: '' },
-                { nome: 'FÃ¡bio Miranda Teles', doc: '557.668.779-80', tel: '(11) 95557-6687', email: 'fabio.miranda@email.com', end: 'Rua Mourato Coelho, 1919 - Pinheiros, SÃ£o Paulo - SP', obs: 'Bar e restaurante' },
-                { nome: 'Priscila Andrade Faria', doc: '668.779.880-91', tel: '(11) 94668-7798', email: 'priscila.andrade@email.com', end: 'Rua dos Pinheiros, 2020 - Pinheiros, SÃ£o Paulo - SP', obs: '' },
-                { nome: 'SÃ©rgio Neves GuimarÃ£es', doc: '779.880.991-02', tel: '(11) 93779-8809', email: 'sergio.neves@email.com', end: 'Rua Teodoro Sampaio, 2121 - Pinheiros, SÃ£o Paulo - SP', obs: 'EscritÃ³rio advocacia' },
-                { nome: 'DÃ©bora Costa Amaral', doc: '880.991.002-13', tel: '(11) 92880-9910', email: 'debora.costa@email.com', end: 'Rua Cardeal Arcoverde, 2222 - Pinheiros, SÃ£o Paulo - SP', obs: '' },
-                { nome: 'Leandro Pires Machado', doc: '991.002.113-24', tel: '(11) 91991-0021', email: 'leandro.pires@email.com', end: 'Av. Henrique Schaumann, 2323 - Pinheiros, SÃ£o Paulo - SP', obs: 'Academia' },
-                { nome: 'Tatiane Sousa Ribeiro', doc: '002.113.224-35', tel: '(11) 90002-1132', email: 'tatiane.sousa@email.com', end: 'Rua Artur de Azevedo, 2424 - Pinheiros, SÃ£o Paulo - SP', obs: 'SalÃ£o de beleza' }
+                { nome: 'João Silva Santos', doc: '123.456.789-00', tel: '(11) 99876-5432', email: 'joao.silva@email.com', end: 'Rua das Flores, 123 - Vila Nova, São Paulo - SP', obs: 'Cliente antigo, sempre paga em dia' },
+                { nome: 'Maria Oliveira Costa', doc: '234.567.890-11', tel: '(11) 98765-4321', email: 'maria.oliveira@email.com', end: 'Av. Brasil, 456 - Centro, São Paulo - SP', obs: 'Prefere pagamento parcelado' },
+                { nome: 'Carlos Eduardo Ferreira', doc: '345.678.901-22', tel: '(11) 97654-3210', email: 'carlos.ferreira@email.com', end: 'Rua dos Pinheiros, 789 - Pinheiros, São Paulo - SP', obs: '' },
+                { nome: 'Ana Paula Rodrigues', doc: '456.789.012-33', tel: '(11) 96543-2109', email: 'ana.rodrigues@email.com', end: 'Rua Augusta, 321 - Consolação, São Paulo - SP', obs: 'Indicação do João Silva' },
+                { nome: 'Pedro Henrique Almeida', doc: '567.890.123-44', tel: '(11) 95432-1098', email: 'pedro.almeida@email.com', end: 'Av. Paulista, 1000 - Bela Vista, São Paulo - SP', obs: 'Apartamento de alto padrão' },
+                { nome: 'Fernanda Lima Souza', doc: '678.901.234-55', tel: '(11) 94321-0987', email: 'fernanda.souza@email.com', end: 'Rua Oscar Freire, 555 - Jardins, São Paulo - SP', obs: '' },
+                { nome: 'Ricardo Mendes Neto', doc: '789.012.345-66', tel: '(11) 93210-9876', email: 'ricardo.mendes@email.com', end: 'Alameda Santos, 888 - Cerqueira César, São Paulo - SP', obs: 'Escritório comercial' },
+                { nome: 'Juliana Martins Pereira', doc: '890.123.456-77', tel: '(11) 92109-8765', email: 'juliana.martins@email.com', end: 'Rua Haddock Lobo, 222 - Jardim Paulista, São Paulo - SP', obs: '' },
+                { nome: 'Marcos Antônio Ribeiro', doc: '901.234.567-88', tel: '(11) 91098-7654', email: 'marcos.ribeiro@email.com', end: 'Av. Rebouças, 3333 - Pinheiros, São Paulo - SP', obs: 'Prédio comercial' },
+                { nome: 'Patrícia Gomes Cardoso', doc: '012.345.678-99', tel: '(11) 90987-6543', email: 'patricia.cardoso@email.com', end: 'Rua da Consolação, 444 - Consolação, São Paulo - SP', obs: '' },
+                { nome: 'Lucas Fernandes Silva', doc: '111.222.333-44', tel: '(11) 99111-2222', email: 'lucas.fernandes@email.com', end: 'Rua Vergueiro, 1500 - Vila Mariana, São Paulo - SP', obs: 'Casa térrea' },
+                { nome: 'Camila Rocha Dias', doc: '222.333.444-55', tel: '(11) 98222-3333', email: 'camila.rocha@email.com', end: 'Av. Ibirapuera, 2500 - Moema, São Paulo - SP', obs: '' },
+                { nome: 'Bruno Costa Machado', doc: '333.444.555-66', tel: '(11) 97333-4444', email: 'bruno.costa@email.com', end: 'Rua Pamplona, 666 - Jardim Paulista, São Paulo - SP', obs: 'Cobertura duplex' },
+                { nome: 'Amanda Freitas Lopes', doc: '444.555.666-77', tel: '(11) 96444-5555', email: 'amanda.freitas@email.com', end: 'Alameda Jaú, 777 - Jardim Paulista, São Paulo - SP', obs: '' },
+                { nome: 'Thiago Alves Moreira', doc: '555.666.777-88', tel: '(11) 95555-6666', email: 'thiago.alves@email.com', end: 'Rua Estados Unidos, 888 - Jardim América, São Paulo - SP', obs: 'Reforma completa' },
+                { nome: 'Larissa Santos Araújo', doc: '666.777.888-99', tel: '(11) 94666-7777', email: 'larissa.santos@email.com', end: 'Av. Europa, 999 - Jardim Europa, São Paulo - SP', obs: '' },
+                { nome: 'Felipe Barbosa Lima', doc: '777.888.999-00', tel: '(11) 93777-8888', email: 'felipe.barbosa@email.com', end: 'Rua Groenlândia, 111 - Jardim América, São Paulo - SP', obs: 'Casa de 3 andares' },
+                { nome: 'Mariana Teixeira Ramos', doc: '888.999.000-11', tel: '(11) 92888-9999', email: 'mariana.teixeira@email.com', end: 'Alameda Lorena, 222 - Jardins, São Paulo - SP', obs: '' },
+                { nome: 'Gustavo Pereira Nunes', doc: '999.000.111-22', tel: '(11) 91999-0000', email: 'gustavo.pereira@email.com', end: 'Rua Bela Cintra, 333 - Consolação, São Paulo - SP', obs: 'Apartamento 150m²' },
+                { nome: 'Isabela Cunha Monteiro', doc: '000.111.222-33', tel: '(11) 90000-1111', email: 'isabela.cunha@email.com', end: 'Av. Cidade Jardim, 444 - Itaim Bibi, São Paulo - SP', obs: '' },
+                { nome: 'Rafael Campos Duarte', doc: '112.233.445-56', tel: '(11) 99112-2334', email: 'rafael.campos@email.com', end: 'Rua Funchal, 555 - Vila Olímpia, São Paulo - SP', obs: 'Sala comercial' },
+                { nome: 'Beatriz Moura Vieira', doc: '223.344.556-67', tel: '(11) 98223-3445', email: 'beatriz.moura@email.com', end: 'Av. Faria Lima, 666 - Pinheiros, São Paulo - SP', obs: '' },
+                { nome: 'André Luiz Correia', doc: '334.455.667-78', tel: '(11) 97334-4556', email: 'andre.correia@email.com', end: 'Rua Joaquim Floriano, 777 - Itaim Bibi, São Paulo - SP', obs: 'Empresa de TI' },
+                { nome: 'Carolina Pinto Azevedo', doc: '445.566.778-89', tel: '(11) 96445-5667', email: 'carolina.pinto@email.com', end: 'Alameda Gabriel Monteiro da Silva, 888 - Jardins, São Paulo - SP', obs: '' },
+                { nome: 'Diego Santana Reis', doc: '556.677.889-90', tel: '(11) 95556-6778', email: 'diego.santana@email.com', end: 'Rua Tabapuã, 999 - Itaim Bibi, São Paulo - SP', obs: 'Loja de roupas' },
+                { nome: 'Letícia Carvalho Melo', doc: '667.788.990-01', tel: '(11) 94667-7889', email: 'leticia.carvalho@email.com', end: 'Av. Brigadeiro Faria Lima, 1010 - Pinheiros, São Paulo - SP', obs: '' },
+                { nome: 'Vinícius Ramos Castro', doc: '778.899.001-12', tel: '(11) 93778-8990', email: 'vinicius.ramos@email.com', end: 'Rua Leopoldo Couto Magalhães Jr, 1111 - Itaim Bibi, São Paulo - SP', obs: 'Clínica médica' },
+                { nome: 'Natália Borges Prado', doc: '889.900.112-23', tel: '(11) 92889-9001', email: 'natalia.borges@email.com', end: 'Alameda Itu, 1212 - Jardim Paulista, São Paulo - SP', obs: '' },
+                { nome: 'Eduardo Fonseca Dias', doc: '990.011.223-34', tel: '(11) 91990-0112', email: 'eduardo.fonseca@email.com', end: 'Rua Peixoto Gomide, 1313 - Jardins, São Paulo - SP', obs: 'Restaurante' },
+                { nome: 'Vanessa Lima Nogueira', doc: '001.122.334-45', tel: '(11) 90001-1223', email: 'vanessa.lima@email.com', end: 'Av. Santo Amaro, 1414 - Vila Nova Conceição, São Paulo - SP', obs: '' },
+                { nome: 'Roberto Maia Gomes', doc: '113.224.335-46', tel: '(11) 99113-2243', email: 'roberto.maia@email.com', end: 'Rua Normandia, 1515 - Vila Madalena, São Paulo - SP', obs: 'Estúdio de música' },
+                { nome: 'Aline Vasconcelos Cruz', doc: '224.335.446-57', tel: '(11) 98224-3354', email: 'aline.vasconcelos@email.com', end: 'Rua Aspicuelta, 1616 - Vila Madalena, São Paulo - SP', obs: '' },
+                { nome: 'Henrique Barros Leal', doc: '335.446.557-68', tel: '(11) 97335-4465', email: 'henrique.barros@email.com', end: 'Rua Harmonia, 1717 - Vila Madalena, São Paulo - SP', obs: 'Galeria de arte' },
+                { nome: 'Renata Silveira Matos', doc: '446.557.668-79', tel: '(11) 96446-5576', email: 'renata.silveira@email.com', end: 'Rua Fidalga, 1818 - Vila Madalena, São Paulo - SP', obs: '' },
+                { nome: 'Fábio Miranda Teles', doc: '557.668.779-80', tel: '(11) 95557-6687', email: 'fabio.miranda@email.com', end: 'Rua Mourato Coelho, 1919 - Pinheiros, São Paulo - SP', obs: 'Bar e restaurante' },
+                { nome: 'Priscila Andrade Faria', doc: '668.779.880-91', tel: '(11) 94668-7798', email: 'priscila.andrade@email.com', end: 'Rua dos Pinheiros, 2020 - Pinheiros, São Paulo - SP', obs: '' },
+                { nome: 'Sérgio Neves Guimarães', doc: '779.880.991-02', tel: '(11) 93779-8809', email: 'sergio.neves@email.com', end: 'Rua Teodoro Sampaio, 2121 - Pinheiros, São Paulo - SP', obs: 'Escritório advocacia' },
+                { nome: 'Débora Costa Amaral', doc: '880.991.002-13', tel: '(11) 92880-9910', email: 'debora.costa@email.com', end: 'Rua Cardeal Arcoverde, 2222 - Pinheiros, São Paulo - SP', obs: '' },
+                { nome: 'Leandro Pires Machado', doc: '991.002.113-24', tel: '(11) 91991-0021', email: 'leandro.pires@email.com', end: 'Av. Henrique Schaumann, 2323 - Pinheiros, São Paulo - SP', obs: 'Academia' },
+                { nome: 'Tatiane Sousa Ribeiro', doc: '002.113.224-35', tel: '(11) 90002-1132', email: 'tatiane.sousa@email.com', end: 'Rua Artur de Azevedo, 2424 - Pinheiros, São Paulo - SP', obs: 'Salão de beleza' }
             ];
 
             await db.clientes.bulkAdd(clientes);
 
-            // ORÃ‡AMENTOS
+            // ORÇAMENTOS
             const hoje = new Date();
             const orcamentos = [
                 {
                     clienteId: 1,
                     titulo: 'Pintura Apartamento Completo',
                     itens: [
-                        { servId: 42, nome: 'Selador + Massa AcrÃ­lica + 2 AcrÃ­lica', preco: 28.50, un: 'mÂ²', qtd: 180, total: 5130 },
-                        { servId: 69, nome: 'Pintura Teto com Massa', preco: 32.00, un: 'mÂ²', qtd: 65, total: 2080 },
+                        { servId: 42, nome: 'Selador + Massa Acrílica + 2 Acrílica', preco: 28.50, un: 'm²', qtd: 180, total: 5130 },
+                        { servId: 69, nome: 'Pintura Teto com Massa', preco: 32.00, un: 'm²', qtd: 65, total: 2080 },
                         { servId: 61, nome: 'Pintura Porta Lisa', preco: 85.00, un: 'un', qtd: 6, total: 510 }
                     ],
                     total: 7720,
@@ -2269,9 +2091,9 @@ async function exportPDF() {
                     clienteId: 2,
                     titulo: 'Pintura Externa Casa',
                     itens: [
-                        { servId: 57, nome: 'Pintura Fachada atÃ© 3m', preco: 18.80, un: 'mÂ²', qtd: 120, total: 2256 },
-                        { servId: 56, nome: 'Pintura Muro Externo', preco: 16.50, un: 'mÂ²', qtd: 85, total: 1402.50 },
-                        { servId: 66, nome: 'Pintura Grade/PortÃ£o M', preco: 280.00, un: 'un', qtd: 1, total: 280 }
+                        { servId: 57, nome: 'Pintura Fachada até 3m', preco: 18.80, un: 'm²', qtd: 120, total: 2256 },
+                        { servId: 56, nome: 'Pintura Muro Externo', preco: 16.50, un: 'm²', qtd: 85, total: 1402.50 },
+                        { servId: 66, nome: 'Pintura Grade/Portão M', preco: 280.00, un: 'un', qtd: 1, total: 280 }
                     ],
                     total: 3938.50,
                     status: 'fechado',
@@ -2282,10 +2104,10 @@ async function exportPDF() {
                     clienteId: 5,
                     titulo: 'Reforma Cobertura Duplex',
                     itens: [
-                        { servId: 44, nome: 'Selador + 3 Massa + 2 AcrÃ­lica Acetinado', preco: 48.28, un: 'mÂ²', qtd: 320, total: 15449.60 },
-                        { servId: 69, nome: 'Pintura Teto com Massa', preco: 32.00, un: 'mÂ²', qtd: 150, total: 4800 },
+                        { servId: 44, nome: 'Selador + 3 Massa + 2 Acrílica Acetinado', preco: 48.28, un: 'm²', qtd: 320, total: 15449.60 },
+                        { servId: 69, nome: 'Pintura Teto com Massa', preco: 32.00, un: 'm²', qtd: 150, total: 4800 },
                         { servId: 62, nome: 'Pintura Porta Frisada', preco: 120.00, un: 'un', qtd: 12, total: 1440 },
-                        { servId: 59, nome: 'Textura RÃºstica', preco: 28.00, un: 'mÂ²', qtd: 45, total: 1260 }
+                        { servId: 59, nome: 'Textura Rústica', preco: 28.00, un: 'm²', qtd: 45, total: 1260 }
                     ],
                     total: 22949.60,
                     status: 'fechado',
@@ -2294,10 +2116,10 @@ async function exportPDF() {
                 },
                 {
                     clienteId: 8,
-                    titulo: 'EscritÃ³rio Comercial',
+                    titulo: 'Escritório Comercial',
                     itens: [
-                        { servId: 48, nome: 'Drywall Fundo + 2 Fosco', preco: 23.13, un: 'mÂ²', qtd: 200, total: 4626 },
-                        { servId: 68, nome: 'Pintura Teto Selador + 2 demÃ£os', preco: 18.00, un: 'mÂ²', qtd: 85, total: 1530 }
+                        { servId: 48, nome: 'Drywall Fundo + 2 Fosco', preco: 23.13, un: 'm²', qtd: 200, total: 4626 },
+                        { servId: 68, nome: 'Pintura Teto Selador + 2 demãos', preco: 18.00, un: 'm²', qtd: 85, total: 1530 }
                     ],
                     total: 6156,
                     status: 'fechado',
@@ -2308,8 +2130,8 @@ async function exportPDF() {
                     clienteId: 12,
                     titulo: 'Pintura Sala e Quartos',
                     itens: [
-                        { servId: 40, nome: 'Selador + 2 AcrÃ­lica Fosca', preco: 15.30, un: 'mÂ²', qtd: 95, total: 1453.50 },
-                        { servId: 67, nome: 'Pintura Teto Repintura', preco: 12.50, un: 'mÂ²', qtd: 40, total: 500 }
+                        { servId: 40, nome: 'Selador + 2 Acrílica Fosca', preco: 15.30, un: 'm²', qtd: 95, total: 1453.50 },
+                        { servId: 67, nome: 'Pintura Teto Repintura', preco: 12.50, un: 'm²', qtd: 40, total: 500 }
                     ],
                     total: 1953.50,
                     status: 'fechado',
@@ -2318,10 +2140,10 @@ async function exportPDF() {
                 },
                 {
                     clienteId: 15,
-                    titulo: 'Reforma Completa Apartamento 200mÂ²',
+                    titulo: 'Reforma Completa Apartamento 200m²',
                     itens: [
-                        { servId: 46, nome: 'Selador + 2 Massa + 2 AcrÃ­lica Semi-Brilho', preco: 49.90, un: 'mÂ²', qtd: 280, total: 13972 },
-                        { servId: 69, nome: 'Pintura Teto com Massa', preco: 32.00, un: 'mÂ²', qtd: 95, total: 3040 },
+                        { servId: 46, nome: 'Selador + 2 Massa + 2 Acrílica Semi-Brilho', preco: 49.90, un: 'm²', qtd: 280, total: 13972 },
+                        { servId: 69, nome: 'Pintura Teto com Massa', preco: 32.00, un: 'm²', qtd: 95, total: 3040 },
                         { servId: 62, nome: 'Pintura Porta Frisada', preco: 120.00, un: 'un', qtd: 8, total: 960 },
                         { servId: 64, nome: 'Pintura Janela Madeira M', preco: 145.00, un: 'un', qtd: 5, total: 725 }
                     ],
@@ -2332,10 +2154,10 @@ async function exportPDF() {
                 },
                 {
                     clienteId: 18,
-                    titulo: 'ClÃ­nica MÃ©dica - RecepÃ§Ã£o',
+                    titulo: 'Clínica Médica - Recepção',
                     itens: [
-                        { servId: 52, nome: 'Drywall Massa Geral + 2 Acetinado', preco: 44.85, un: 'mÂ²', qtd: 85, total: 3812.25 },
-                        { servId: 68, nome: 'Pintura Teto Selador + 2 demÃ£os', preco: 18.00, un: 'mÂ²', qtd: 45, total: 810 }
+                        { servId: 52, nome: 'Drywall Massa Geral + 2 Acetinado', preco: 44.85, un: 'm²', qtd: 85, total: 3812.25 },
+                        { servId: 68, nome: 'Pintura Teto Selador + 2 demãos', preco: 18.00, un: 'm²', qtd: 45, total: 810 }
                     ],
                     total: 4622.25,
                     status: 'fechado',
@@ -2346,9 +2168,9 @@ async function exportPDF() {
                     clienteId: 22,
                     titulo: 'Pintura Restaurante',
                     itens: [
-                        { servId: 42, nome: 'Selador + Massa AcrÃ­lica + 2 AcrÃ­lica', preco: 28.50, un: 'mÂ²', qtd: 150, total: 4275 },
-                        { servId: 69, nome: 'Pintura Teto com Massa', preco: 32.00, un: 'mÂ²', qtd: 70, total: 2240 },
-                        { servId: 7, nome: 'Lavagem Tijolinho', preco: 5.16, un: 'mÂ²', qtd: 25, total: 129 }
+                        { servId: 42, nome: 'Selador + Massa Acrílica + 2 Acrílica', preco: 28.50, un: 'm²', qtd: 150, total: 4275 },
+                        { servId: 69, nome: 'Pintura Teto com Massa', preco: 32.00, un: 'm²', qtd: 70, total: 2240 },
+                        { servId: 7, nome: 'Lavagem Tijolinho', preco: 5.16, un: 'm²', qtd: 25, total: 129 }
                     ],
                     total: 6644,
                     status: 'fechado',
@@ -2359,7 +2181,7 @@ async function exportPDF() {
                     clienteId: 25,
                     titulo: 'Loja de Roupas - Shopping',
                     itens: [
-                        { servId: 48, nome: 'Drywall Fundo + 2 Fosco', preco: 23.13, un: 'mÂ²', qtd: 120, total: 2775.60 },
+                        { servId: 48, nome: 'Drywall Fundo + 2 Fosco', preco: 23.13, un: 'm²', qtd: 120, total: 2775.60 },
                         { servId: 61, nome: 'Pintura Porta Lisa', preco: 85.00, un: 'un', qtd: 2, total: 170 }
                     ],
                     total: 2945.60,
@@ -2369,10 +2191,10 @@ async function exportPDF() {
                 },
                 {
                     clienteId: 28,
-                    titulo: 'Apartamento Pequeno 60mÂ²',
+                    titulo: 'Apartamento Pequeno 60m²',
                     itens: [
-                        { servId: 36, nome: 'Selador + Massa PVA + 2 LÃ¡tex', preco: 22.50, un: 'mÂ²', qtd: 85, total: 1912.50 },
-                        { servId: 67, nome: 'Pintura Teto Repintura', preco: 12.50, un: 'mÂ²', qtd: 55, total: 687.50 }
+                        { servId: 36, nome: 'Selador + Massa PVA + 2 Látex', preco: 22.50, un: 'm²', qtd: 85, total: 1912.50 },
+                        { servId: 67, nome: 'Pintura Teto Repintura', preco: 12.50, un: 'm²', qtd: 55, total: 687.50 }
                     ],
                     total: 2600,
                     status: 'pendente',
@@ -2383,8 +2205,8 @@ async function exportPDF() {
                     clienteId: 31,
                     titulo: 'Galeria de Arte',
                     itens: [
-                        { servId: 52, nome: 'Drywall Massa Geral + 2 Acetinado', preco: 44.85, un: 'mÂ²', qtd: 180, total: 8073 },
-                        { servId: 68, nome: 'Pintura Teto Selador + 2 demÃ£os', preco: 18.00, un: 'mÂ²', qtd: 90, total: 1620 }
+                        { servId: 52, nome: 'Drywall Massa Geral + 2 Acetinado', preco: 44.85, un: 'm²', qtd: 180, total: 8073 },
+                        { servId: 68, nome: 'Pintura Teto Selador + 2 demãos', preco: 18.00, un: 'm²', qtd: 90, total: 1620 }
                     ],
                     total: 9693,
                     status: 'pendente',
@@ -2395,9 +2217,9 @@ async function exportPDF() {
                     clienteId: 35,
                     titulo: 'Bar e Restaurante - Fachada',
                     itens: [
-                        { servId: 58, nome: 'Pintura Fachada acima 3m', preco: 24.50, un: 'mÂ²', qtd: 75, total: 1837.50 },
-                        { servId: 66, nome: 'Pintura Grade/PortÃ£o M', preco: 280.00, un: 'un', qtd: 2, total: 560 },
-                        { servId: 15, nome: 'Lavagem Parede atÃ© 3m', preco: 4.54, un: 'mÂ²', qtd: 75, total: 340.50 }
+                        { servId: 58, nome: 'Pintura Fachada acima 3m', preco: 24.50, un: 'm²', qtd: 75, total: 1837.50 },
+                        { servId: 66, nome: 'Pintura Grade/Portão M', preco: 280.00, un: 'un', qtd: 2, total: 560 },
+                        { servId: 15, nome: 'Lavagem Parede até 3m', preco: 4.54, un: 'm²', qtd: 75, total: 340.50 }
                     ],
                     total: 2738,
                     status: 'pendente',
@@ -2406,10 +2228,10 @@ async function exportPDF() {
                 },
                 {
                     clienteId: 38,
-                    titulo: 'EscritÃ³rio Advocacia',
+                    titulo: 'Escritório Advocacia',
                     itens: [
-                        { servId: 44, nome: 'Selador + 3 Massa + 2 AcrÃ­lica Acetinado', preco: 48.28, un: 'mÂ²', qtd: 110, total: 5310.80 },
-                        { servId: 69, nome: 'Pintura Teto com Massa', preco: 32.00, un: 'mÂ²', qtd: 55, total: 1760 },
+                        { servId: 44, nome: 'Selador + 3 Massa + 2 Acrílica Acetinado', preco: 48.28, un: 'm²', qtd: 110, total: 5310.80 },
+                        { servId: 69, nome: 'Pintura Teto com Massa', preco: 32.00, un: 'm²', qtd: 55, total: 1760 },
                         { servId: 62, nome: 'Pintura Porta Frisada', preco: 120.00, un: 'un', qtd: 4, total: 480 }
                     ],
                     total: 7550.80,
@@ -2419,10 +2241,10 @@ async function exportPDF() {
                 },
                 {
                     clienteId: 40,
-                    titulo: 'SalÃ£o de Beleza - Reforma',
+                    titulo: 'Salão de Beleza - Reforma',
                     itens: [
-                        { servId: 42, nome: 'Selador + Massa AcrÃ­lica + 2 AcrÃ­lica', preco: 28.50, un: 'mÂ²', qtd: 65, total: 1852.50 },
-                        { servId: 67, nome: 'Pintura Teto Repintura', preco: 12.50, un: 'mÂ²', qtd: 35, total: 437.50 },
+                        { servId: 42, nome: 'Selador + Massa Acrílica + 2 Acrílica', preco: 28.50, un: 'm²', qtd: 65, total: 1852.50 },
+                        { servId: 67, nome: 'Pintura Teto Repintura', preco: 12.50, un: 'm²', qtd: 35, total: 437.50 },
                         { servId: 61, nome: 'Pintura Porta Lisa', preco: 85.00, un: 'un', qtd: 3, total: 255 }
                     ],
                     total: 2545,
@@ -2432,12 +2254,12 @@ async function exportPDF() {
                 },
                 {
                     clienteId: 3,
-                    titulo: 'Casa TÃ©rrea - Pintura Completa',
+                    titulo: 'Casa Térrea - Pintura Completa',
                     itens: [
-                        { servId: 42, nome: 'Selador + Massa AcrÃ­lica + 2 AcrÃ­lica', preco: 28.50, un: 'mÂ²', qtd: 220, total: 6270 },
-                        { servId: 69, nome: 'Pintura Teto com Massa', preco: 32.00, un: 'mÂ²', qtd: 95, total: 3040 },
-                        { servId: 56, nome: 'Pintura Muro Externo', preco: 16.50, un: 'mÂ²', qtd: 65, total: 1072.50 },
-                        { servId: 66, nome: 'Pintura Grade/PortÃ£o M', preco: 280.00, un: 'un', qtd: 1, total: 280 }
+                        { servId: 42, nome: 'Selador + Massa Acrílica + 2 Acrílica', preco: 28.50, un: 'm²', qtd: 220, total: 6270 },
+                        { servId: 69, nome: 'Pintura Teto com Massa', preco: 32.00, un: 'm²', qtd: 95, total: 3040 },
+                        { servId: 56, nome: 'Pintura Muro Externo', preco: 16.50, un: 'm²', qtd: 65, total: 1072.50 },
+                        { servId: 66, nome: 'Pintura Grade/Portão M', preco: 280.00, un: 'un', qtd: 1, total: 280 }
                     ],
                     total: 10662.50,
                     status: 'recusado',
@@ -2454,7 +2276,7 @@ async function exportPDF() {
                 doc: '12.345.678/0001-99',
                 tel: '(11) 99999-8888',
                 email: 'contato@painelservices.com.br',
-                end: 'SÃ£o Paulo - SP',
+                end: 'São Paulo - SP',
                 val: 15
             });
 
