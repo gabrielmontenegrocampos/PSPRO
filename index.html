@@ -805,6 +805,8 @@
     </div>
 
     <div class="toast" id="toast"></div>
+        });
+    <div class="toast" id="toast"></div>
 
     <script src="js/supabase-config.js"></script>
     <script>
@@ -1596,15 +1598,6 @@
         document.getElementById('cliente-cep')?.addEventListener('input', function(e) {
             e.target.value = maskCEP(e.target.value);
         });
-
-        // Registrar Service Worker para PWA
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/sw.js')
-                    .then(reg => console.log('✅ Service Worker registrado'))
-                    .catch(err => console.log('❌ Erro no SW:', err));
-            });
-        }
     </script>
 </body>
 </html>
