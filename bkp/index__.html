@@ -9,7 +9,7 @@
     <title>PS Pro - Orçamentos Inteligentes</title>
     <link rel="manifest" href="manifest.json">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dexie@3.2.4/dist/dexie.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <style>
         :root {
@@ -38,6 +38,7 @@
             position: sticky;
             top: 0;
             z-index: 100;
+            box-shadow: 0 4px 20px rgba(26,59,90,0.3);
         }
         .header-content { display: flex; align-items: center; justify-content: space-between; }
         .logo { display: flex; align-items: center; gap: 12px; }
@@ -187,7 +188,7 @@
             margin-bottom: 14px;
             display: flex; align-items: center; justify-content: space-between;
         }
-        .section-title a { font-size: 12px; color: var(--amarelo); text-decoration: none; }
+        .section-title a { font-size: 12px; color: var(--azul); text-decoration: none; font-weight: 500; }
         .quick-actions { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 16px; }
         .quick-action {
             background: var(--branco);
@@ -199,7 +200,7 @@
             box-shadow: 0 2px 10px rgba(26,59,90,0.08);
         }
         .quick-action:hover { transform: translateY(-3px); box-shadow: 0 4px 15px rgba(26,59,90,0.12); }
-        .quick-action svg { width: 28px; height: 28px; color: var(--amarelo); margin-bottom: 8px; }
+        .quick-action svg { width: 28px; height: 28px; color: var(--azul); margin-bottom: 8px; }
         .quick-action span { display: block; font-size: 12px; font-weight: 600; }
         .modal-overlay {
             position: fixed;
@@ -393,6 +394,7 @@
         }
         .filters-summary.show { display: block; }
         .filters-summary strong { color: var(--azul); }
+        /* Remover setinhas dos inputs numéricos */
         input[type="number"]::-webkit-outer-spin-button,
         input[type="number"]::-webkit-inner-spin-button {
             -webkit-appearance: none;
@@ -453,20 +455,20 @@
                 </div>
                 <div class="stat-card success" onclick="filterOrcamentos('fechado')" style="cursor:pointer;">
                     <div class="stat-value" id="stat-fechados">0</div>
-                    <div class="stat-label">✅ Fechados</div>
+                    <div class="stat-label">âœ… Fechados</div>
                 </div>
                 <div class="stat-card warning" onclick="filterOrcamentos('pendente')" style="cursor:pointer;">
                     <div class="stat-value" id="stat-pendentes">0</div>
-                    <div class="stat-label">🟡 Pendentes</div>
+                    <div class="stat-label">ðŸŸ¡ Pendentes</div>
                 </div>
                 <div class="stat-card" style="border-left: 4px solid var(--vermelho); cursor:pointer;" onclick="filterOrcamentos('recusado')">
                     <div class="stat-value" id="stat-recusados">0</div>
-                    <div class="stat-label">❌ Recusados</div>
+                    <div class="stat-label">âŒ Recusados</div>
                 </div>
             </div>
 
             <div class="stat-card highlight" style="margin-bottom:16px; cursor:pointer;" onclick="filterOrcamentos('fechado')">
-                <div class="stat-label">💰 Valor Total Fechado</div>
+                <div class="stat-label">ðŸ’° Valor Total Fechado</div>
                 <div class="stat-value" id="stat-valor">R$ 0</div>
             </div>
 
@@ -518,9 +520,9 @@
                     <label class="filter-label">Status</label>
                     <select class="form-select filter-select" id="filter-status" onchange="applyOrcFilters()">
                         <option value="">Todos</option>
-                        <option value="pendente">🟡 Pendente</option>
-                        <option value="fechado">✅ Fechado</option>
-                        <option value="recusado">❌ Recusado</option>
+                        <option value="pendente">ðŸŸ¡ Pendente</option>
+                        <option value="fechado">âœ… Fechado</option>
+                        <option value="recusado">âŒ Recusado</option>
                     </select>
                 </div>
                 <div class="filter-group">
@@ -539,7 +541,7 @@
             <div id="orcamentos-list"></div>
         </div>
 
-        <!-- CONFIGURAÇÕES -->
+        <!-- CONFIGURAÇÃ•ES -->
         <div id="page-config" class="page">
             <div class="section-title">Meu Perfil</div>
             <div class="card">
@@ -618,12 +620,13 @@
             <span>Orçamentos</span>
         </div>
     </nav>
+
     <!-- Modal Serviço -->
     <div class="modal-overlay" id="modal-servico">
         <div class="modal">
             <div class="modal-header">
                 <div class="modal-title" id="title-servico">Novo Serviço</div>
-                <button class="modal-close" onclick="closeModal('modal-servico')">✕</button>
+                <button class="modal-close" onclick="closeModal('modal-servico')">âœ•</button>
             </div>
             <div class="modal-body">
                 <input type="hidden" id="servico-id">
@@ -664,7 +667,7 @@
         <div class="modal">
             <div class="modal-header">
                 <div class="modal-title" id="title-cliente">Novo Cliente</div>
-                <button class="modal-close" onclick="closeModal('modal-cliente')">✕</button>
+                <button class="modal-close" onclick="closeModal('modal-cliente')">âœ•</button>
             </div>
             <div class="modal-body">
                 <input type="hidden" id="cliente-id">
@@ -721,7 +724,7 @@
         <div class="modal">
             <div class="modal-header">
                 <div class="modal-title" id="modal-orc-title">Novo Orçamento</div>
-                <button class="modal-close" onclick="closeModal('modal-orcamento')">✕</button>
+                <button class="modal-close" onclick="closeModal('modal-orcamento')">âœ•</button>
             </div>
             <div class="modal-body">
                 <input type="hidden" id="orc-id">
@@ -791,41 +794,32 @@
         <div class="modal">
             <div class="modal-header">
                 <div class="modal-title">Detalhes do Orçamento</div>
-                <button class="modal-close" onclick="closeModal('modal-det')">✕</button>
+                <button class="modal-close" onclick="closeModal('modal-det')">âœ•</button>
             </div>
             <div class="modal-body" id="det-content"></div>
             <div class="modal-footer" style="flex-wrap:wrap;gap:8px;">
-                <button class="btn btn-outline btn-sm" style="flex:1;min-width:70px;" onclick="setStatus('pendente')">🟡 Pendente</button>
-                <button class="btn btn-outline btn-sm" style="flex:1;min-width:70px;" onclick="setStatus('fechado')">✅ Fechado</button>
-                <button class="btn btn-outline btn-sm" style="flex:1;min-width:70px;" onclick="setStatus('recusado')">❌ Recusado</button>
-                <button class="btn btn-secondary" style="width:100%;" onclick="editOrcamento()">✏️ Editar Orçamento</button>
-                <button class="btn btn-primary" style="width:100%;" onclick="exportPDF()">📄 Exportar PDF</button>
+                <button class="btn btn-outline btn-sm" style="flex:1;min-width:70px;" onclick="setStatus('pendente')">ðŸŸ¡ Pendente</button>
+                <button class="btn btn-outline btn-sm" style="flex:1;min-width:70px;" onclick="setStatus('fechado')">âœ… Fechado</button>
+                <button class="btn btn-outline btn-sm" style="flex:1;min-width:70px;" onclick="setStatus('recusado')">âŒ Recusado</button>
+                <button class="btn btn-secondary" style="width:100%;" onclick="editOrcamento()">âœï¸ Editar Orçamento</button>
+                <button class="btn btn-primary" style="width:100%;" onclick="exportPDF()">ðŸ“„ Exportar PDF</button>
             </div>
         </div>
     </div>
 
     <div class="toast" id="toast"></div>
 
-    <script src="js/supabase-config.js"></script>
     <script>
-        let orcItens = [];
-        let currentOrcId = null;
-        let allClientes = [];
-        let allServicos = [];
-        let selectedServico = null;
-        let isEditingOrc = false;
-
-        document.addEventListener('DOMContentLoaded', async () => {
-            const user = await checkAuth();
-            if (!user) return;
-            loadDashboard();
+        const db = new Dexie('PSProDB');
+        db.version(1).stores({
+            perfil: '++id',
+            clientes: '++id,nome',
+            servicos: '++id,nome',
+            orcamentos: '++id,clienteId,status,data'
         });
 
-        async function handleLogout() {
-            if (confirm('Deseja realmente sair?')) {
-                await logout();
-            }
-        }
+        let orcItens = [];
+        let currentOrcId = null;
 
         function showPage(p) {
             document.querySelectorAll('.page').forEach(x => x.classList.remove('active'));
@@ -839,16 +833,20 @@
             if (p === 'config') loadPerfil();
         }
 
+        let isEditingOrc = false;
+
         async function openModal(id) {
             document.getElementById(id).classList.add('active');
             if (id === 'modal-orcamento' && !isEditingOrc) {
                 orcItens = [];
                 renderOrcItens();
                 loadSelects();
-                const pArr = await loadPerfil();
-                if (pArr) {
-                    document.getElementById('orc-obs').value = pArr.obs || '';
-                    document.getElementById('orc-pagamento').value = pArr.pagamento || '';
+                
+                // Pré-preencher observações e pagamento do perfil
+                const pArr = await db.perfil.toArray();
+                if (pArr[0]) {
+                    document.getElementById('orc-obs').value = pArr[0].obs || '';
+                    document.getElementById('orc-pagamento').value = pArr[0].pagamento || '';
                 }
             }
             isEditingOrc = false;
@@ -902,30 +900,32 @@
             setTimeout(() => t.classList.remove('show'), 2500);
         }
 
+        // PERFIL
         async function loadPerfil() {
-            const p = await supabaseClient.from('perfil').select('*').single();
-            if (p.data) {
-                document.getElementById('perfil-nome').value = p.data.nome || '';
-                document.getElementById('perfil-doc').value = p.data.doc || '';
-                document.getElementById('perfil-tel').value = p.data.tel || '';
-                document.getElementById('perfil-email').value = p.data.email || '';
-                document.getElementById('perfil-cep').value = p.data.cep || '';
-                document.getElementById('perfil-num').value = p.data.num || '';
-                document.getElementById('perfil-end').value = p.data.end || '';
-                document.getElementById('perfil-compl').value = p.data.compl || '';
-                document.getElementById('perfil-val').value = p.data.val || 15;
-                document.getElementById('perfil-pagamento').value = p.data.pagamento || '';
-                document.getElementById('perfil-obs').value = p.data.obs || '';
-                return p.data;
+            const p = await db.perfil.toArray();
+            if (p[0]) {
+                document.getElementById('perfil-nome').value = p[0].nome || '';
+                document.getElementById('perfil-doc').value = p[0].doc || '';
+                document.getElementById('perfil-tel').value = p[0].tel || '';
+                document.getElementById('perfil-email').value = p[0].email || '';
+                document.getElementById('perfil-cep').value = p[0].cep || '';
+                document.getElementById('perfil-num').value = p[0].num || '';
+                document.getElementById('perfil-end').value = p[0].end || '';
+                document.getElementById('perfil-compl').value = p[0].compl || '';
+                document.getElementById('perfil-val').value = p[0].val || 15;
+                document.getElementById('perfil-pagamento').value = p[0].pagamento || '';
+                document.getElementById('perfil-obs').value = p[0].obs || '';
             }
-            return null;
         }
 
-        document.getElementById('form-perfil')?.addEventListener('submit', async e => {
+        document.getElementById('form-perfil').addEventListener('submit', async e => {
             e.preventDefault();
+            
             const num = document.getElementById('perfil-num').value;
             const compl = document.getElementById('perfil-compl').value;
             let end = document.getElementById('perfil-end').value;
+            
+            // Monta endereço completo para exibição
             let endCompleto = end;
             if (num && !end.includes(', ' + num)) {
                 endCompleto = end.replace(/,/, ', ' + num + ',');
@@ -933,6 +933,7 @@
             if (compl) {
                 endCompleto += ' - ' + compl;
             }
+            
             const data = {
                 nome: document.getElementById('perfil-nome').value,
                 doc: document.getElementById('perfil-doc').value,
@@ -942,28 +943,28 @@
                 num: num,
                 end: endCompleto,
                 compl: compl,
-                val: parseInt(document.getElementById('perfil-val').value) || 15,
+                val: document.getElementById('perfil-val').value,
                 pagamento: document.getElementById('perfil-pagamento').value,
                 obs: document.getElementById('perfil-obs').value
             };
-            const ex = await supabaseClient.from('perfil').select('id').single();
-            if (ex.data) {
-                await supabaseClient.from('perfil').update(data).eq('id', ex.data.id);
-            } else {
-                await supabaseClient.from('perfil').insert(data);
-            }
+            
+            const ex = await db.perfil.toArray();
+            if (ex[0]) await db.perfil.update(ex[0].id, data);
+            else await db.perfil.add(data);
+            
             toast('Perfil salvo!');
             showPage('dashboard');
         });
 
+        // SERVIÇOS
         async function loadServicos() {
-            const s = await supabaseClient.from('servicos').select('*').order('nome');
+            const s = await db.servicos.toArray();
             const c = document.getElementById('servicos-list');
-            if (!s.data || !s.data.length) {
+            if (!s.length) {
                 c.innerHTML = '<div class="empty-state"><p>Nenhum serviço cadastrado</p><button class="btn btn-primary" style="max-width:180px;margin:0 auto;" onclick="openModal(\'modal-servico\')">Cadastrar</button></div>';
                 return;
             }
-            c.innerHTML = s.data.map(x => `
+            c.innerHTML = s.map(x => `
                 <div class="list-item" onclick="editServico(${x.id})">
                     <div class="list-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg></div>
                     <div class="list-info">
@@ -976,12 +977,12 @@
         }
 
         async function editServico(id) {
-            const s = await supabaseClient.from('servicos').select('*').eq('id', id).single();
-            document.getElementById('servico-id').value = s.data.id;
-            document.getElementById('servico-nome').value = s.data.nome;
-            document.getElementById('servico-un').value = s.data.un;
-            document.getElementById('servico-preco').value = numberToMoeda(s.data.preco);
-            document.getElementById('servico-desc').value = s.data.desc || '';
+            const s = await db.servicos.get(id);
+            document.getElementById('servico-id').value = s.id;
+            document.getElementById('servico-nome').value = s.nome;
+            document.getElementById('servico-un').value = s.un;
+            document.getElementById('servico-preco').value = numberToMoeda(s.preco);
+            document.getElementById('servico-desc').value = s.desc || '';
             document.getElementById('title-servico').textContent = 'Editar Serviço';
             openModal('modal-servico');
         }
@@ -995,24 +996,22 @@
                 desc: document.getElementById('servico-desc').value
             };
             if (!data.nome || !data.preco) { toast('Preencha nome e preço'); return; }
-            if (id) {
-                await supabaseClient.from('servicos').update(data).eq('id', parseInt(id));
-            } else {
-                await supabaseClient.from('servicos').insert(data);
-            }
+            if (id) await db.servicos.update(parseInt(id), data);
+            else await db.servicos.add(data);
             toast('Serviço salvo!');
             closeModal('modal-servico');
             loadServicos();
         }
 
+        // CLIENTES
         async function loadClientes() {
-            const c = await supabaseClient.from('clientes').select('*').order('nome');
+            const c = await db.clientes.toArray();
             const el = document.getElementById('clientes-list');
-            if (!c.data || !c.data.length) {
+            if (!c.length) {
                 el.innerHTML = '<div class="empty-state"><p>Nenhum cliente cadastrado</p><button class="btn btn-primary" style="max-width:180px;margin:0 auto;" onclick="openModal(\'modal-cliente\')">Cadastrar</button></div>';
                 return;
             }
-            el.innerHTML = c.data.map(x => `
+            el.innerHTML = c.map(x => `
                 <div class="list-item" onclick="editCliente(${x.id})">
                     <div class="list-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></div>
                     <div class="list-info">
@@ -1024,17 +1023,17 @@
         }
 
         async function editCliente(id) {
-            const c = await supabaseClient.from('clientes').select('*').eq('id', id).single();
-            document.getElementById('cliente-id').value = c.data.id;
-            document.getElementById('cliente-nome').value = c.data.nome;
-            document.getElementById('cliente-doc').value = c.data.doc || '';
-            document.getElementById('cliente-tel').value = c.data.tel || '';
-            document.getElementById('cliente-email').value = c.data.email || '';
-            document.getElementById('cliente-cep').value = c.data.cep || '';
-            document.getElementById('cliente-num').value = c.data.num || '';
-            document.getElementById('cliente-end').value = c.data.end || '';
-            document.getElementById('cliente-compl').value = c.data.compl || '';
-            document.getElementById('cliente-obs').value = c.data.obs || '';
+            const c = await db.clientes.get(id);
+            document.getElementById('cliente-id').value = c.id;
+            document.getElementById('cliente-nome').value = c.nome;
+            document.getElementById('cliente-doc').value = c.doc || '';
+            document.getElementById('cliente-tel').value = c.tel || '';
+            document.getElementById('cliente-email').value = c.email || '';
+            document.getElementById('cliente-cep').value = c.cep || '';
+            document.getElementById('cliente-num').value = c.num || '';
+            document.getElementById('cliente-end').value = c.end || '';
+            document.getElementById('cliente-compl').value = c.compl || '';
+            document.getElementById('cliente-obs').value = c.obs || '';
             document.getElementById('title-cliente').textContent = 'Editar Cliente';
             openModal('modal-cliente');
         }
@@ -1044,12 +1043,15 @@
             const num = document.getElementById('cliente-num').value;
             const compl = document.getElementById('cliente-compl').value;
             let end = document.getElementById('cliente-end').value;
+            
+            // Adiciona número e complemento ao endereço se preenchidos
             if (num && !end.includes(', ' + num)) {
                 end = end.replace(/,/, ', ' + num + ',');
             }
             if (compl) {
                 end += ' - ' + compl;
             }
+            
             const data = {
                 nome: document.getElementById('cliente-nome').value,
                 doc: document.getElementById('cliente-doc').value,
@@ -1062,21 +1064,21 @@
                 obs: document.getElementById('cliente-obs').value
             };
             if (!data.nome) { toast('Preencha o nome'); return; }
-            if (id) {
-                await supabaseClient.from('clientes').update(data).eq('id', parseInt(id));
-            } else {
-                await supabaseClient.from('clientes').insert(data);
-            }
+            if (id) await db.clientes.update(parseInt(id), data);
+            else await db.clientes.add(data);
             toast('Cliente salvo!');
             closeModal('modal-cliente');
             loadClientes();
         }
 
+        // ORÇAMENTOS
+        let allClientes = [];
+        let allServicos = [];
+        let selectedServico = null;
+
         async function loadSelects() {
-            const c = await supabaseClient.from('clientes').select('*').order('nome');
-            const s = await supabaseClient.from('servicos').select('*').order('nome');
-            allClientes = c.data || [];
-            allServicos = s.data || [];
+            allClientes = await db.clientes.toArray();
+            allServicos = await db.servicos.toArray();
         }
 
         async function searchClientes(term) {
@@ -1089,6 +1091,7 @@
                 c.nome.toLowerCase().includes(term.toLowerCase()) ||
                 (c.tel && c.tel.includes(term))
             ).slice(0, 8);
+            
             if (filtered.length === 0) {
                 list.innerHTML = '<div class="autocomplete-item">Nenhum cliente encontrado</div>';
             } else {
@@ -1098,7 +1101,7 @@
                     return `
                         <div class="autocomplete-item" data-id="${c.id}" data-nome="${nomeEscaped}" onclick="selectClienteFromEl(this)">
                             <strong>${c.nome}</strong>
-                            <small>${c.tel || ''} ${enderecoResumo ? '• ' + enderecoResumo : ''}</small>
+                            <small>${c.tel || ''} ${enderecoResumo ? 'â€¢ ' + enderecoResumo : ''}</small>
                         </div>
                     `;
                 }).join('');
@@ -1114,6 +1117,12 @@
             document.getElementById('cliente-autocomplete').classList.remove('show');
         }
 
+        function selectCliente(id, nome) {
+            document.getElementById('orc-cliente').value = id;
+            document.getElementById('orc-cliente-search').value = nome;
+            document.getElementById('cliente-autocomplete').classList.remove('show');
+        }
+
         async function searchServicos(term) {
             const list = document.getElementById('servico-autocomplete');
             if (!term || term.length < 2) {
@@ -1123,6 +1132,7 @@
             const filtered = allServicos.filter(s => 
                 s.nome.toLowerCase().includes(term.toLowerCase())
             ).slice(0, 8);
+            
             if (filtered.length === 0) {
                 list.innerHTML = '<div class="autocomplete-item">Nenhum serviço encontrado</div>';
             } else {
@@ -1147,6 +1157,7 @@
             }
         }
 
+        // Fechar autocomplete ao clicar fora
         document.addEventListener('click', function(e) {
             if (!e.target.closest('.autocomplete-wrapper')) {
                 document.querySelectorAll('.autocomplete-list').forEach(l => l.classList.remove('show'));
@@ -1158,12 +1169,15 @@
             const qtd = moedaToNumber(document.getElementById('orc-qtd').value);
             const precoUnit = moedaToNumber(document.getElementById('orc-preco-unit').value);
             const ambiente = document.getElementById('orc-ambiente').value.trim();
+            
             if (!servId || !qtd || !precoUnit) { 
                 toast('Preencha serviço, quantidade e preço'); 
                 return; 
             }
+            
             const servico = allServicos.find(s => s.id === parseInt(servId));
             if (!servico) { toast('Serviço não encontrado'); return; }
+            
             orcItens.push({
                 servId: parseInt(servId),
                 nome: servico.nome,
@@ -1173,7 +1187,10 @@
                 total: qtd * precoUnit,
                 ambiente: ambiente || 'Geral'
             });
+            
             renderOrcItens();
+            
+            // Limpar campos
             document.getElementById('orc-serv-search').value = '';
             document.getElementById('orc-serv-sel').value = '';
             document.getElementById('orc-qtd').value = '';
@@ -1199,49 +1216,68 @@
         function renderOrcItens() {
             const c = document.getElementById('orc-itens');
             const total = orcItens.reduce((s, x) => s + x.total, 0);
+            
+            // Agrupar por ambiente
             const ambientes = {};
             orcItens.forEach((item, i) => {
                 const amb = item.ambiente || 'Geral';
                 if (!ambientes[amb]) ambientes[amb] = [];
                 ambientes[amb].push({...item, index: i});
             });
+            
             let html = '';
             for (const [ambiente, itens] of Object.entries(ambientes)) {
-                html += `<div class="orc-item-ambiente">📍 ${ambiente}</div>`;
+                html += `<div class="orc-item-ambiente">ðŸ“ ${ambiente}</div>`;
                 html += itens.map(x => `
                     <div class="orc-item">
                         <div class="orc-item-info">
                             <div class="orc-item-name">${x.nome}</div>
                             <div class="orc-item-edit">
-                                <input type="text" value="${numberToMoeda(x.qtd)}" onchange="updateItemOrc(${x.index}, 'qtd', this.value)" oninput="this.value = maskMoeda(this.value)" title="Quantidade"> ${x.un} ×
+                                <input type="text" value="${numberToMoeda(x.qtd)}" onchange="updateItemOrc(${x.index}, 'qtd', this.value)" oninput="this.value = maskMoeda(this.value)" title="Quantidade"> ${x.un} Ã—
                                 <input type="text" value="${numberToMoeda(x.preco)}" onchange="updateItemOrc(${x.index}, 'preco', this.value)" oninput="this.value = maskMoeda(this.value)" title="Preço unitário">
                             </div>
                         </div>
                         <div class="orc-item-val">R$ ${numberToMoeda(x.total)}</div>
-                        <button class="orc-item-del" onclick="removeItemOrc(${x.index})">✕</button>
+                        <button class="orc-item-del" onclick="removeItemOrc(${x.index})">âœ•</button>
                     </div>
                 `).join('');
             }
+            
             c.innerHTML = html;
             document.getElementById('orc-total').textContent = `R$ ${numberToMoeda(total)}`;
         }
 
         async function editOrcamento() {
-            const o = await supabaseClient.from('orcamentos').select('*').eq('id', currentOrcId).single();
-            if (!o.data) { toast('Orçamento não encontrado'); return; }
-            const cliente = await supabaseClient.from('clientes').select('*').eq('id', o.data.cliente_id).single();
+            const o = await db.orcamentos.get(currentOrcId);
+            if (!o) { toast('Orçamento não encontrado'); return; }
+            
+            const cliente = await db.clientes.get(o.clienteId);
+            
+            // Carregar listas para autocomplete
             await loadSelects();
+            
+            // Fechar modal de detalhes
             closeModal('modal-det');
+            
+            // Marcar como edição para não limpar os dados
             isEditingOrc = true;
-            orcItens = o.data.itens.map(item => ({...item}));
+            
+            // Carregar itens ANTES de abrir o modal
+            orcItens = o.itens.map(item => ({...item}));
+            
+            // Abrir modal
             await openModal('modal-orcamento');
-            document.getElementById('orc-id').value = o.data.id;
-            document.getElementById('orc-titulo').value = o.data.titulo;
-            document.getElementById('orc-cliente').value = o.data.cliente_id;
-            document.getElementById('orc-cliente-search').value = cliente?.data?.nome || '';
-            document.getElementById('orc-pagamento').value = o.data.pagamento || '';
-            document.getElementById('orc-obs').value = o.data.obs || '';
-            document.getElementById('modal-orc-title').textContent = 'Editar Orçamento #' + o.data.id;
+            
+            // Preencher dados no modal de edição DEPOIS de abrir
+            document.getElementById('orc-id').value = o.id;
+            document.getElementById('orc-titulo').value = o.titulo;
+            document.getElementById('orc-cliente').value = o.clienteId;
+            document.getElementById('orc-cliente-search').value = cliente?.nome || '';
+            document.getElementById('orc-pagamento').value = o.pagamento || '';
+            document.getElementById('orc-obs').value = o.obs || '';
+            document.getElementById('modal-orc-title').textContent = 'Editar Orçamento #' + o.id;
+            
+            // Renderizar itens
             renderOrcItens();
         }
 
@@ -1251,52 +1287,85 @@
             const titulo = document.getElementById('orc-titulo').value || 'Orçamento';
             const pagamento = document.getElementById('orc-pagamento').value;
             const obs = document.getElementById('orc-obs').value;
+            
+            console.log('Salvando orçamento:', { orcId, cliId, titulo, itens: orcItens });
+            
             if (!cliId) { 
                 toast('Selecione um cliente'); 
+                console.error('Cliente não selecionado');
                 return; 
             }
             if (!orcItens.length) { 
                 toast('Adicione serviços'); 
+                console.error('Nenhum item adicionado');
                 return; 
             }
-            const total = orcItens.reduce((s, x) => s + x.total, 0);
-            const pArr = await loadPerfil();
-            const val = pArr?.val || 15;
-            const data = {
-                cliente_id: parseInt(cliId),
-                titulo,
-                itens: orcItens,
-                total,
-                status: 'pendente',
-                val,
-                pagamento,
-                obs
-            };
-            if (orcId) {
-                await supabaseClient.from('orcamentos').update(data).eq('id', parseInt(orcId));
-                toast('Orçamento atualizado!');
-            } else {
-                await supabaseClient.from('orcamentos').insert(data);
-                toast('Orçamento criado!');
+            
+            try {
+                const total = orcItens.reduce((s, x) => s + x.total, 0);
+                const pArr = await db.perfil.toArray();
+                const val = pArr[0]?.val || 15;
+                
+                if (orcId) {
+                    // Editar existente
+                    await db.orcamentos.update(parseInt(orcId), {
+                        clienteId: parseInt(cliId),
+                        titulo,
+                        itens: orcItens,
+                        total,
+                        pagamento,
+                        obs
+                    });
+                    console.log('Orçamento atualizado:', orcId);
+                    toast('Orçamento atualizado!');
+                } else {
+                    // Criar novo
+                    const novoOrc = {
+                        clienteId: parseInt(cliId),
+                        titulo,
+                        itens: orcItens,
+                        total,
+                        status: 'pendente',
+                        data: new Date().toISOString(),
+                        val,
+                        pagamento,
+                        obs
+                    };
+                    
+                    console.log('Objeto a salvar:', novoOrc);
+                    
+                    const id = await db.orcamentos.add(novoOrc);
+                    console.log('Orçamento salvo com ID:', id);
+                    toast('Orçamento criado!');
+                }
+                
+                closeModal('modal-orcamento');
+                orcItens = [];
+                loadDashboard();
+                loadOrcamentos();
+            } catch (err) {
+                console.error('Erro ao salvar:', err);
+                toast('Erro ao salvar orçamento!');
             }
-            closeModal('modal-orcamento');
-            orcItens = [];
-            loadDashboard();
-            loadOrcamentos();
         }
 
         async function loadOrcamentos() {
-            const o = await supabaseClient.from('orcamentos').select('*').order('created_at', { ascending: false });
+            let o = await db.orcamentos.toArray();
             const c = document.getElementById('orcamentos-list');
-            if (!o.data || !o.data.length) {
+            
+            if (!o.length) {
                 c.innerHTML = '<div class="empty-state"><p>Nenhum orçamento</p><button class="btn btn-primary" style="max-width:180px;margin:0 auto;" onclick="openModal(\'modal-orcamento\')">Criar</button></div>';
                 document.getElementById('filters-summary').classList.remove('show');
                 return;
             }
-            window.allOrcamentos = o.data;
-            const cli = await supabaseClient.from('clientes').select('*');
+            
+            // Guardar todos para filtros
+            window.allOrcamentos = o;
+            
+            const cli = await db.clientes.toArray();
             window.allClientesMap = {}; 
-            cli.data.forEach(x => window.allClientesMap[x.id] = x.nome);
+            cli.forEach(x => window.allClientesMap[x.id] = x.nome);
+            
             applyOrcFilters();
         }
 
@@ -1304,29 +1373,39 @@
             const search = document.getElementById('search-orc').value.toLowerCase();
             const statusFilter = document.getElementById('filter-status').value;
             const periodoFilter = document.getElementById('filter-periodo').value;
+            
             let filtered = window.allOrcamentos || [];
+            
+            // Filtro por status
             if (statusFilter) {
                 filtered = filtered.filter(x => x.status === statusFilter);
             }
+            
+            // Filtro por período
             if (periodoFilter) {
                 const dias = parseInt(periodoFilter);
                 const dataLimite = new Date();
                 dataLimite.setDate(dataLimite.getDate() - dias);
-                filtered = filtered.filter(x => new Date(x.created_at) >= dataLimite);
+                filtered = filtered.filter(x => new Date(x.data) >= dataLimite);
             }
+            
+            // Filtro por busca texto
             if (search) {
                 filtered = filtered.filter(x => {
-                    const clienteNome = window.allClientesMap[x.cliente_id] || '';
+                    const clienteNome = window.allClientesMap[x.clienteId] || '';
                     return x.titulo.toLowerCase().includes(search) ||
                            clienteNome.toLowerCase().includes(search) ||
                            x.status.includes(search);
                 });
             }
+            
             renderOrcamentosList(filtered);
+            
+            // Resumo dos filtros
             const summary = document.getElementById('filters-summary');
             const totalValor = filtered.reduce((s, x) => s + x.total, 0);
             if (statusFilter || periodoFilter || search) {
-                summary.innerHTML = `<strong>${filtered.length}</strong> orçamento(s) encontrado(s) • Total: <strong>R$ ${totalValor.toLocaleString('pt-BR', {minimumFractionDigits: 2})}</strong>`;
+                summary.innerHTML = `<strong>${filtered.length}</strong> orçamento(s) encontrado(s) â€¢ Total: <strong>R$ ${totalValor.toLocaleString('pt-BR', {minimumFractionDigits: 2})}</strong>`;
                 summary.classList.add('show');
             } else {
                 summary.classList.remove('show');
@@ -1337,20 +1416,22 @@
             const c = document.getElementById('orcamentos-list');
             const map = window.allClientesMap || {};
             const badges = { 
-                pendente: '<span class="badge badge-pending">🟡 Pendente</span>', 
-                fechado: '<span class="badge badge-approved">✅ Fechado</span>', 
-                recusado: '<span class="badge badge-rejected">❌ Recusado</span>' 
+                pendente: '<span class="badge badge-pending">ðŸŸ¡ Pendente</span>', 
+                fechado: '<span class="badge badge-approved">âœ… Fechado</span>', 
+                recusado: '<span class="badge badge-rejected">âŒ Recusado</span>' 
             };
+            
             if (!orcamentos.length) {
                 c.innerHTML = '<div class="empty-state" style="padding:20px;"><p>Nenhum orçamento encontrado com esses filtros</p></div>';
                 return;
             }
-            c.innerHTML = orcamentos.map(x => `
+            
+            c.innerHTML = orcamentos.reverse().map(x => `
                 <div class="list-item" onclick="viewOrc(${x.id})">
                     <div class="list-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg></div>
                     <div class="list-info">
                         <div class="list-title">${x.titulo}</div>
-                        <div class="list-sub">${map[x.cliente_id] || ''} • ${new Date(x.created_at).toLocaleDateString('pt-BR')}</div>
+                        <div class="list-sub">${map[x.clienteId] || ''} â€¢ ${new Date(x.data).toLocaleDateString('pt-BR')}</div>
                         ${badges[x.status]}
                     </div>
                     <div class="list-value">R$ ${numberToMoeda(x.total)}</div>
@@ -1360,106 +1441,120 @@
 
         async function viewOrc(id) {
             currentOrcId = id;
-            const o = await supabaseClient.from('orcamentos').select('*').eq('id', id).single();
-            const cli = await supabaseClient.from('clientes').select('*').eq('id', o.data.cliente_id).single();
-            const badges = { pendente: '<span class="badge badge-pending">🟡 Pendente</span>', fechado: '<span class="badge badge-approved">✅ Fechado</span>', recusado: '<span class="badge badge-rejected">❌ Recusado</span>' };
+            const o = await db.orcamentos.get(id);
+            const cli = await db.clientes.get(o.clienteId);
+            const badges = { pendente: '<span class="badge badge-pending">ðŸŸ¡ Pendente</span>', fechado: '<span class="badge badge-approved">âœ… Fechado</span>', recusado: '<span class="badge badge-rejected">âŒ Recusado</span>' };
+            
+            // Agrupar itens por ambiente
             const ambientes = {};
-            o.data.itens.forEach(item => {
+            o.itens.forEach(item => {
                 const amb = item.ambiente || 'Geral';
                 if (!ambientes[amb]) ambientes[amb] = [];
                 ambientes[amb].push(item);
             });
+            
             let itensHtml = '';
             for (const [ambiente, itens] of Object.entries(ambientes)) {
-                itensHtml += `<div class="orc-item-ambiente">📍 ${ambiente}</div>`;
+                itensHtml += `<div class="orc-item-ambiente">ðŸ“ ${ambiente}</div>`;
                 itensHtml += itens.map(x => `
                     <div class="orc-item">
                         <div class="orc-item-info">
                             <div class="orc-item-name">${x.nome}</div>
-                            <div class="orc-item-det">${numberToMoeda(x.qtd)} ${x.un} × R$ ${numberToMoeda(x.preco)}</div>
+                            <div class="orc-item-det">${numberToMoeda(x.qtd)} ${x.un} Ã— R$ ${numberToMoeda(x.preco)}</div>
                         </div>
                         <div class="orc-item-val">R$ ${numberToMoeda(x.total)}</div>
                     </div>
                 `).join('');
             }
-            let pagamentoHtml = o.data.pagamento ? `<div class="card" style="background:var(--cinza-bg);margin-bottom:14px;"><strong>💳 Pagamento:</strong> ${o.data.pagamento}</div>` : '';
-            let obsHtml = o.data.obs ? `<div class="card" style="background:var(--cinza-bg);margin-bottom:14px;font-size:12px;"><strong>📝 Observações:</strong><br>${o.data.obs.replace(/\n/g, '<br>')}</div>` : '';
+            
+            let pagamentoHtml = o.pagamento ? `<div class="card" style="background:var(--cinza-bg);margin-bottom:14px;"><strong>ðŸ’³ Pagamento:</strong> ${o.pagamento}</div>` : '';
+            let obsHtml = o.obs ? `<div class="card" style="background:var(--cinza-bg);margin-bottom:14px;font-size:12px;"><strong>ðŸ“ Observações:</strong><br>${o.obs.replace(/\n/g, '<br>')}</div>` : '';
+            
             document.getElementById('det-content').innerHTML = `
-                <div style="margin-bottom:14px;"><h3 style="margin-bottom:4px;">${o.data.titulo}</h3>${badges[o.data.status]}</div>
+                <div style="margin-bottom:14px;"><h3 style="margin-bottom:4px;">${o.titulo}</h3>${badges[o.status]}</div>
                 <div class="card" style="background:var(--cinza-bg);margin-bottom:14px;">
-                    <strong>Cliente:</strong> ${cli?.data?.nome || 'N/A'}<br>
-                    <strong>Tel:</strong> ${cli?.data?.tel || 'N/A'}<br>
-                    <strong>End:</strong> ${cli?.data?.end || 'N/A'}
+                    <strong>Cliente:</strong> ${cli?.nome || 'N/A'}<br>
+                    <strong>Tel:</strong> ${cli?.tel || 'N/A'}<br>
+                    <strong>End:</strong> ${cli?.end || 'N/A'}
                 </div>
                 <div class="card-title">Itens</div>
                 ${itensHtml}
-                <div class="orc-total"><div class="orc-total-label">Total</div><div class="orc-total-value">R$ ${numberToMoeda(o.data.total)}</div></div>
+                <div class="orc-total"><div class="orc-total-label">Total</div><div class="orc-total-value">R$ ${numberToMoeda(o.total)}</div></div>
                 ${pagamentoHtml}
                 ${obsHtml}
-                <p style="font-size:11px;color:var(--cinza-texto);margin-top:12px;text-align:center;">Criado em ${new Date(o.data.created_at).toLocaleDateString('pt-BR')} • Válido por ${o.data.val} dias</p>
+                <p style="font-size:11px;color:var(--cinza-texto);margin-top:12px;text-align:center;">Criado em ${new Date(o.data).toLocaleDateString('pt-BR')} â€¢ Válido por ${o.val} dias</p>
             `;
             openModal('modal-det');
         }
 
         async function setStatus(s) {
-            await supabaseClient.from('orcamentos').update({ status: s }).eq('id', currentOrcId);
+            await db.orcamentos.update(currentOrcId, { status: s });
             toast('Status atualizado!');
             closeModal('modal-det');
             loadOrcamentos();
             loadDashboard();
         }
 
+        // DASHBOARD
         let currentFilter = 'todos';
 
         async function loadDashboard() {
-            const o = await supabaseClient.from('orcamentos').select('*');
-            if (!o.data) return;
-            const total = o.data.length;
-            const fechados = o.data.filter(x => x.status === 'fechado');
-            const pendentes = o.data.filter(x => x.status === 'pendente').length;
-            const recusados = o.data.filter(x => x.status === 'recusado').length;
+            const o = await db.orcamentos.toArray();
+            const total = o.length;
+            const fechados = o.filter(x => x.status === 'fechado');
+            const pendentes = o.filter(x => x.status === 'pendente').length;
+            const recusados = o.filter(x => x.status === 'recusado').length;
             const valorFechado = fechados.reduce((s, x) => s + x.total, 0);
+            
             document.getElementById('stat-total').textContent = total;
             document.getElementById('stat-fechados').textContent = fechados.length;
             document.getElementById('stat-pendentes').textContent = pendentes;
             document.getElementById('stat-recusados').textContent = recusados;
             document.getElementById('stat-valor').textContent = `R$ ${valorFechado.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}`;
+            
             loadUltimos();
         }
 
         function filterOrcamentos(status) {
             currentFilter = status;
             showPage('orcamentos');
+            
+            // Aplica o filtro após carregar a página
             setTimeout(() => {
                 const statusSelect = document.getElementById('filter-status');
                 const searchInput = document.getElementById('search-orc');
                 const periodoSelect = document.getElementById('filter-periodo');
+                
+                // Limpa outros filtros
                 searchInput.value = '';
                 periodoSelect.value = '';
+                
+                // Define o status
                 if (status === 'todos') {
                     statusSelect.value = '';
                 } else {
                     statusSelect.value = status;
                 }
+                
                 applyOrcFilters();
             }, 100);
         }
 
         async function loadUltimos() {
-            const o = await supabaseClient.from('orcamentos').select('*').eq('status', 'pendente').order('created_at', { ascending: false }).limit(5);
+            const o = await db.orcamentos.where('status').equals('pendente').reverse().toArray();
             const c = document.getElementById('ultimos-orc');
-            if (!o.data || !o.data.length) { 
-                c.innerHTML = '<div class="empty-state" style="padding:20px;"><p>Nenhum orçamento pendente 🎉</p></div>'; 
+            if (!o.length) { 
+                c.innerHTML = '<div class="empty-state" style="padding:20px;"><p>Nenhum orçamento pendente ðŸŽ‰</p></div>'; 
                 return; 
             }
-            const cli = await supabaseClient.from('clientes').select('*');
-            const map = {}; cli.data.forEach(x => map[x.id] = x.nome);
-            c.innerHTML = o.data.map(x => `
+            const cli = await db.clientes.toArray();
+            const map = {}; cli.forEach(x => map[x.id] = x.nome);
+            c.innerHTML = o.slice(0, 5).map(x => `
                 <div class="list-item" onclick="viewOrc(${x.id})">
                     <div class="list-icon" style="background:rgba(247,192,38,0.2);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--amarelo)" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></div>
                     <div class="list-info">
                         <div class="list-title">${x.titulo}</div>
-                        <div class="list-sub">${map[x.cliente_id] || ''} • ${new Date(x.created_at).toLocaleDateString('pt-BR')}</div>
+                        <div class="list-sub">${map[x.clienteId] || ''} â€¢ ${new Date(x.data).toLocaleDateString('pt-BR')}</div>
                     </div>
                     <div class="list-value">R$ ${numberToMoeda(x.total)}</div>
                 </div>
@@ -1473,10 +1568,163 @@
             });
         }
 
+        // PDF
         async function exportPDF() {
-            toast('Função PDF em desenvolvimento');
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+            const o = await db.orcamentos.get(currentOrcId);
+            const cli = await db.clientes.get(o.clienteId);
+            const pArr = await db.perfil.toArray();
+            const p = pArr[0] || {};
+            
+            doc.setFillColor(26, 59, 90);
+            doc.rect(0, 0, 210, 40, 'F');
+            doc.setTextColor(255, 255, 255);
+            doc.setFontSize(22);
+            doc.setFont('helvetica', 'bold');
+            doc.text('PS', 20, 22);
+            doc.setFontSize(10);
+            doc.text('PRO', 33, 22);
+            doc.setFontSize(11);
+            doc.text(p.nome || 'Minha Empresa', 60, 16);
+            doc.setFontSize(9);
+            doc.setFont('helvetica', 'normal');
+            doc.text(p.tel || '', 60, 23);
+            doc.text(p.email || '', 60, 29);
+            doc.text(p.end || '', 60, 35);
+            
+            doc.setTextColor(26, 59, 90);
+            doc.setFontSize(16);
+            doc.setFont('helvetica', 'bold');
+            doc.text('ORÇAMENTO', 20, 55);
+            doc.setFontSize(9);
+            doc.setFont('helvetica', 'normal');
+            doc.setTextColor(100, 100, 100);
+            doc.text(`Nº: ${o.id.toString().padStart(4, '0')}`, 160, 50);
+            doc.text(`Data: ${new Date(o.data).toLocaleDateString('pt-BR')}`, 160, 56);
+            doc.text(`Validade: ${o.val} dias`, 160, 62);
+            
+            doc.setFillColor(245, 247, 250);
+            doc.roundedRect(20, 68, 170, 28, 2, 2, 'F');
+            doc.setTextColor(26, 59, 90);
+            doc.setFontSize(10);
+            doc.setFont('helvetica', 'bold');
+            doc.text('CLIENTE', 25, 77);
+            doc.setFont('helvetica', 'normal');
+            doc.setTextColor(60, 60, 60);
+            doc.text(cli?.nome || 'N/A', 25, 84);
+            doc.text(`Tel: ${cli?.tel || 'N/A'} | End: ${cli?.end || 'N/A'}`.substring(0, 80), 25, 91);
+            
+            // Agrupar itens por ambiente
+            const ambientes = {};
+            o.itens.forEach(item => {
+                const amb = item.ambiente || 'Geral';
+                if (!ambientes[amb]) ambientes[amb] = [];
+                ambientes[amb].push(item);
+            });
+            
+            let y = 108;
+            
+            for (const [ambiente, itens] of Object.entries(ambientes)) {
+                // Título do ambiente
+                doc.setFillColor(26, 59, 90);
+                doc.rect(20, y, 170, 8, 'F');
+                doc.setTextColor(255, 255, 255);
+                doc.setFontSize(9);
+                doc.setFont('helvetica', 'bold');
+                doc.text(`ðŸ“ ${ambiente}`, 25, y + 5.5);
+                y += 10;
+                
+                // Cabeçalho da tabela
+                doc.setFillColor(230, 235, 240);
+                doc.rect(20, y, 170, 7, 'F');
+                doc.setTextColor(26, 59, 90);
+                doc.setFontSize(8);
+                doc.text('SERVIÇO', 25, y + 5);
+                doc.text('QTD', 115, y + 5);
+                doc.text('UNIT.', 140, y + 5);
+                doc.text('TOTAL', 170, y + 5);
+                y += 9;
+                
+                // Itens
+                doc.setTextColor(60, 60, 60);
+                doc.setFont('helvetica', 'normal');
+                itens.forEach((x, i) => {
+                    if (y > 260) {
+                        doc.addPage();
+                        y = 20;
+                    }
+                    if (i % 2 === 0) { 
+                        doc.setFillColor(250, 250, 250); 
+                        doc.rect(20, y - 4, 170, 7, 'F'); 
+                    }
+                    doc.text(x.nome.substring(0, 40), 25, y);
+                    doc.text(`${x.qtd} ${x.un}`, 115, y);
+                    doc.text(`R$ ${x.preco.toFixed(2)}`, 140, y);
+                    doc.text(`R$ ${x.total.toFixed(2)}`, 170, y);
+                    y += 7;
+                });
+                
+                y += 5;
+            }
+            
+            // Total
+            y += 2;
+            doc.setFillColor(247, 192, 38);
+            doc.roundedRect(120, y, 70, 12, 2, 2, 'F');
+            doc.setTextColor(26, 59, 90);
+            doc.setFontSize(11);
+            doc.setFont('helvetica', 'bold');
+            doc.text(`TOTAL: R$ ${numberToMoeda(o.total)}`, 125, y + 8);
+            
+            y += 20;
+            
+            // Forma de Pagamento
+            if (o.pagamento) {
+                if (y > 250) { doc.addPage(); y = 20; }
+                doc.setFillColor(245, 247, 250);
+                doc.roundedRect(20, y, 170, 12, 2, 2, 'F');
+                doc.setTextColor(26, 59, 90);
+                doc.setFontSize(9);
+                doc.setFont('helvetica', 'bold');
+                doc.text('FORMA DE PAGAMENTO:', 25, y + 8);
+                doc.setFont('helvetica', 'normal');
+                doc.text(o.pagamento.substring(0, 60), 75, y + 8);
+                y += 16;
+            }
+            
+            // Observações
+            if (o.obs) {
+                if (y > 230) { doc.addPage(); y = 20; }
+                doc.setFillColor(245, 247, 250);
+                doc.setTextColor(26, 59, 90);
+                doc.setFontSize(9);
+                doc.setFont('helvetica', 'bold');
+                doc.text('OBSERVAÇÃ•ES:', 20, y);
+                y += 6;
+                doc.setFont('helvetica', 'normal');
+                doc.setTextColor(60, 60, 60);
+                doc.setFontSize(8);
+                
+                // Quebrar observações em linhas
+                const obsLines = doc.splitTextToSize(o.obs, 170);
+                obsLines.forEach(line => {
+                    if (y > 275) { doc.addPage(); y = 20; }
+                    doc.text(line, 20, y);
+                    y += 5;
+                });
+            }
+            
+            doc.setTextColor(150, 150, 150);
+            doc.setFontSize(7);
+            doc.setFont('helvetica', 'normal');
+            doc.text('Orçamento gerado pelo PS Pro - Painel Services', 20, 285);
+            
+            doc.save(`orcamento_${o.id}_${cli?.nome?.replace(/\s/g, '_') || 'cliente'}.pdf`);
+            toast('PDF exportado!');
         }
 
+        // MÃSCARAS
         function maskCPFCNPJ(v) {
             v = v.replace(/\D/g, '');
             if (v.length <= 11) {
@@ -1508,6 +1756,69 @@
             return v;
         }
 
+        // Aplicar máscaras - Perfil
+        document.getElementById('perfil-doc').addEventListener('input', function(e) {
+            e.target.value = maskCPFCNPJ(e.target.value);
+        });
+        document.getElementById('perfil-tel').addEventListener('input', function(e) {
+            e.target.value = maskTel(e.target.value);
+        });
+        document.getElementById('perfil-cep').addEventListener('input', function(e) {
+            e.target.value = maskCEP(e.target.value);
+        });
+
+        // Busca CEP para Perfil
+        async function buscarCEPPerfil(cep) {
+            cep = cep.replace(/\D/g, '');
+            if (cep.length !== 8) return;
+            
+            toast('Buscando CEP...');
+            
+            try {
+                const resp = await fetch(`https://viacep.com.br/ws/${cep}/json/`, {
+                    method: 'GET',
+                    mode: 'cors'
+                });
+                
+                if (!resp.ok) {
+                    toast('Erro na busca do CEP');
+                    return;
+                }
+                
+                const data = await resp.json();
+                
+                if (data.erro) {
+                    toast('CEP não encontrado');
+                    return;
+                }
+                
+                const partes = [];
+                if (data.logradouro) partes.push(data.logradouro);
+                if (data.bairro) partes.push(data.bairro);
+                if (data.localidade) partes.push(data.localidade + (data.uf ? ' - ' + data.uf : ''));
+                
+                const endereco = partes.join(', ');
+                document.getElementById('perfil-end').value = endereco;
+                document.getElementById('perfil-num').focus();
+                toast('Endereço encontrado!');
+            } catch (err) {
+                console.error('Erro CEP:', err);
+                toast('Erro ao buscar CEP. Verifique sua conexão.');
+            }
+        }
+
+        // Aplicar máscaras - Cliente
+        document.getElementById('cliente-doc').addEventListener('input', function(e) {
+            e.target.value = maskCPFCNPJ(e.target.value);
+        });
+        document.getElementById('cliente-tel').addEventListener('input', function(e) {
+            e.target.value = maskTel(e.target.value);
+        });
+        document.getElementById('cliente-cep').addEventListener('input', function(e) {
+            e.target.value = maskCEP(e.target.value);
+        });
+
+        // Máscara CEP
         function maskCEP(v) {
             v = v.replace(/\D/g, '');
             v = v.substring(0, 8);
@@ -1515,6 +1826,7 @@
             return v;
         }
 
+        // Máscara Moeda Brasileira (1.234,56)
         function maskMoeda(v) {
             v = v.replace(/\D/g, '');
             if (v === '') return '';
@@ -1524,87 +1836,429 @@
             return v;
         }
 
+        // Converter moeda formatada para número
         function moedaToNumber(v) {
             if (!v) return 0;
             return parseFloat(v.replace(/\./g, '').replace(',', '.')) || 0;
         }
 
+        // Formatar número para moeda
         function numberToMoeda(n) {
             if (!n && n !== 0) return '';
             return n.toFixed(2).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, '.');
         }
 
+        // Busca CEP via ViaCEP
         async function buscarCEP(cep) {
             cep = cep.replace(/\D/g, '');
             if (cep.length !== 8) return;
+            
             toast('Buscando CEP...');
+            
             try {
-                const resp = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
-                if (!resp.ok) { toast('Erro na busca do CEP'); return; }
+                const resp = await fetch(`https://viacep.com.br/ws/${cep}/json/`, {
+                    method: 'GET',
+                    mode: 'cors'
+                });
+                
+                if (!resp.ok) {
+                    toast('Erro na busca do CEP');
+                    return;
+                }
+                
                 const data = await resp.json();
-                if (data.erro) { toast('CEP não encontrado'); return; }
+                
+                if (data.erro) {
+                    toast('CEP não encontrado');
+                    return;
+                }
+                
                 const partes = [];
                 if (data.logradouro) partes.push(data.logradouro);
                 if (data.bairro) partes.push(data.bairro);
                 if (data.localidade) partes.push(data.localidade + (data.uf ? ' - ' + data.uf : ''));
+                
                 const endereco = partes.join(', ');
                 document.getElementById('cliente-end').value = endereco;
                 document.getElementById('cliente-num').focus();
                 toast('Endereço encontrado!');
             } catch (err) {
+                console.error('Erro CEP:', err);
                 toast('Erro ao buscar CEP. Verifique sua conexão.');
             }
         }
 
-        async function buscarCEPPerfil(cep) {
-            cep = cep.replace(/\D/g, '');
-            if (cep.length !== 8) return;
-            toast('Buscando CEP...');
-            try {
-                const resp = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
-                if (!resp.ok) { toast('Erro na busca do CEP'); return; }
-                const data = await resp.json();
-                if (data.erro) { toast('CEP não encontrado'); return; }
-                const partes = [];
-                if (data.logradouro) partes.push(data.logradouro);
-                if (data.bairro) partes.push(data.bairro);
-                if (data.localidade) partes.push(data.localidade + (data.uf ? ' - ' + data.uf : ''));
-                const endereco = partes.join(', ');
-                document.getElementById('perfil-end').value = endereco;
-                document.getElementById('perfil-num').focus();
-                toast('Endereço encontrado!');
-            } catch (err) {
-                toast('Erro ao buscar CEP. Verifique sua conexão.');
-            }
-        }
+        // DADOS INICIAIS
+        async function seedDatabase() {
+            const servicosCount = await db.servicos.count();
+            if (servicosCount > 0) return; // Já tem dados
 
-        document.getElementById('perfil-doc')?.addEventListener('input', function(e) {
-            e.target.value = maskCPFCNPJ(e.target.value);
-        });
-        document.getElementById('perfil-tel')?.addEventListener('input', function(e) {
-            e.target.value = maskTel(e.target.value);
-        });
-        document.getElementById('perfil-cep')?.addEventListener('input', function(e) {
-            e.target.value = maskCEP(e.target.value);
-        });
-        document.getElementById('cliente-doc')?.addEventListener('input', function(e) {
-            e.target.value = maskCPFCNPJ(e.target.value);
-        });
-        document.getElementById('cliente-tel')?.addEventListener('input', function(e) {
-            e.target.value = maskTel(e.target.value);
-        });
-        document.getElementById('cliente-cep')?.addEventListener('input', function(e) {
-            e.target.value = maskCEP(e.target.value);
-        });
+            // SERVIÇOS - Tabela de Pintura 2025
+            const servicos = [
+                // DIÃRIAS
+                { nome: 'Diária Ajudante', un: 'diária', preco: 116.35, desc: 'Serviço básico - 8hs' },
+                { nome: 'Diária Profissional', un: 'diária', preco: 202.08, desc: 'Serviços gerais de pintura - 8hs' },
+                { nome: 'Diária Líder', un: 'diária', preco: 232.70, desc: 'Pintor Profissional Líder - 8hs' },
+                { nome: 'Diária Cordeiro Ajudante', un: 'diária', preco: 220.45, desc: 'Pintor Ajudante Cordeiro/Cadeirinha - 8hs' },
+                { nome: 'Diária Cordeiro Profissional', un: 'diária', preco: 281.69, desc: 'Pintor Profissional Cordeiro/Cadeirinha - 8hs' },
+                { nome: 'Diária Proprietário', un: 'diária', preco: 330.67, desc: 'Com ferramentas, equipamentos e certificados' },
+                
+                // LAVAGEM
+                { nome: 'Lavagem Tijolinho', un: 'm²', preco: 5.16, desc: 'Para aplicação de silicone - até 3m altura' },
+                { nome: 'Lavagem Calha Simples', un: 'm', preco: 13.78, desc: 'Telhado simples - até 3m altura' },
+                { nome: 'Lavagem Calha Sobrado', un: 'm', preco: 21.77, desc: 'Acima 3 metros' },
+                { nome: 'Lavagem Pingadeiras', un: 'm', preco: 9.53, desc: 'Para muros' },
+                { nome: 'Lavagem Caixa Dágua Baixa', un: 'un', preco: 217.61, desc: 'Telhado baixo - até 3m' },
+                { nome: 'Lavagem Caixa Dágua Alta', un: 'un', preco: 326.37, desc: 'Telhado alto - acima 3m' },
+                { nome: 'Lavagem Telhado Baixo', un: 'm²', preco: 13.61, desc: 'Lavadora pressurizada - até 3m' },
+                { nome: 'Lavagem Telhado Alto', un: 'm²', preco: 17.63, desc: 'Lavadora pressurizada - acima 3m' },
+                { nome: 'Lavagem Parede até 3m', un: 'm²', preco: 4.54, desc: 'Sujeiras em geral' },
+                { nome: 'Lavagem Parede acima 3m', un: 'm²', preco: 11.51, desc: 'Sujeiras em geral' },
+                { nome: 'Lavagem Piso Mangueira', un: 'm²', preco: 5.20, desc: 'Lavagem simples' },
+                { nome: 'Lavagem Piso Pressurizada', un: 'm²', preco: 8.56, desc: 'Ãgua pressurizada' },
+                
+                // TELHAS
+                { nome: 'Resina Telhas 2 demãos', un: 'm²', preco: 23.47, desc: 'Lavagem incluso' },
+                { nome: 'Resina Telhas 3 demãos', un: 'm²', preco: 29.99, desc: 'Lavagem incluso' },
+                { nome: 'Resina Telhas Fibrocimento', un: 'm²', preco: 35.38, desc: 'Fibrocimento ou Amianto' },
+                
+                // CALHAS PINTURA
+                { nome: 'Pintura Calha Simples', un: 'm', preco: 30.50, desc: 'Telhado simples - até 3m' },
+                { nome: 'Pintura Calha Sobrado', un: 'm', preco: 38.10, desc: 'Acima 3 metros' },
+                { nome: 'Pintura Pingadeiras', un: 'm', preco: 18.43, desc: 'Para muros' },
+                
+                // EPÃ“XI
+                { nome: 'Epóxi Industrial', un: 'm²', preco: 285.48, desc: 'Alta espessura - Fundo + Acabamento' },
+                { nome: 'Epóxi 3D Artístico', un: 'm²', preco: 407.84, desc: 'Fundo + Acab + Adesivo' },
+                
+                // REPAROS
+                { nome: 'Acerto Cimento Parede', un: 'm²', preco: 18.37, desc: 'Grandes correções - até 3m' },
+                { nome: 'Fissuras Selante', un: 'm', preco: 11.45, desc: 'Selante para trincas' },
+                { nome: 'Trincas Tela e Massa', un: 'm', preco: 22.45, desc: 'Tela e massa' },
+                
+                // PAPEL PAREDE
+                { nome: 'Papel Parede Comum até 3m', un: 'un', preco: 91.74, desc: 'Por rolo' },
+                { nome: 'Papel Parede Comum acima 3m', un: 'un', preco: 139.37, desc: 'Por rolo' },
+                { nome: 'Papel Parede Importado até 3m', un: 'un', preco: 125.70, desc: 'Por rolo' },
+                
+                // PINTURA PAREDE - LÃTEX PVA
+                { nome: 'Repintura Látex PVA 2 demãos', un: 'm²', preco: 8.50, desc: 'Apenas repintura' },
+                { nome: 'Selador + 2 Látex PVA', un: 'm²', preco: 12.80, desc: '1 selador + 2 demãos tinta' },
+                { nome: 'Selador + 3 Látex PVA', un: 'm²', preco: 14.50, desc: '1 selador + 3 demãos tinta' },
+                { nome: 'Selador + Massa PVA + 2 Látex', un: 'm²', preco: 22.50, desc: 'Selador + 2 massa + 2 tinta' },
+                { nome: 'Selador + Massa PVA + 3 Látex', un: 'm²', preco: 25.80, desc: 'Selador + 2 massa + 3 tinta' },
+                
+                // PINTURA PAREDE - ACRÃLICA
+                { nome: 'Repintura Acrílica Fosca 2 demãos', un: 'm²', preco: 10.20, desc: 'Apenas repintura' },
+                { nome: 'Selador + 2 Acrílica Fosca', un: 'm²', preco: 15.30, desc: '1 selador + 2 demãos' },
+                { nome: 'Selador + 3 Acrílica Fosca', un: 'm²', preco: 17.80, desc: '1 selador + 3 demãos' },
+                { nome: 'Selador + Massa Acrílica + 2 Acrílica', un: 'm²', preco: 28.50, desc: 'Selador + 2 massa + 2 tinta' },
+                { nome: 'Selador + Massa Acrílica + 3 Acrílica', un: 'm²', preco: 32.80, desc: 'Selador + 2 massa + 3 tinta' },
+                { nome: 'Selador + 3 Massa + 2 Acrílica Acetinado', un: 'm²', preco: 48.28, desc: 'Premium acetinado' },
+                { nome: 'Selador + 3 Massa + 3 Acrílica Acetinado', un: 'm²', preco: 51.11, desc: 'Premium acetinado' },
+                { nome: 'Selador + 2 Massa + 2 Acrílica Semi-Brilho', un: 'm²', preco: 49.90, desc: 'Premium semi-brilho' },
+                { nome: 'Selador + 3 Massa + 3 Acrílica Semi-Brilho', un: 'm²', preco: 54.86, desc: 'Premium semi-brilho' },
+                
+                // DRYWALL
+                { nome: 'Repintura Drywall', un: 'm²', preco: 14.29, desc: 'Drywall já pintado' },
+                { nome: 'Drywall Fundo + 2 Fosco', un: 'm²', preco: 23.13, desc: 'Lixar + Fundo + 2 demãos fosco' },
+                { nome: 'Drywall Massa Emendas + 2 Fosco', un: 'm²', preco: 29.20, desc: 'Fundo + Massa emendas + 2 fosco' },
+                { nome: 'Drywall Massa Geral + 2 Fosco', un: 'm²', preco: 39.46, desc: 'Fundo + Massa geral + 2 fosco' },
+                { nome: 'Drywall Massa Emendas + 2 Acetinado', un: 'm²', preco: 34.64, desc: 'Fundo + Massa emendas + 2 acetinado' },
+                { nome: 'Drywall Massa Geral + 2 Acetinado', un: 'm²', preco: 44.85, desc: 'Fundo + Massa geral + 2 acetinado' },
+                { nome: 'Drywall Massa Emendas + 2 Semi-Brilho', un: 'm²', preco: 45.47, desc: 'Fundo + Massa emendas + 2 semi-brilho' },
+                { nome: 'Drywall Massa Geral + 2 Semi-Brilho', un: 'm²', preco: 44.91, desc: 'Fundo + Massa geral + 2 semi-brilho' },
+                
+                // EXTERNOS
+                { nome: 'Pintura Muro Externo', un: 'm²', preco: 16.50, desc: '2 demãos acrílica externa' },
+                { nome: 'Pintura Fachada até 3m', un: 'm²', preco: 18.80, desc: 'Acrílica externa' },
+                { nome: 'Pintura Fachada acima 3m', un: 'm²', preco: 24.50, desc: 'Acrílica externa com andaime' },
+                { nome: 'Textura Rústica', un: 'm²', preco: 28.00, desc: 'Textura grafiato/rústica' },
+                { nome: 'Textura Lisa', un: 'm²', preco: 22.50, desc: 'Textura lisa rolada' },
+                
+                // PORTAS E JANELAS
+                { nome: 'Pintura Porta Lisa', un: 'un', preco: 85.00, desc: 'Porta lisa dos dois lados' },
+                { nome: 'Pintura Porta Frisada', un: 'un', preco: 120.00, desc: 'Porta frisada dos dois lados' },
+                { nome: 'Pintura Janela Madeira P', un: 'un', preco: 95.00, desc: 'Janela pequena' },
+                { nome: 'Pintura Janela Madeira M', un: 'un', preco: 145.00, desc: 'Janela média' },
+                { nome: 'Pintura Janela Madeira G', un: 'un', preco: 195.00, desc: 'Janela grande' },
+                { nome: 'Pintura Grade/Portão P', un: 'un', preco: 150.00, desc: 'Grade ou portão pequeno' },
+                { nome: 'Pintura Grade/Portão M', un: 'un', preco: 280.00, desc: 'Grade ou portão médio' },
+                { nome: 'Pintura Grade/Portão G', un: 'un', preco: 450.00, desc: 'Grade ou portão grande' },
+                
+                // TETO
+                { nome: 'Pintura Teto Repintura', un: 'm²', preco: 12.50, desc: 'Apenas repintura' },
+                { nome: 'Pintura Teto Selador + 2 demãos', un: 'm²', preco: 18.00, desc: 'Selador + 2 demãos' },
+                { nome: 'Pintura Teto com Massa', un: 'm²', preco: 32.00, desc: 'Selador + Massa + 2 demãos' },
+                
+                // DESLOCAMENTO
+                { nome: 'Deslocamento por KM', un: 'un', preco: 8.11, desc: 'Por quilômetro rodado' }
+            ];
 
-        // Registrar Service Worker para PWA
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/sw.js')
-                    .then(reg => console.log('✅ Service Worker registrado'))
-                    .catch(err => console.log('❌ Erro no SW:', err));
+            await db.servicos.bulkAdd(servicos);
+
+            // CLIENTES
+            const clientes = [
+                { nome: 'João Silva Santos', doc: '123.456.789-00', tel: '(11) 99876-5432', email: 'joao.silva@email.com', end: 'Rua das Flores, 123 - Vila Nova, São Paulo - SP', obs: 'Cliente antigo, sempre paga em dia' },
+                { nome: 'Maria Oliveira Costa', doc: '234.567.890-11', tel: '(11) 98765-4321', email: 'maria.oliveira@email.com', end: 'Av. Brasil, 456 - Centro, São Paulo - SP', obs: 'Prefere pagamento parcelado' },
+                { nome: 'Carlos Eduardo Ferreira', doc: '345.678.901-22', tel: '(11) 97654-3210', email: 'carlos.ferreira@email.com', end: 'Rua dos Pinheiros, 789 - Pinheiros, São Paulo - SP', obs: '' },
+                { nome: 'Ana Paula Rodrigues', doc: '456.789.012-33', tel: '(11) 96543-2109', email: 'ana.rodrigues@email.com', end: 'Rua Augusta, 321 - Consolação, São Paulo - SP', obs: 'Indicação do João Silva' },
+                { nome: 'Pedro Henrique Almeida', doc: '567.890.123-44', tel: '(11) 95432-1098', email: 'pedro.almeida@email.com', end: 'Av. Paulista, 1000 - Bela Vista, São Paulo - SP', obs: 'Apartamento de alto padrão' },
+                { nome: 'Fernanda Lima Souza', doc: '678.901.234-55', tel: '(11) 94321-0987', email: 'fernanda.souza@email.com', end: 'Rua Oscar Freire, 555 - Jardins, São Paulo - SP', obs: '' },
+                { nome: 'Ricardo Mendes Neto', doc: '789.012.345-66', tel: '(11) 93210-9876', email: 'ricardo.mendes@email.com', end: 'Alameda Santos, 888 - Cerqueira César, São Paulo - SP', obs: 'Escritório comercial' },
+                { nome: 'Juliana Martins Pereira', doc: '890.123.456-77', tel: '(11) 92109-8765', email: 'juliana.martins@email.com', end: 'Rua Haddock Lobo, 222 - Jardim Paulista, São Paulo - SP', obs: '' },
+                { nome: 'Marcos Antônio Ribeiro', doc: '901.234.567-88', tel: '(11) 91098-7654', email: 'marcos.ribeiro@email.com', end: 'Av. Rebouças, 3333 - Pinheiros, São Paulo - SP', obs: 'Prédio comercial' },
+                { nome: 'Patrícia Gomes Cardoso', doc: '012.345.678-99', tel: '(11) 90987-6543', email: 'patricia.cardoso@email.com', end: 'Rua da Consolação, 444 - Consolação, São Paulo - SP', obs: '' },
+                { nome: 'Lucas Fernandes Silva', doc: '111.222.333-44', tel: '(11) 99111-2222', email: 'lucas.fernandes@email.com', end: 'Rua Vergueiro, 1500 - Vila Mariana, São Paulo - SP', obs: 'Casa térrea' },
+                { nome: 'Camila Rocha Dias', doc: '222.333.444-55', tel: '(11) 98222-3333', email: 'camila.rocha@email.com', end: 'Av. Ibirapuera, 2500 - Moema, São Paulo - SP', obs: '' },
+                { nome: 'Bruno Costa Machado', doc: '333.444.555-66', tel: '(11) 97333-4444', email: 'bruno.costa@email.com', end: 'Rua Pamplona, 666 - Jardim Paulista, São Paulo - SP', obs: 'Cobertura duplex' },
+                { nome: 'Amanda Freitas Lopes', doc: '444.555.666-77', tel: '(11) 96444-5555', email: 'amanda.freitas@email.com', end: 'Alameda Jaú, 777 - Jardim Paulista, São Paulo - SP', obs: '' },
+                { nome: 'Thiago Alves Moreira', doc: '555.666.777-88', tel: '(11) 95555-6666', email: 'thiago.alves@email.com', end: 'Rua Estados Unidos, 888 - Jardim América, São Paulo - SP', obs: 'Reforma completa' },
+                { nome: 'Larissa Santos Araújo', doc: '666.777.888-99', tel: '(11) 94666-7777', email: 'larissa.santos@email.com', end: 'Av. Europa, 999 - Jardim Europa, São Paulo - SP', obs: '' },
+                { nome: 'Felipe Barbosa Lima', doc: '777.888.999-00', tel: '(11) 93777-8888', email: 'felipe.barbosa@email.com', end: 'Rua Groenlândia, 111 - Jardim América, São Paulo - SP', obs: 'Casa de 3 andares' },
+                { nome: 'Mariana Teixeira Ramos', doc: '888.999.000-11', tel: '(11) 92888-9999', email: 'mariana.teixeira@email.com', end: 'Alameda Lorena, 222 - Jardins, São Paulo - SP', obs: '' },
+                { nome: 'Gustavo Pereira Nunes', doc: '999.000.111-22', tel: '(11) 91999-0000', email: 'gustavo.pereira@email.com', end: 'Rua Bela Cintra, 333 - Consolação, São Paulo - SP', obs: 'Apartamento 150m²' },
+                { nome: 'Isabela Cunha Monteiro', doc: '000.111.222-33', tel: '(11) 90000-1111', email: 'isabela.cunha@email.com', end: 'Av. Cidade Jardim, 444 - Itaim Bibi, São Paulo - SP', obs: '' },
+                { nome: 'Rafael Campos Duarte', doc: '112.233.445-56', tel: '(11) 99112-2334', email: 'rafael.campos@email.com', end: 'Rua Funchal, 555 - Vila Olímpia, São Paulo - SP', obs: 'Sala comercial' },
+                { nome: 'Beatriz Moura Vieira', doc: '223.344.556-67', tel: '(11) 98223-3445', email: 'beatriz.moura@email.com', end: 'Av. Faria Lima, 666 - Pinheiros, São Paulo - SP', obs: '' },
+                { nome: 'André Luiz Correia', doc: '334.455.667-78', tel: '(11) 97334-4556', email: 'andre.correia@email.com', end: 'Rua Joaquim Floriano, 777 - Itaim Bibi, São Paulo - SP', obs: 'Empresa de TI' },
+                { nome: 'Carolina Pinto Azevedo', doc: '445.566.778-89', tel: '(11) 96445-5667', email: 'carolina.pinto@email.com', end: 'Alameda Gabriel Monteiro da Silva, 888 - Jardins, São Paulo - SP', obs: '' },
+                { nome: 'Diego Santana Reis', doc: '556.677.889-90', tel: '(11) 95556-6778', email: 'diego.santana@email.com', end: 'Rua Tabapuã, 999 - Itaim Bibi, São Paulo - SP', obs: 'Loja de roupas' },
+                { nome: 'Letícia Carvalho Melo', doc: '667.788.990-01', tel: '(11) 94667-7889', email: 'leticia.carvalho@email.com', end: 'Av. Brigadeiro Faria Lima, 1010 - Pinheiros, São Paulo - SP', obs: '' },
+                { nome: 'Vinícius Ramos Castro', doc: '778.899.001-12', tel: '(11) 93778-8990', email: 'vinicius.ramos@email.com', end: 'Rua Leopoldo Couto Magalhães Jr, 1111 - Itaim Bibi, São Paulo - SP', obs: 'Clínica médica' },
+                { nome: 'Natália Borges Prado', doc: '889.900.112-23', tel: '(11) 92889-9001', email: 'natalia.borges@email.com', end: 'Alameda Itu, 1212 - Jardim Paulista, São Paulo - SP', obs: '' },
+                { nome: 'Eduardo Fonseca Dias', doc: '990.011.223-34', tel: '(11) 91990-0112', email: 'eduardo.fonseca@email.com', end: 'Rua Peixoto Gomide, 1313 - Jardins, São Paulo - SP', obs: 'Restaurante' },
+                { nome: 'Vanessa Lima Nogueira', doc: '001.122.334-45', tel: '(11) 90001-1223', email: 'vanessa.lima@email.com', end: 'Av. Santo Amaro, 1414 - Vila Nova Conceição, São Paulo - SP', obs: '' },
+                { nome: 'Roberto Maia Gomes', doc: '113.224.335-46', tel: '(11) 99113-2243', email: 'roberto.maia@email.com', end: 'Rua Normandia, 1515 - Vila Madalena, São Paulo - SP', obs: 'Estúdio de música' },
+                { nome: 'Aline Vasconcelos Cruz', doc: '224.335.446-57', tel: '(11) 98224-3354', email: 'aline.vasconcelos@email.com', end: 'Rua Aspicuelta, 1616 - Vila Madalena, São Paulo - SP', obs: '' },
+                { nome: 'Henrique Barros Leal', doc: '335.446.557-68', tel: '(11) 97335-4465', email: 'henrique.barros@email.com', end: 'Rua Harmonia, 1717 - Vila Madalena, São Paulo - SP', obs: 'Galeria de arte' },
+                { nome: 'Renata Silveira Matos', doc: '446.557.668-79', tel: '(11) 96446-5576', email: 'renata.silveira@email.com', end: 'Rua Fidalga, 1818 - Vila Madalena, São Paulo - SP', obs: '' },
+                { nome: 'Fábio Miranda Teles', doc: '557.668.779-80', tel: '(11) 95557-6687', email: 'fabio.miranda@email.com', end: 'Rua Mourato Coelho, 1919 - Pinheiros, São Paulo - SP', obs: 'Bar e restaurante' },
+                { nome: 'Priscila Andrade Faria', doc: '668.779.880-91', tel: '(11) 94668-7798', email: 'priscila.andrade@email.com', end: 'Rua dos Pinheiros, 2020 - Pinheiros, São Paulo - SP', obs: '' },
+                { nome: 'Sérgio Neves Guimarães', doc: '779.880.991-02', tel: '(11) 93779-8809', email: 'sergio.neves@email.com', end: 'Rua Teodoro Sampaio, 2121 - Pinheiros, São Paulo - SP', obs: 'Escritório advocacia' },
+                { nome: 'Débora Costa Amaral', doc: '880.991.002-13', tel: '(11) 92880-9910', email: 'debora.costa@email.com', end: 'Rua Cardeal Arcoverde, 2222 - Pinheiros, São Paulo - SP', obs: '' },
+                { nome: 'Leandro Pires Machado', doc: '991.002.113-24', tel: '(11) 91991-0021', email: 'leandro.pires@email.com', end: 'Av. Henrique Schaumann, 2323 - Pinheiros, São Paulo - SP', obs: 'Academia' },
+                { nome: 'Tatiane Sousa Ribeiro', doc: '002.113.224-35', tel: '(11) 90002-1132', email: 'tatiane.sousa@email.com', end: 'Rua Artur de Azevedo, 2424 - Pinheiros, São Paulo - SP', obs: 'Salão de beleza' }
+            ];
+
+            await db.clientes.bulkAdd(clientes);
+
+            // ORÇAMENTOS
+            const hoje = new Date();
+            const orcamentos = [
+                {
+                    clienteId: 1,
+                    titulo: 'Pintura Apartamento Completo',
+                    itens: [
+                        { servId: 42, nome: 'Selador + Massa Acrílica + 2 Acrílica', preco: 28.50, un: 'm²', qtd: 180, total: 5130 },
+                        { servId: 69, nome: 'Pintura Teto com Massa', preco: 32.00, un: 'm²', qtd: 65, total: 2080 },
+                        { servId: 61, nome: 'Pintura Porta Lisa', preco: 85.00, un: 'un', qtd: 6, total: 510 }
+                    ],
+                    total: 7720,
+                    status: 'fechado',
+                    data: new Date(hoje.getTime() - 45 * 24 * 60 * 60 * 1000).toISOString(),
+                    val: 15
+                },
+                {
+                    clienteId: 2,
+                    titulo: 'Pintura Externa Casa',
+                    itens: [
+                        { servId: 57, nome: 'Pintura Fachada até 3m', preco: 18.80, un: 'm²', qtd: 120, total: 2256 },
+                        { servId: 56, nome: 'Pintura Muro Externo', preco: 16.50, un: 'm²', qtd: 85, total: 1402.50 },
+                        { servId: 66, nome: 'Pintura Grade/Portão M', preco: 280.00, un: 'un', qtd: 1, total: 280 }
+                    ],
+                    total: 3938.50,
+                    status: 'fechado',
+                    data: new Date(hoje.getTime() - 40 * 24 * 60 * 60 * 1000).toISOString(),
+                    val: 15
+                },
+                {
+                    clienteId: 5,
+                    titulo: 'Reforma Cobertura Duplex',
+                    itens: [
+                        { servId: 44, nome: 'Selador + 3 Massa + 2 Acrílica Acetinado', preco: 48.28, un: 'm²', qtd: 320, total: 15449.60 },
+                        { servId: 69, nome: 'Pintura Teto com Massa', preco: 32.00, un: 'm²', qtd: 150, total: 4800 },
+                        { servId: 62, nome: 'Pintura Porta Frisada', preco: 120.00, un: 'un', qtd: 12, total: 1440 },
+                        { servId: 59, nome: 'Textura Rústica', preco: 28.00, un: 'm²', qtd: 45, total: 1260 }
+                    ],
+                    total: 22949.60,
+                    status: 'fechado',
+                    data: new Date(hoje.getTime() - 35 * 24 * 60 * 60 * 1000).toISOString(),
+                    val: 15
+                },
+                {
+                    clienteId: 8,
+                    titulo: 'Escritório Comercial',
+                    itens: [
+                        { servId: 48, nome: 'Drywall Fundo + 2 Fosco', preco: 23.13, un: 'm²', qtd: 200, total: 4626 },
+                        { servId: 68, nome: 'Pintura Teto Selador + 2 demãos', preco: 18.00, un: 'm²', qtd: 85, total: 1530 }
+                    ],
+                    total: 6156,
+                    status: 'fechado',
+                    data: new Date(hoje.getTime() - 30 * 24 * 60 * 60 * 1000).toISOString(),
+                    val: 15
+                },
+                {
+                    clienteId: 12,
+                    titulo: 'Pintura Sala e Quartos',
+                    itens: [
+                        { servId: 40, nome: 'Selador + 2 Acrílica Fosca', preco: 15.30, un: 'm²', qtd: 95, total: 1453.50 },
+                        { servId: 67, nome: 'Pintura Teto Repintura', preco: 12.50, un: 'm²', qtd: 40, total: 500 }
+                    ],
+                    total: 1953.50,
+                    status: 'fechado',
+                    data: new Date(hoje.getTime() - 25 * 24 * 60 * 60 * 1000).toISOString(),
+                    val: 15
+                },
+                {
+                    clienteId: 15,
+                    titulo: 'Reforma Completa Apartamento 200m²',
+                    itens: [
+                        { servId: 46, nome: 'Selador + 2 Massa + 2 Acrílica Semi-Brilho', preco: 49.90, un: 'm²', qtd: 280, total: 13972 },
+                        { servId: 69, nome: 'Pintura Teto com Massa', preco: 32.00, un: 'm²', qtd: 95, total: 3040 },
+                        { servId: 62, nome: 'Pintura Porta Frisada', preco: 120.00, un: 'un', qtd: 8, total: 960 },
+                        { servId: 64, nome: 'Pintura Janela Madeira M', preco: 145.00, un: 'un', qtd: 5, total: 725 }
+                    ],
+                    total: 18697,
+                    status: 'fechado',
+                    data: new Date(hoje.getTime() - 20 * 24 * 60 * 60 * 1000).toISOString(),
+                    val: 15
+                },
+                {
+                    clienteId: 18,
+                    titulo: 'Clínica Médica - Recepção',
+                    itens: [
+                        { servId: 52, nome: 'Drywall Massa Geral + 2 Acetinado', preco: 44.85, un: 'm²', qtd: 85, total: 3812.25 },
+                        { servId: 68, nome: 'Pintura Teto Selador + 2 demãos', preco: 18.00, un: 'm²', qtd: 45, total: 810 }
+                    ],
+                    total: 4622.25,
+                    status: 'fechado',
+                    data: new Date(hoje.getTime() - 15 * 24 * 60 * 60 * 1000).toISOString(),
+                    val: 15
+                },
+                {
+                    clienteId: 22,
+                    titulo: 'Pintura Restaurante',
+                    itens: [
+                        { servId: 42, nome: 'Selador + Massa Acrílica + 2 Acrílica', preco: 28.50, un: 'm²', qtd: 150, total: 4275 },
+                        { servId: 69, nome: 'Pintura Teto com Massa', preco: 32.00, un: 'm²', qtd: 70, total: 2240 },
+                        { servId: 7, nome: 'Lavagem Tijolinho', preco: 5.16, un: 'm²', qtd: 25, total: 129 }
+                    ],
+                    total: 6644,
+                    status: 'fechado',
+                    data: new Date(hoje.getTime() - 10 * 24 * 60 * 60 * 1000).toISOString(),
+                    val: 15
+                },
+                {
+                    clienteId: 25,
+                    titulo: 'Loja de Roupas - Shopping',
+                    itens: [
+                        { servId: 48, nome: 'Drywall Fundo + 2 Fosco', preco: 23.13, un: 'm²', qtd: 120, total: 2775.60 },
+                        { servId: 61, nome: 'Pintura Porta Lisa', preco: 85.00, un: 'un', qtd: 2, total: 170 }
+                    ],
+                    total: 2945.60,
+                    status: 'pendente',
+                    data: new Date(hoje.getTime() - 7 * 24 * 60 * 60 * 1000).toISOString(),
+                    val: 15
+                },
+                {
+                    clienteId: 28,
+                    titulo: 'Apartamento Pequeno 60m²',
+                    itens: [
+                        { servId: 36, nome: 'Selador + Massa PVA + 2 Látex', preco: 22.50, un: 'm²', qtd: 85, total: 1912.50 },
+                        { servId: 67, nome: 'Pintura Teto Repintura', preco: 12.50, un: 'm²', qtd: 55, total: 687.50 }
+                    ],
+                    total: 2600,
+                    status: 'pendente',
+                    data: new Date(hoje.getTime() - 5 * 24 * 60 * 60 * 1000).toISOString(),
+                    val: 15
+                },
+                {
+                    clienteId: 31,
+                    titulo: 'Galeria de Arte',
+                    itens: [
+                        { servId: 52, nome: 'Drywall Massa Geral + 2 Acetinado', preco: 44.85, un: 'm²', qtd: 180, total: 8073 },
+                        { servId: 68, nome: 'Pintura Teto Selador + 2 demãos', preco: 18.00, un: 'm²', qtd: 90, total: 1620 }
+                    ],
+                    total: 9693,
+                    status: 'pendente',
+                    data: new Date(hoje.getTime() - 4 * 24 * 60 * 60 * 1000).toISOString(),
+                    val: 15
+                },
+                {
+                    clienteId: 35,
+                    titulo: 'Bar e Restaurante - Fachada',
+                    itens: [
+                        { servId: 58, nome: 'Pintura Fachada acima 3m', preco: 24.50, un: 'm²', qtd: 75, total: 1837.50 },
+                        { servId: 66, nome: 'Pintura Grade/Portão M', preco: 280.00, un: 'un', qtd: 2, total: 560 },
+                        { servId: 15, nome: 'Lavagem Parede até 3m', preco: 4.54, un: 'm²', qtd: 75, total: 340.50 }
+                    ],
+                    total: 2738,
+                    status: 'pendente',
+                    data: new Date(hoje.getTime() - 3 * 24 * 60 * 60 * 1000).toISOString(),
+                    val: 15
+                },
+                {
+                    clienteId: 38,
+                    titulo: 'Escritório Advocacia',
+                    itens: [
+                        { servId: 44, nome: 'Selador + 3 Massa + 2 Acrílica Acetinado', preco: 48.28, un: 'm²', qtd: 110, total: 5310.80 },
+                        { servId: 69, nome: 'Pintura Teto com Massa', preco: 32.00, un: 'm²', qtd: 55, total: 1760 },
+                        { servId: 62, nome: 'Pintura Porta Frisada', preco: 120.00, un: 'un', qtd: 4, total: 480 }
+                    ],
+                    total: 7550.80,
+                    status: 'recusado',
+                    data: new Date(hoje.getTime() - 8 * 24 * 60 * 60 * 1000).toISOString(),
+                    val: 15
+                },
+                {
+                    clienteId: 40,
+                    titulo: 'Salão de Beleza - Reforma',
+                    itens: [
+                        { servId: 42, nome: 'Selador + Massa Acrílica + 2 Acrílica', preco: 28.50, un: 'm²', qtd: 65, total: 1852.50 },
+                        { servId: 67, nome: 'Pintura Teto Repintura', preco: 12.50, un: 'm²', qtd: 35, total: 437.50 },
+                        { servId: 61, nome: 'Pintura Porta Lisa', preco: 85.00, un: 'un', qtd: 3, total: 255 }
+                    ],
+                    total: 2545,
+                    status: 'pendente',
+                    data: new Date(hoje.getTime() - 1 * 24 * 60 * 60 * 1000).toISOString(),
+                    val: 15
+                },
+                {
+                    clienteId: 3,
+                    titulo: 'Casa Térrea - Pintura Completa',
+                    itens: [
+                        { servId: 42, nome: 'Selador + Massa Acrílica + 2 Acrílica', preco: 28.50, un: 'm²', qtd: 220, total: 6270 },
+                        { servId: 69, nome: 'Pintura Teto com Massa', preco: 32.00, un: 'm²', qtd: 95, total: 3040 },
+                        { servId: 56, nome: 'Pintura Muro Externo', preco: 16.50, un: 'm²', qtd: 65, total: 1072.50 },
+                        { servId: 66, nome: 'Pintura Grade/Portão M', preco: 280.00, un: 'un', qtd: 1, total: 280 }
+                    ],
+                    total: 10662.50,
+                    status: 'recusado',
+                    data: new Date(hoje.getTime() - 12 * 24 * 60 * 60 * 1000).toISOString(),
+                    val: 15
+                }
+            ];
+
+            await db.orcamentos.bulkAdd(orcamentos);
+
+            // PERFIL
+            await db.perfil.add({
+                nome: 'Painel Services',
+                doc: '12.345.678/0001-99',
+                tel: '(11) 99999-8888',
+                email: 'contato@painelservices.com.br',
+                end: 'São Paulo - SP',
+                val: 15
             });
+
+            console.log('Database populado com sucesso!');
         }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            await seedDatabase();
+            loadDashboard();
+        });
     </script>
 </body>
 </html>

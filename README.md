@@ -1,140 +1,77 @@
-# 🎨 PS Pro - Orçamentos Inteligentes
+# PS Pro - Orçamentos Inteligentes
 
-Sistema completo de gerenciamento de orçamentos para empresas de pintura.
+Sistema PWA para gestão de orçamentos de pintura - Painel Services
 
-## 🚀 Tecnologias
+## 🚀 Deploy na Vercel
 
-- **Frontend:** HTML, CSS, JavaScript (PWA)
-- **Backend:** Supabase (PostgreSQL + Auth)
-- **Deploy:** Vercel
-- **Banco de Dados:** PostgreSQL com Row Level Security
+### Opção 1: Via GitHub (Recomendado)
 
----
+1. Crie um repositório no GitHub
+2. Faça push deste projeto:
+   ```bash
+   git init
+   git add .
+   git commit -m "Initial commit"
+   git branch -M main
+   git remote add origin https://github.com/SEU_USUARIO/pspro.git
+   git push -u origin main
+   ```
+3. No Vercel (vercel.com):
+   - Clique em "Add New Project"
+   - Importe o repositório do GitHub
+   - Clique em "Deploy"
 
-## ⚙️ Configuração Local
+### Opção 2: Via CLI
 
-### 1. Clone o repositório
 ```bash
-git clone seu-repositorio.git
-cd ps-pro
+npm i -g vercel
+vercel login
+vercel --prod
 ```
 
-### 2. Configure as variáveis de ambiente
-
-Copie o arquivo de exemplo:
-```bash
-cp .env.example .env
-```
-
-Edite o `.env` e preencha com suas credenciais do Supabase:
-```env
-VITE_SUPABASE_URL=https://seu-projeto.supabase.co
-VITE_SUPABASE_ANON_KEY=sua-chave-aqui
-```
-
-**Onde encontrar as credenciais:**
-1. Acesse [Supabase Dashboard](https://app.supabase.com)
-2. Selecione seu projeto
-3. Vá em **Settings > API**
-4. Copie:
-   - **Project URL** → `VITE_SUPABASE_URL`
-   - **anon public key** → `VITE_SUPABASE_ANON_KEY`
-
-### 3. Configure o banco de dados
-
-Execute o schema SQL no Supabase:
-1. No Supabase Dashboard, vá em **SQL Editor**
-2. Copie o conteúdo de `supabase/schema.sql`
-3. Cole e clique em **RUN**
-
-### 4. Instale dependências (se usar npm)
-```bash
-npm install
-```
-
-### 5. Rode localmente
-```bash
-npm run dev
-```
-
-Ou simplesmente abra o `index.html` no navegador!
-
----
-
-## 🌐 Deploy na Vercel
-
-### 1. Conecte seu repositório GitHub
-
-### 2. Configure as variáveis de ambiente na Vercel:
-- `VITE_SUPABASE_URL`
-- `VITE_SUPABASE_ANON_KEY`
-
-### 3. Deploy automático! 🎉
-
----
-
-## 📦 Estrutura do Projeto
+## 📁 Estrutura do Projeto
 
 ```
-ps-pro/
-├── public/
-│   ├── index.html          # PWA principal
-│   ├── manifest.json       # Config PWA
-│   └── service-worker.js   # Offline support
-├── src/
-│   ├── config/
-│   │   └── supabase.js     # Config Supabase
-│   ├── auth/
-│   │   └── auth.js         # Login/Cadastro
-│   └── services/
-│       ├── clientes.js
-│       ├── servicos.js
-│       └── orcamentos.js
-├── supabase/
-│   └── schema.sql          # Schema do banco
-├── .env.example            # Template variáveis
-├── .gitignore
-└── README.md
+pspro-vercel/
+├── index.html          # App principal
+├── login.html          # Tela de login/cadastro
+├── manifest.json       # Configuração PWA
+├── sw.js              # Service Worker
+├── vercel.json        # Config Vercel
+├── js/
+│   └── supabase-config.js  # Conexão Supabase
+└── icons/
+    └── icon-*.png     # Ícones do app
 ```
 
----
+## 🔐 Configuração Supabase
 
-## 🔐 Segurança
+As credenciais do Supabase estão em `js/supabase-config.js`:
+- URL: https://lnbjegelyaooloreefiu.supabase.co
+- Chave Anon: configurada no arquivo
 
-- ✅ Row Level Security (RLS) ativado
-- ✅ Cada usuário vê apenas seus dados
-- ✅ Autenticação via Supabase Auth
-- ✅ Variáveis de ambiente protegidas
+### Banco de Dados
 
----
+Execute o `schema.sql` no Supabase SQL Editor para criar as tabelas:
+- perfil
+- clientes
+- servicos
+- orcamentos
+- orcamentos_itens
 
-## 📱 Funcionalidades
+## 📱 Funcionalidades PWA
 
-- ✅ Dashboard com estatísticas
-- ✅ Cadastro de clientes
-- ✅ Catálogo de serviços
-- ✅ Criação de orçamentos
-- ✅ Exportação para PDF
-- ✅ Busca de CEP automática
-- ✅ Multi-usuário
-- ✅ PWA (funciona offline)
-
----
+- ✅ Instalável na tela inicial
+- ✅ Funciona offline (cache de assets)
+- ✅ Tema e ícones personalizados
+- ✅ Atalhos rápidos
 
 ## 🎨 Identidade Visual
 
-Baseado no **Brand Book Painel Services**:
-- **Cores:** #1a3b5a (azul) e #f7c026 (amarelo)
-- **Tipografia:** Poppins, Montserrat, Agarandir
+- **Cor Principal:** #1a3b5a (Azul Escuro)
+- **Cor Secundária:** #f7c026 (Amarelo Ouro)
+- **Fonte:** Poppins
 
 ---
 
-## 📞 Suporte
-
-Dúvidas? Entre em contato!
-
----
-
-## 📄 Licença
-
-Propriedade de Painel Services © 2025
+Desenvolvido para Painel Services
